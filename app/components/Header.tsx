@@ -125,28 +125,22 @@ export default function Header() {
                   Productos
                 </Link> */}
                 <Link
-                  href="/rentals"
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  Alquileres
-                </Link>
-                <Link
-                  href="/repairs"
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  Reparaciones
-                </Link>
-                <Link
                   href="/about"
                   className="text-sm font-medium hover:text-primary transition-colors"
                 >
                   Nosotros
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/trayectoria"
                   className="text-sm font-medium hover:text-primary transition-colors"
                 >
-                  Contacto
+                  Trayectoria
+                </Link>
+                <Link
+                  href="/servicios"
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  Servicios
                 </Link>
               </nav>
 
@@ -174,27 +168,6 @@ export default function Header() {
                       </SheetHeader>
                       <nav className="flex flex-col space-y-6 mt-8">
                         <Link
-                          href="/products"
-                          className="text-lg font-medium hover:text-primary transition-colors"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          Productos
-                        </Link>
-                        <Link
-                          href="/rentals"
-                          className="text-lg font-medium hover:text-primary transition-colors"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          Alquileres
-                        </Link>
-                        <Link
-                          href="/repairs"
-                          className="text-lg font-medium hover:text-primary transition-colors"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          Reparaciones
-                        </Link>
-                        <Link
                           href="/about"
                           className="text-lg font-medium hover:text-primary transition-colors"
                           onClick={() => setIsOpen(false)}
@@ -207,6 +180,20 @@ export default function Header() {
                           onClick={() => setIsOpen(false)}
                         >
                           Contacto
+                        </Link>
+                        <Link
+                          href="/trayectoria"
+                          className="text-lg font-medium hover:text-primary transition-colors"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Trayectoria
+                        </Link>
+                        <Link
+                          href="/servicios"
+                          className="text-lg font-medium hover:text-primary transition-colors"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Servicios
                         </Link>
                       </nav>
                     </SheetContent>

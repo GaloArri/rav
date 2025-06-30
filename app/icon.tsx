@@ -11,24 +11,32 @@ export const size = {
 export const contentType = 'image/png'
 
 // Image generation
-export default function Icon() {
+export default async function Icon() {
+  const iconData = await fetch(new URL('/favicon.ico', import.meta.url)).then(
+    (res) => res.arrayBuffer(),
+  )
+
   return new ImageResponse(
     (
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 24,
-          background: 'black',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
-          fontWeight: 'bold',
         }}
       >
-        R
+        <img
+          src={iconData as any}
+          alt="RAV Icon"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+          }}
+        />
       </div>
     ),
     // ImageResponse options

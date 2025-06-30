@@ -1,0 +1,92 @@
+{
+  "products": [
+    {
+      "id": 5,
+      "name": "Switch Push-to-Talk",
+      "price": 70.99,
+      "description": "Adaptador XLR con función Push-to-Talk, ideal para transmisiones en vivo, conferencias y producción de audio. Cuenta con conectores XLR macho y hembra para una conexión directa y un botón integrado que permite activar o silenciar el micrófono de forma instantánea. Diseño compacto y sin necesidad de alimentación externa.",
+      "category": "audio",
+      "images": [
+        {
+          "url": "/images/products/switch.jpg",
+          "alt": "Switch Push-to-Talk"
+        },{
+          "url": "/images/products/switch2.jpg",
+          "alt": "Switch Push-to-Talk"
+        },{
+          "url": "/images/products/switch3.jpg",
+          "alt": "Switch Push-to-Talk"
+        } 
+      ],
+      "colors": ["negro", "azul", "rojo", "verde", "amarillo", "naranja"]
+    },
+    {
+      "id": 2,
+      "name": "Herramienta Multiherramienta Deluxe Life®",
+      "price": 16,
+      "description": "Multiherramienta versátil que incluye cuchillo, destornilladores, alicates y otras herramientas esenciales. Perfecta para actividades al aire libre, camping y situaciones de emergencia.",
+      "category": "supervivencia",
+      "images": [
+        {
+          "url": "/images/products/multipurpose.jpeg",
+          "alt": "Herramienta Multiherramienta Deluxe Life®"
+        },{
+          "url": "/images/products/multipurpose.jpeg",
+          "alt": "Herramienta Multiherramienta Deluxe Life®"
+        }
+      ],
+      "colors": ["negro"]
+    },
+    {
+      "id": 3,
+      "name": "Adaptador de Auriculares TRS 3.5mm",
+      "price": 12,
+      "description": "Adaptador de auriculares TRS de 3.5mm ideal para ampliar la compatibilidad de tus dispositivos de audio. Funciona perfectamente con amplificadores de guitarra, mezcladores y otros dispositivos de sonido.",
+      "category": "audio",
+      "images": [
+        {
+          "url": "/images/products/AdaptadorTRS.jpg",
+          "alt": "Adaptador de Auriculares TRS 3.5mm"
+        },{
+          "url": "/images/products/AdaptadorTRS.jpg",
+          "alt": "Adaptador de Auriculares TRS 3.5mm"
+        }
+      ],
+      "colors": ["negro"]
+        },
+    {
+      "id": 4,
+      "name": "Cable de Alimentación PowerCon Profesional",
+      "price": 30.99,
+      "description": "Cable PowerCon profesional, ideal para aplicaciones de sonido en vivo y producción. Conectividad segura y fiable para equipos de alto rendimiento, incluyendo mezcladores, amplificadores y otros sistemas eléctricos.",
+      "category": "audio",
+      "images": [
+        {
+          "url": "/images/products/PowerCon.jpg",
+          "alt": "Cable de Alimentación PowerCon Profesional"
+        },{
+          "url": "/images/products/PowerCon.jpg",
+          "alt": "Cable de Alimentación PowerCon Profesional"
+        }
+      ],
+      "colors": ["negro"]
+      },
+    {
+      "id": 1,
+      "name": "Splitter XLR Canon Profesional",
+      "price": 15,
+      "description": "Splitter XLR de alta calidad diseñado para dividir la señal de audio en múltiples canales. Ideal para grabaciones en vivo o estudios de sonido profesional, garantizando una transmisión clara y sin interferencias.",
+      "category": "audio",
+      "images": [
+        {
+          "url": "/images/products/splitter.jpg",
+          "alt": "Splitter XLR Canon Profesional"
+        },{
+          "url": "/images/products/splitter.jpg",
+          "alt": "Splitter XLR Canon Profesional"
+        }
+      ],
+      "colors": ["negro"]    
+    }
+  ]
+}

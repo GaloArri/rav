@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base theme colors */
+    --background: 0 0% 100%; /* Fondo blanco */
+    --foreground: 0 0% 10%; /* Texto negro */
+    --card: 0 0% 100%; /* Fondo blanco para tarjetas */
+    --card-foreground: 0 0% 10%; /* Texto negro en las tarjetas */
+    --popover: 0 0% 100%; /* Fondo blanco para popovers */
+    --popover-foreground: 0 0% 10%; /* Texto negro en popovers */
+    --primary: 0 0% 10%; /* Texto negro */
+    --primary-foreground: 0 0% 100%; /* Fondo blanco */
+    --secondary: 0 0% 80%; /* Gris claro */
+    --secondary-foreground: 0 0% 20%; /* Gris oscuro */
+    --muted: 0 0% 90%; /* Gris más claro */
+    --muted-foreground: 0 0% 20%; /* Gris oscuro para texto */
+    --accent: 0 0% 50%; /* Gris medio */
+    --accent-foreground: 0 0% 100%; /* Texto blanco */
+    --destructive: 0 0% 100%; /* Blanco para acciones destructivas */
+    --destructive-foreground: 0 0% 10%; /* Negro para texto destructivo */
+    --border: 0 0% 80%; /* Gris claro para bordes */
+    --input: 0 0% 90%; /* Gris claro para entradas */
+    --ring: 0 0% 50%; /* Gris para anillos */
+    --radius: 0.5rem; /* Radio de bordes */
+    
+    /* Header specific colors - Light theme */
+    --header-nav-bg: 0 0% 100% / 0.95; /* Fondo transparente blanco para cabecera */
+    --header-nav-border: 0 0% 80%; /* Gris para borde */
+    --header-overlay: 0 0% 100% / 0.6; /* Fondo transparente blanco para overlay */
+    --header-text: 0 0% 10%; /* Texto negro */
+  }
+
+  .dark {
+    /* Dark theme colors */
+    --background: 0 0% 10%; /* Fondo negro */
+    --foreground: 0 0% 100%; /* Texto blanco */
+    --card: 0 0% 10%; /* Fondo negro para tarjetas */
+    --card-foreground: 0 0% 100%; /* Texto blanco en las tarjetas */
+    --popover: 0 0% 10%; /* Fondo negro para popovers */
+    --popover-foreground: 0 0% 100%; /* Texto blanco en popovers */
+    --primary: 0 0% 100%; /* Texto blanco */
+    --primary-foreground: 0 0% 10%; /* Fondo negro */
+    --secondary: 0 0% 30%; /* Gris muy oscuro */
+    --secondary-foreground: 0 0% 100%; /* Blanco para texto secundario */
+    --muted: 0 0% 20%; /* Gris muy oscuro */
+    --muted-foreground: 0 0% 100%; /* Blanco para texto apagado */
+    --accent: 0 0% 50%; /* Gris medio */
+    --accent-foreground: 0 0% 100%; /* Blanco para texto de acento */
+    --destructive: 0 0% 100%; /* Blanco para acciones destructivas */
+    --destructive-foreground: 0 0% 10%; /* Negro para texto destructivo */
+    --border: 0 0% 80%; /* Gris para bordes */
+    --input: 0 0% 30%; /* Gris oscuro para entradas */
+    --ring: 0 0% 100%; /* Blanco para anillos */
+    
+    /* Header specific colors - Dark theme */
+    --header-nav-bg: 0 0% 10% / 0.95; /* Fondo negro para cabecera */
+    --header-nav-border: 0 0% 80%; /* Gris para borde */
+    --header-overlay: 0 0% 0% / 0.6; /* Fondo transparente oscuro para overlay */
+    --header-text: 0 0% 100%; /* Texto blanco en la cabecera */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Prevent scroll jumps on button clicks */
+  html {
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+    position: relative;
+  }
+
+  /* Prevent focus outline from causing layout shifts */
+  :focus {
+    outline: none !important;
+  }
+
+  /* Prevent unwanted scrolling on dialog opens */
+  body.dialog-open {
+    overflow: hidden;
+  }
+
+  /* Prevent scroll anchoring issues */
+  * {
+    overflow-anchor: none !important;
+  }
+
+  /* Ensure smooth scrolling behavior */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}

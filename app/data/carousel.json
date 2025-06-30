@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "title": "Reproducción ",
+      "description": "Sistemas de reproducción desarrollados para reproducir audio de alta calidad.",
+      "image": "/images/carousel/img1.jpg",
+      "alt": "Sistema de playback de alta calidad"
+    },
+    {
+      "title": "Integración multicanal",
+      "description": "Optimizado para entornos profesionales, nuestro sistema de playback soporta múltiples canales de audio y video simultáneamente. Permitiendo configuraciones personalizadas para producciones en vivo, instalaciones multimedia y aplicaciones de postproducción.",
+      "image": "/images/carousel/img2.jpg",
+      "alt": "Integración multicanal en sistemas de playback"
+    },
+    {
+      "title": "Sincronización",
+      "description": "Nuestro sistema garantiza una sincronización precisa entre el audio y el video, con mínima latencia. Ideal para eventos en vivo, presentaciones interactivas y producciones audiovisuales donde cada milisegundo cuenta.",
+      "image": "/images/carousel/img3.jpg",
+      "alt": "Sincronización de audio y video en tiempo real"
+    },
+    {
+      "title": "Soporte técnico",
+      "description": "Desarrollo, montaje y reparación acorde a la necesidad de cada cliente.",
+      "image": "/images/carousel/img4.jpg",
+      "alt": "Soporte tecnico"
+    }
+  ]
+}

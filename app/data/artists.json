@@ -2,39 +2,44 @@
     "artists": [
       {
         "id": 1,
-        "name": "Duki",
-        "image": "/placeholder.jpg",
-        "description": "Líder del trap argentino con reconocimiento internacional. Primer artista argentino en llenar el Santiago Bernabéu en 2024."
+        "name": "Banda Sinfónica",
+        "images": ["/images/artists/artist1-1.jpg", "/images/artists/artist1-2.jpg", "/images/artists/artist1-3.jpg"],
+        "description": "Orquesta profesional con más de 20 años de trayectoria. Especialistas en música clásica y contemporánea."
       },
       {
         "id": 2,
-        "name": "Bizarrap",
-        "image": "/placeholder.jpg",
-        "description": "Productor estrella con sesiones virales. Histórico show en el Campo Argentino de Polo en 2023 con entradas agotadas."
+        "name": "Los Rockeros",
+        "images": ["/images/artists/artist2-1.jpg", "/images/artists/artist2-2.jpg", "/images/artists/artist2-3.jpg"],
+        "description": "Banda de rock alternativo con influencias del rock clásico y moderno. Más de 500 shows en vivo."
       },
       {
         "id": 3,
-        "name": "Trueno",
-        "image": "/placeholder.jpg",
-        "description": "Rapero con raíces en el freestyle. Cerró su gira en el Luna Park con un show impactante en 2023."
+        "name": "DJ Max",
+        "images": ["/images/artists/artist3-1.jpg", "/images/artists/artist3-2.jpg"],
+        "description": "DJ profesional especializado en música electrónica y house. Experiencia en festivales internacionales."
       },
       {
         "id": 4,
-        "name": "Nicki Nicole",
-        "image": "/placeholder.jpg",
-        "description": "Artista versátil del R&B y pop urbano. Primera argentina en presentarse en The Tonight Show con Jimmy Fallon."
+        "name": "Jazz Quartet",
+        "images": [
+          "/images/artists/artist4-1.jpg",
+          "/images/artists/artist4-2.jpg",
+          "/images/artists/artist4-3.jpg",
+          "/images/artists/artist4-4.jpg"
+        ],
+        "description": "Cuarteto de jazz con un sonido único y elegante. Perfectos para eventos corporativos y bodas."
       },
       {
         "id": 5,
-        "name": "Maria Becerra",
-        "image": "/placeholder.jpg",
-        "description": "La 'Nena de Argentina', estrella del pop y reggaetón. Show histórico en River Plate en 2024."
+        "name": "Grupo Folklórico",
+        "images": ["/images/artists/artist5-1.jpg", "/images/artists/artist5-2.jpg"],
+        "description": "Conjunto tradicional que mantiene viva la música folklórica. Espectáculos vibrantes y culturales."
       },
       {
         "id": 6,
-        "name": "Tiago PZK",
-        "image": "/placeholder.jpg",
-        "description": "Artista con un mix de trap, R&B y reggaetón. Impactante presentación en el Movistar Arena con entradas agotadas."
+        "name": "Pop Band",
+        "images": ["/images/artists/artist6-1.jpg", "/images/artists/artist6-2.jpg", "/images/artists/artist6-3.jpg"],
+        "description": "Banda versátil especializada en éxitos pop y covers. Ideal para fiestas y eventos sociales."
       }
     ]
   }

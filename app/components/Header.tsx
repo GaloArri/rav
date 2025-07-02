@@ -131,10 +131,10 @@ export default function Header() {
                   Nosotros
                 </Link>
                 <Link
-                  href="/trayectoria"
+                  href="/projects"
                   className="text-sm font-medium hover:text-primary transition-colors"
                 >
-                  Trayectoria
+                  Proyectos
                 </Link>
                 <Link
                   href="/servicios"
@@ -182,11 +182,11 @@ export default function Header() {
                           Contacto
                         </Link>
                         <Link
-                          href="/trayectoria"
+                          href="/projects"
                           className="text-lg font-medium hover:text-primary transition-colors"
                           onClick={() => setIsOpen(false)}
                         >
-                          Trayectoria
+                          Proyectos
                         </Link>
                         <Link
                           href="/servicios"

@@ -87,11 +87,11 @@ export default function Header() {
                 <Image
                   src="/assets/logorav1.png"
                   alt="Logo RAV"
-                  width={400}
-                  height={160}
+                  width={1700}
+                  height={680}
                   className={cn(
                     "object-contain transition-all duration-300 hover:opacity-80",
-                    isScrolled ? "h-10 md:h-14" : "h-20 md:h-28", // Mantener altura pero logo más ancho
+                    isScrolled ? "h-28 md:h-32" : "h-44 md:h-52", // Logo muy grande cuando está scrolleado
                     currentTheme === "dark" ? "invert-0" : "invert",
                   )}
                   priority

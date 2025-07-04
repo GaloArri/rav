@@ -11,55 +11,53 @@ interface ArtistCarouselProps {
 
 export default function ArtistCarousel({ images, artistName }: ArtistCarouselProps) {
   const [currentImage, setCurrentImage] = useState(0)
+    // Normalizar images a array - manejar tanto string como string[]
+  const normalizeImages = (imgs: string | string[]): string[] => {
+    if (!imgs) return []
+    if (typeof imgs === "string") return [imgs]
+    if (Array.isArray(imgs)) return imgs
+    return []
+  }
+
+  const validImages = normalizeImages(images)
 
   useEffect(() => {
-    if (images.length <= 1) return
+    if (validImages.length <= 1) return
 
     const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length)
-    }, 3000) // Cambia cada 3 segundos
+      setCurrentImage((prev) => (prev + 1) % validImages.length)
+      }, 4000) // Cambia cada 4 segundos
 
     return () => clearInterval(interval)
-  }, [images.length])
+  }, [validImages.length])
 
+  // Si no hay imágenes válidas, mostrar placeholder
+  if (validImages.length === 0) {
+    return (
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-xl bg-muted flex items-center justify-center">
+        <p className="text-muted-foreground">No hay imágenes disponibles</p>
+      </div>
+    )
+  }
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-xl group shadow-lg">
-      {images.map((image, index) => (
+    <div className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
+      {validImages.map((image, index) => (
         <div
           key={index}
           className={cn(
-            "absolute inset-0 transition-opacity duration-700 ease-in-out",
-            currentImage === index ? "opacity-100" : "opacity-0",
+            "absolute inset-0 transition-all duration-1000 ease-in-out",
+            currentImage === index ? "opacity-100 scale-100" : "opacity-0 scale-105",
           )}
         >
           <Image
             src={image || "/placeholder.svg"}
             alt={`${artistName} - Imagen ${index + 1}`}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover rounded-2xl"
           />
         </div>
       ))}
 
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-      {/* Indicators */}
-      {images.length > 1 && (
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              className={cn(
-                "w-1.5 h-1.5 rounded-full transition-all duration-300",
-                currentImage === index ? "bg-white w-4" : "bg-white/60 hover:bg-white/80",
-              )}
-              onClick={() => setCurrentImage(index)}
-              aria-label={`Ver imagen ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
     </div>
   )
 }

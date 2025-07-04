@@ -82,17 +82,17 @@ export default function Header() {
           <Image src="/images/head.jpg" alt="Header background" fill className="object-cover" priority />
           <div className={cn("absolute inset-0", currentTheme === "dark" ? "bg-[#1a1a1a]/80" : "bg-[#f7f7f7]/80")} />
           <div className="relative h-full flex items-center justify-center">
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center justify-center w-full">
               {mounted && (
                 <Image
-                  src="/assets/RAV.svg"
-                  alt="Logo"
-                  width={50}
-                  height={100}
+                  src="/assets/logorav1.png"
+                  alt="Logo RAV"
+                  width={400}
+                  height={160}
                   className={cn(
-                    "w-auto transition-all duration-300 hover:opacity-80",
-                    isScrolled ? "h-8 md:h-12" : "h-16 md:h-24", // Logo más pequeño al scroll
-                    currentTheme === "dark" ? "invert brightness-200" : "invert-0",
+                    "object-contain transition-all duration-300 hover:opacity-80",
+                    isScrolled ? "h-10 md:h-14" : "h-20 md:h-28", // Mantener altura pero logo más ancho
+                    currentTheme === "dark" ? "invert-0" : "invert",
                   )}
                   priority
                 />

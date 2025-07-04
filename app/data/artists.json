@@ -1,46 +1,124 @@
 {
-    "artists": [
-      {
-        "id": 1,
-        "name": "Banda Sinfónica",
-        "images": ["/images/artists/artist1-1.jpg", "/images/artists/artist1-2.jpg", "/images/artists/artist1-3.jpg"],
-        "description": "Orquesta profesional con más de 20 años de trayectoria. Especialistas en música clásica y contemporánea."
-      },
-      {
-        "id": 2,
-        "name": "Los Rockeros",
-        "images": ["/images/artists/artist2-1.jpg", "/images/artists/artist2-2.jpg", "/images/artists/artist2-3.jpg"],
-        "description": "Banda de rock alternativo con influencias del rock clásico y moderno. Más de 500 shows en vivo."
-      },
-      {
-        "id": 3,
-        "name": "DJ Max",
-        "images": ["/images/artists/artist3-1.jpg", "/images/artists/artist3-2.jpg"],
-        "description": "DJ profesional especializado en música electrónica y house. Experiencia en festivales internacionales."
-      },
-      {
-        "id": 4,
-        "name": "Jazz Quartet",
-        "images": [
-          "/images/artists/artist4-1.jpg",
-          "/images/artists/artist4-2.jpg",
-          "/images/artists/artist4-3.jpg",
-          "/images/artists/artist4-4.jpg"
-        ],
-        "description": "Cuarteto de jazz con un sonido único y elegante. Perfectos para eventos corporativos y bodas."
-      },
-      {
-        "id": 5,
-        "name": "Grupo Folklórico",
-        "images": ["/images/artists/artist5-1.jpg", "/images/artists/artist5-2.jpg"],
-        "description": "Conjunto tradicional que mantiene viva la música folklórica. Espectáculos vibrantes y culturales."
-      },
-      {
-        "id": 6,
-        "name": "Pop Band",
-        "images": ["/images/artists/artist6-1.jpg", "/images/artists/artist6-2.jpg", "/images/artists/artist6-3.jpg"],
-        "description": "Banda versátil especializada en éxitos pop y covers. Ideal para fiestas y eventos sociales."
-      }
-    ]
-  }
-  
+  "artists": [
+    {
+      "id": 1,
+      "name": "Milo J",
+      "images": ["/placeholder.jpg"],
+      "description": "Realizó un show multitudinario en el Estadio de Morón por sus 18 años, donde miles de fans celebraron el lanzamiento de su álbum en vivo junto a invitados especiales."
+    },
+    {
+      "id": 2,
+      "name": "Duki",
+      "images": ["/images/project_artists/duko1.jpg", "/images/project_artists/duko2.jpg"],
+      "description": "Trabajamos junto a su equipo para realizar el sonido del Santiago Bernabéu, asegurando que cada beat y cada palabra resonara perfectamente en el estadio más importante de España durante su histórico show de 2024."
+    },
+    {
+      "id": 3,
+      "name": "Maria Becerra",
+      "images": ["/placeholder.jpg"],
+      "description": "Colaboramos en el diseño del sistema de sonido para su show en River Plate, donde más de 60,000 personas experimentaron la calidad auditiva que caracteriza a 'La Nena de Argentina' en su presentación más masiva."
+    },
+    {
+      "id": 4,
+      "name": "Emilia",
+      "images": ["/placeholder.jpg"],
+      "description": "Llevó su 'mp3 tour' a lo más alto con un recital sold out en el Movistar Arena, donde la escenografía, la coreografía y el sonido envolvente marcaron una noche inolvidable."
+    },
+    {
+      "id": 5,
+      "name": "Zoe Gotusso",
+      "images": ["/placeholder.jpg"],
+      "description": "Deslumbró en el Teatro Coliseo con un show íntimo pero potente, donde presentó su disco solista con una puesta minimalista y cálida que conectó con cada asistente."
+    },
+    {
+      "id": 6,
+      "name": "Luck Ra",
+      "images": ["/placeholder.jpg"],
+      "description": "Hizo vibrar el Quality Estadio de Córdoba con un concierto en el que fusionó cuarteto, pop y rock con un despliegue técnico que acompañó su carisma en el escenario."
+    },
+    {
+      "id": 7,
+      "name": "Paulo Londra",
+      "images": ["/placeholder.jpg"],
+      "description": "Volvió a los escenarios con un imponente show en el Hipódromo de Palermo, donde reafirmó su lugar como uno de los referentes del trap latino ante miles de seguidores."
+    },
+    {
+      "id": 8,
+      "name": "Lali",
+      "images": ["/placeholder.jpg"],
+      "description": "Ofreció un histórico concierto en el Luna Park con su 'Disciplina Tour', fusionando coreografías impactantes y un sistema de sonido de alta fidelidad que la consagró como ícono pop."
+    },
+    {
+      "id": 9,
+      "name": "Taichu",
+      "images": ["/placeholder.jpg"],
+      "description": "Encendió el escenario del Lollapalooza Argentina con un set cargado de energía y una producción sonora que acompañó su propuesta estética disruptiva."
+    },
+    {
+      "id": 10,
+      "name": "Nahuel Pennisi",
+      "images": ["/placeholder.jpg"],
+      "description": "Emocionó al público del Teatro Gran Rex con una presentación acústica en la que su voz y guitarra fueron acompañadas por un entorno técnico cálido y preciso."
+    },
+    {
+      "id": 11,
+      "name": "Ronpe99",
+      "images": ["/placeholder.jpg"],
+      "description": "Debutó en el Festival Buenos Aires Trap con un show intenso y crudo, donde el sonido envolvente potenció cada línea y beat con claridad absoluta."
+    },
+    {
+      "id": 12,
+      "name": "Un Verano",
+      "images": ["/placeholder.jpg"],
+      "description": "Ofreció un show conceptual en Niceto Club, fusionando música indie con visuales inmersivas y un diseño de sonido envolvente que transportó al público."
+    },
+    {
+      "id": 13,
+      "name": "Louta",
+      "images": ["/placeholder.jpg"],
+      "description": "Convertimos en realidad su visionario show en el Konex, donde música, performance y tecnología se fusionaron en una experiencia sensorial única e irrepetible."
+    },
+    {
+      "id": 14,
+      "name": "Tiago PZK",
+      "images": ["/images/project_artists/tiago1.jpg", "/images/project_artists/tiago2.jpg"],
+      "description": "Llenó el Movistar Arena con un show de altísimo nivel técnico y visual, donde los graves controlados y voces nítidas acompañaron su potencia escénica."
+    },
+    {
+      "id": 15,
+      "name": "Margarita",
+      "images": ["/placeholder.jpg"],
+      "description": "Deslumbró en su primera presentación en el CCK, donde la delicadeza de su voz se destacó gracias a un trabajo técnico de sonido limpio y emocional."
+    },
+    {
+      "id": 16,
+      "name": "Trueno",
+      "images": [ "/placeholder.jpg"],
+      "description": "Acompañamos su cierre de gira en el Luna Park con un sistema de sonido que capturó la intensidad de sus rimas y la energía del freestyle, creando una atmósfera única para más de 8,000 espectadores."
+    },
+    {
+      "id": 17,
+      "name": "Ángela Torres",
+      "images": ["/placeholder.jpg"],
+      "description": "Consolidó su carrera solista en La Trastienda, donde su voz fue protagonista en una mezcla de pop moderno y tintes teatrales con sonido cuidado al detalle."
+    },
+    {
+      "id": 18,
+      "name": "Dillom",
+      "images": ["/placeholder.jpg"],
+      "description": "Presentó su disco 'Post Mortem' en el Teatro Vorterix con un show oscuro, teatral y visceral, donde el sonido cumplió un rol clave en la atmósfera impactante."
+    },
+    {
+      "id": 19,
+      "name": "Axel Fiks",
+      "images": ["/placeholder.jpg"],
+      "description": "Hipnotizó al público del Centro Cultural Matienzo con una performance íntima y experimental, donde el diseño sonoro acompañó cada pasaje emocional de su set."
+    },
+    {
+      "id": 20,
+      "name": "Souiuno",
+      "images": ["/placeholder.jpg"],
+      "description": "Llevó su propuesta electrónica y soul al escenario de Camping, donde los graves definidos y capas sonoras envolventes crearon una experiencia auditiva sutil pero poderosa."
+    }
+  ]
+}

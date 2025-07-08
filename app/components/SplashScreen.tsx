@@ -24,8 +24,8 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
       setIsVisible(false)
       setTimeout(() => {
         onComplete()
-      }, 500)
-    }, 2000) // 2 segundos total
+      }, 350)
+    }, 1500) // 1.5 segundos total
 
     return () => clearTimeout(timer)
   }, [onComplete])
@@ -48,10 +48,10 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           <Image
             src="/assets/logorav1.png"
             alt="Logo RAV"
-            width={420}
-            height={420}
+            width={900}
+            height={900}
             className={cn(
-              "transition-all duration-500 object-contain",
+              "transition-all duration-500 object-contain drop-shadow-xl",
               currentTheme === "dark" ? "invert-0" : "invert",
             )}
             priority

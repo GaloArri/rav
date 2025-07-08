@@ -62,33 +62,18 @@ export default function Carousel() {
                 priority 
                 className="object-cover rounded-lg h-48 md:h-64 w-full" 
               />
-              {/* Adaptive gradient overlay based on theme */}
-              {currentTheme === "dark" ? (
-                <>
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 rounded-lg" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40 rounded-lg" />
-                </>
-              ) : (
-                <>
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/40 to-white/20 rounded-lg" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/30 rounded-lg" />
-                </>
-              )}
-              
-              {/* Side fade effects - adaptive to theme */}
+              {/* Overlay de sombreado y degradé adaptativo */}
               <div className={cn(
-                "absolute inset-0 bg-gradient-to-r via-transparent rounded-lg",
-                currentTheme === "dark" 
-                  ? "from-background to-background opacity-30" 
-                  : "from-background to-background opacity-50"
+                "absolute inset-0 rounded-lg pointer-events-none",
+                currentTheme === "dark"
+                  ? "bg-black/40"
+                  : "bg-white/40"
               )} />
               <div className={cn(
-                "absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r to-transparent rounded-l-lg",
-                currentTheme === "dark" ? "from-background" : "from-background"
-              )} />
-              <div className={cn(
-                "absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l to-transparent rounded-r-lg",
-                currentTheme === "dark" ? "from-background" : "from-background"
+                "absolute inset-0 rounded-lg pointer-events-none",
+                currentTheme === "dark"
+                  ? "bg-gradient-to-b from-black/60 via-transparent to-black/10"
+                  : "bg-gradient-to-b from-white/70 via-transparent to-white/10"
               )} />
             </div>
           ))}
@@ -106,14 +91,14 @@ export default function Carousel() {
                 >
                   <div className="space-y-4 px-4">
                     <h2 className={cn(
-                      "text-2xl md:text-4xl font-bold mb-3 tracking-tight drop-shadow-lg",
-                      currentTheme === "dark" ? "text-white" : "text-gray-900"
+                      "text-2xl md:text-4xl font-bold mb-3 tracking-tight drop-shadow-2xl",
+                      currentTheme === "dark" ? "text-white" : "text-white"
                     )}>
                       {item.title}
                     </h2>
                     <p className={cn(
-                      "text-base md:text-lg leading-relaxed max-w-2xl mx-auto drop-shadow-md",
-                      currentTheme === "dark" ? "text-white/95" : "text-gray-800"
+                      "text-base md:text-lg leading-relaxed max-w-2xl mx-auto drop-shadow-xl",
+                      currentTheme === "dark" ? "text-white/95" : "text-white/95"
                     )}>
                       {item.description}
                     </p>

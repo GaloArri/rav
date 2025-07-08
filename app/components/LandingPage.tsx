@@ -53,7 +53,7 @@ export default function LandingPage() {
   return (
     <div>
       <main>
-        <section className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 overflow-hidden">
+        <section className="relative w-full py-8 md:py-16 lg:py-20 xl:py-24 overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -72,25 +72,25 @@ export default function LandingPage() {
             )} />
           </div>
           
-          <div className="container relative z-10 px-4 md:px-6">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="flex justify-center">
+          <div className="container relative z-10 px-4 md:px-6 mx-auto">
+            <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-4 text-center">
+              <div className="space-y-3 w-full max-w-4xl">
+                <div className="flex justify-center items-center">
                   <Image
                     src="/assets/logo.svg"
                     alt="Logo de Rav"
-                    width={400}
-                    height={200}
+                    width={220}
+                    height={110}
                     className={cn(
-                      "w-auto h-20 hover:opacity-80 transition-opacity",
+                      "w-auto h-16 transition-opacity",
                       currentTheme === "dark" 
-                        ? "invert brightness-200" 
+                        ? "invert brightness-0" 
                         : "invert-0"
                     )}
                   />
                 </div>
                 <p className={cn(
-                  "mx-auto max-w-[700px] md:text-xl",
+                  "mx-auto max-w-[700px] md:text-xl text-center leading-relaxed",
                   currentTheme === "dark" 
                     ? "text-gray-200" 
                     : "text-gray-800"
@@ -100,7 +100,7 @@ export default function LandingPage() {
                   profesional que perdura en el tiempo.
                 </p>
               </div>
-              <div className="space-x-4">
+              <div className="flex justify-center">
                 <Button
                   size="lg"
                   className={cn(

@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+
+
 import { cn } from "@/lib/utils"
 import { useTheme } from "next-themes"
 import carouselData from "../data/carousel.json"
@@ -123,38 +123,7 @@ export default function Carousel() {
             </div>
           </div>
 
-          {/* Navigation Buttons */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className={cn(
-              "absolute left-4 top-1/2 -translate-y-1/2 z-30 rounded-full h-10 w-10 backdrop-blur-sm",
-              currentTheme === "dark" 
-                ? "bg-black/30 hover:bg-black/50 text-white border-white/20" 
-                : "bg-white/70 hover:bg-white/90 text-gray-900 border-gray-200"
-            )}
-            onClick={prev}
-            disabled={isAnimating}
-          >
-            <ChevronLeft className="h-5 w-5" />
-            <span className="sr-only">Previous slide</span>
-          </Button>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className={cn(
-              "absolute right-4 top-1/2 -translate-y-1/2 z-30 rounded-full h-10 w-10 backdrop-blur-sm",
-              currentTheme === "dark" 
-                ? "bg-black/30 hover:bg-black/50 text-white border-white/20" 
-                : "bg-white/70 hover:bg-white/90 text-gray-900 border-gray-200"
-            )}
-            onClick={next}
-            disabled={isAnimating}
-          >
-            <ChevronRight className="h-5 w-5" />
-            <span className="sr-only">Next slide</span>
-          </Button>
         </div>
       </div>
     </div>

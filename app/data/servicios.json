@@ -1,0 +1,110 @@
+{
+  "alquiler": [
+    {
+      "id": 1,
+      "name": "Sistemas de Sonido Completos",
+      "description": "Equipos profesionales de alta gama para eventos de gran escala con calidad de estudio.",
+      "images": [
+        "/images/servicios/FOTO 20.JPG"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Consolas de Mezcla",
+      "description": "Mezcladores digitales y analógicos de última generación para control total del audio.",
+      "images": [
+        "/images/servicios/EMILIA PALAU SAINT JORDI.jpg"
+      ]
+    }
+  ],
+  "equipos": [
+    {
+      "id": 1,
+      "name": "Procesadores de Voz",
+      "description": "Equipos especializados en procesamiento vocal con algoritmos avanzados de mejora de voz.",
+      "images": [
+                "/images/servicios/FOTO 25.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Interfaces de Audio",
+      "description": "Interfaces profesionales para grabación y reproducción de audio de alta fidelidad.",
+      "images": [
+        "/images/servicios/FOTO 2.jpg"
+      ]
+    }
+  ],
+  "reparacion": [
+    {
+      "id": 1,
+      "name": "Reparación de Equipos de Playback",
+      "description": "Restauramos tus equipos de playback a su estado óptimo para una experiencia de audio superior.",
+      "images": [
+        "/images/servicios/taller1.JPG"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Mantenimiento Preventivo",
+      "description": "Servicios de mantenimiento regular para prolongar la vida útil de tus equipos.",
+      "images": [
+        "/images/servicios/IMG_7971.jpg"
+      ]
+    }
+  ],
+  "programacion": [
+    {
+      "id": 1,
+      "name": "Diseños Personalizados",
+      "description": "Soluciones de audio completamente personalizadas para satisfacer necesidades específicas.",
+      "images": [
+        "/images/servicios/audio1.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Presets Profesionales",
+      "description": "Creación de presets personalizados para diferentes tipos de sesiones y aplicaciones.",
+      "images": [
+        "/images/servicios/procesador.jpg"
+      ]
+    }
+  ],
+  "montaje": [
+    {
+      "id": 1,
+      "name": "Armado de Cables",
+      "description": "Cables personalizados para conexiones específicas y transmisión de audio de alta calidad.",
+      "images": [
+        "/images/servicios/audio2.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Set Up",
+      "description": "Montaje profesional de racks y organización de equipos para máxima eficiencia.",
+      "images": [
+        "/images/servicios/FOTO 7.jpg"
+      ]
+    }
+  ],
+  "diseno": [
+    {
+      "id": 1,
+      "name": "Modelado 3D Personalizado",
+      "description": "Creación de modelos tridimensionales personalizados para prototipos y piezas específicas.",
+      "images": [
+        "/images/servicios/diseno1.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Impresión 3D Profesional",
+      "description": "Servicio de impresión 3D de alta calidad con diferentes materiales y acabados.",
+      "images": [
+        "/images/servicios/diseno2.jpg"
+      ]
+    }
+  ]
+}

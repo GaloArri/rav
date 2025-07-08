@@ -4,7 +4,6 @@ const footerLinks = [
   // { href: "/products", label: "Productos" },
   { href: "/about", label: "Nosotros" },
   { href: "/contact", label: "Contacto" },
-  { href: "/faq", label: "FAQ" },
   { href: "https://www.instagram.com/rav_seq", label: "Instagram" },
 ];
 

@@ -14,108 +14,114 @@
     },
     {
       "id": 3,
+      "name": "Buenos Aires Trap",
+      "images": ["/placeholder.jpg"],
+      "description": "Festival que reunió a los mejores exponentes del trap argentino en un evento masivo, donde nuestro sistema de sonido potenció cada beat y cada rima, creando una experiencia inmersiva para miles de asistentes."
+    },
+    {
+      "id": 4,
       "name": "Maria Becerra",
       "images": ["/placeholder.jpg"],
       "description": "Colaboramos en el diseño del sistema de sonido para su show en River Plate, donde más de 60,000 personas experimentaron la calidad auditiva que caracteriza a 'La Nena de Argentina' en su presentación más masiva."
     },
     {
-      "id": 4,
+      "id": 5,
       "name": "Emilia",
       "images": ["/placeholder.jpg"],
       "description": "Llevó su 'mp3 tour' a lo más alto con un recital sold out en el Movistar Arena, donde la escenografía, la coreografía y el sonido envolvente marcaron una noche inolvidable."
     },
     {
-      "id": 5,
+      "id": 6,
       "name": "Zoe Gotusso",
       "images": ["/placeholder.jpg"],
       "description": "Deslumbró en el Teatro Coliseo con un show íntimo pero potente, donde presentó su disco solista con una puesta minimalista y cálida que conectó con cada asistente."
     },
     {
-      "id": 6,
+      "id": 7,
       "name": "Luck Ra",
       "images": ["/placeholder.jpg"],
       "description": "Hizo vibrar el Quality Estadio de Córdoba con un concierto en el que fusionó cuarteto, pop y rock con un despliegue técnico que acompañó su carisma en el escenario."
     },
     {
-      "id": 7,
+      "id": 8,
       "name": "Paulo Londra",
       "images": ["/placeholder.jpg"],
       "description": "Volvió a los escenarios con un imponente show en el Hipódromo de Palermo, donde reafirmó su lugar como uno de los referentes del trap latino ante miles de seguidores."
     },
     {
-      "id": 8,
+      "id": 9,
       "name": "Lali",
       "images": ["/placeholder.jpg"],
       "description": "Ofreció un histórico concierto en el Luna Park con su 'Disciplina Tour', fusionando coreografías impactantes y un sistema de sonido de alta fidelidad que la consagró como ícono pop."
     },
     {
-      "id": 9,
+      "id": 10,
       "name": "Taichu",
       "images": ["/placeholder.jpg"],
       "description": "Encendió el escenario del Lollapalooza Argentina con un set cargado de energía y una producción sonora que acompañó su propuesta estética disruptiva."
     },
     {
-      "id": 10,
+      "id": 11,
       "name": "Nahuel Pennisi",
       "images": ["/placeholder.jpg"],
       "description": "Emocionó al público del Teatro Gran Rex con una presentación acústica en la que su voz y guitarra fueron acompañadas por un entorno técnico cálido y preciso."
     },
     {
-      "id": 11,
+      "id": 12,
       "name": "Ronpe99",
       "images": ["/placeholder.jpg"],
       "description": "Debutó en el Festival Buenos Aires Trap con un show intenso y crudo, donde el sonido envolvente potenció cada línea y beat con claridad absoluta."
     },
     {
-      "id": 12,
+      "id": 13,
       "name": "Un Verano",
       "images": ["/placeholder.jpg"],
       "description": "Ofreció un show conceptual en Niceto Club, fusionando música indie con visuales inmersivas y un diseño de sonido envolvente que transportó al público."
     },
     {
-      "id": 13,
+      "id": 14,
       "name": "Louta",
       "images": ["/placeholder.jpg"],
       "description": "Convertimos en realidad su visionario show en el Konex, donde música, performance y tecnología se fusionaron en una experiencia sensorial única e irrepetible."
     },
     {
-      "id": 14,
+      "id": 15,
       "name": "Tiago PZK",
       "images": ["/images/project_artists/tiago1.jpg", "/images/project_artists/tiago2.jpg"],
       "description": "Llenó el Movistar Arena con un show de altísimo nivel técnico y visual, donde los graves controlados y voces nítidas acompañaron su potencia escénica."
     },
     {
-      "id": 15,
+      "id": 16,
       "name": "Margarita",
       "images": ["/placeholder.jpg"],
       "description": "Deslumbró en su primera presentación en el CCK, donde la delicadeza de su voz se destacó gracias a un trabajo técnico de sonido limpio y emocional."
     },
     {
-      "id": 16,
+      "id": 17,
       "name": "Trueno",
       "images": [ "/placeholder.jpg"],
       "description": "Acompañamos su cierre de gira en el Luna Park con un sistema de sonido que capturó la intensidad de sus rimas y la energía del freestyle, creando una atmósfera única para más de 8,000 espectadores."
     },
     {
-      "id": 17,
+      "id": 18,
       "name": "Ángela Torres",
       "images": ["/placeholder.jpg"],
       "description": "Consolidó su carrera solista en La Trastienda, donde su voz fue protagonista en una mezcla de pop moderno y tintes teatrales con sonido cuidado al detalle."
     },
     {
-      "id": 18,
+      "id": 19,
       "name": "Dillom",
       "images": ["/placeholder.jpg"],
       "description": "Presentó su disco 'Post Mortem' en el Teatro Vorterix con un show oscuro, teatral y visceral, donde el sonido cumplió un rol clave en la atmósfera impactante."
     },
     {
-      "id": 19,
+      "id": 20,
       "name": "Axel Fiks",
       "images": ["/placeholder.jpg"],
       "description": "Hipnotizó al público del Centro Cultural Matienzo con una performance íntima y experimental, donde el diseño sonoro acompañó cada pasaje emocional de su set."
     },
     {
-      "id": 20,
+      "id": 21,
       "name": "Souiuno",
       "images": ["/placeholder.jpg"],
       "description": "Llevó su propuesta electrónica y soul al escenario de Camping, donde los graves definidos y capas sonoras envolventes crearon una experiencia auditiva sutil pero poderosa."

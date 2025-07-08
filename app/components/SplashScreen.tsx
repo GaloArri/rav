@@ -48,8 +48,8 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           <Image
             src="/assets/logorav1.png"
             alt="Logo RAV"
-            width={180}
-            height={180}
+            width={420}
+            height={420}
             className={cn(
               "transition-all duration-500 object-contain",
               currentTheme === "dark" ? "invert-0" : "invert",

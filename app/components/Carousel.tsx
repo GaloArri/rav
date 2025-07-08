@@ -60,7 +60,7 @@ export default function Carousel() {
                 alt={item.alt} 
                 fill 
                 priority 
-                className="object-cover rounded-lg" 
+                className="object-cover rounded-lg h-48 md:h-64 w-full" 
               />
               {/* Adaptive gradient overlay based on theme */}
               {currentTheme === "dark" ? (
@@ -94,7 +94,7 @@ export default function Carousel() {
           ))}
 
           {/* Centered Content */}
-          <div className="relative z-20 flex items-center justify-center min-h-[300px] md:min-h-[350px] px-6">
+          <div className="relative z-20 flex items-center justify-center min-h-[192px] md:min-h-[256px] px-6 mt-28">
             <div className="max-w-3xl text-center">
               {items.map((item, index) => (
                 <div

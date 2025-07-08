@@ -114,33 +114,39 @@ export default function Header() {
               <nav className="hidden md:flex items-center space-x-12">
                 <Link
                   href="/"
-                  className="text-sm font-medium hover:text-primary transition-colors"
+                  className={cn(
+                    "text-sm font-medium hover:text-primary transition-colors",
+                    pathname === "/" && "font-bold text-lg"
+                  )}
                 >
                   Inicio
                 </Link>
-                {/* <Link
-                  href="/products"
-                  className="text-sm font-medium hover:text-primary transition-colors"
-                >
-                  Productos
-                </Link> */}
                 <Link
-                  href="/about"
-                  className="text-sm font-medium hover:text-primary transition-colors"
+                  href="/servicios"
+                  className={cn(
+                    "text-sm font-medium hover:text-primary transition-colors",
+                    pathname === "/servicios" && "font-bold text-lg"
+                  )}
                 >
-                  Nosotros
+                  Servicios
                 </Link>
                 <Link
                   href="/projects"
-                  className="text-sm font-medium hover:text-primary transition-colors"
+                  className={cn(
+                    "text-sm font-medium hover:text-primary transition-colors",
+                    pathname === "/projects" && "font-bold text-lg"
+                  )}
                 >
                   Proyectos
                 </Link>
                 <Link
-                  href="/servicios"
-                  className="text-sm font-medium hover:text-primary transition-colors"
+                  href="/about"
+                  className={cn(
+                    "text-sm font-medium hover:text-primary transition-colors",
+                    pathname === "/about" && "font-bold text-lg"
+                  )}
                 >
-                  Servicios
+                  Nosotros
                 </Link>
               </nav>
 
@@ -168,32 +174,44 @@ export default function Header() {
                       </SheetHeader>
                       <nav className="flex flex-col space-y-6 mt-8">
                         <Link
-                          href="/about"
-                          className="text-lg font-medium hover:text-primary transition-colors"
+                          href="/"
+                          className={cn(
+                            "text-lg font-medium hover:text-primary transition-colors",
+                            pathname === "/" && "font-bold text-xl"
+                          )}
                           onClick={() => setIsOpen(false)}
                         >
-                          Nosotros
+                          Inicio
                         </Link>
                         <Link
-                          href="/contact"
-                          className="text-lg font-medium hover:text-primary transition-colors"
+                          href="/servicios"
+                          className={cn(
+                            "text-lg font-medium hover:text-primary transition-colors",
+                            pathname === "/servicios" && "font-bold text-xl"
+                          )}
                           onClick={() => setIsOpen(false)}
                         >
-                          Contacto
+                          Servicios
                         </Link>
                         <Link
                           href="/projects"
-                          className="text-lg font-medium hover:text-primary transition-colors"
+                          className={cn(
+                            "text-lg font-medium hover:text-primary transition-colors",
+                            pathname === "/projects" && "font-bold text-xl"
+                          )}
                           onClick={() => setIsOpen(false)}
                         >
                           Proyectos
                         </Link>
                         <Link
-                          href="/servicios"
-                          className="text-lg font-medium hover:text-primary transition-colors"
+                          href="/about"
+                          className={cn(
+                            "text-lg font-medium hover:text-primary transition-colors",
+                            pathname === "/about" && "font-bold text-xl"
+                          )}
                           onClick={() => setIsOpen(false)}
                         >
-                          Servicios
+                          Nosotros
                         </Link>
                       </nav>
                     </SheetContent>

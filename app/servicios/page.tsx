@@ -5,8 +5,9 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Mic, Settings, Wrench, Music, Layers } from "lucide-react";
+import { Mic, Settings, Wrench, Music, Layers, Box } from "lucide-react";
 import Image from "next/image";
+import serviciosData from "../data/servicios.json";
 
 const services = [
   {
@@ -45,241 +46,12 @@ const services = [
     icon: Layers,
     sectionId: "montaje-section",
   },
-];
-
-// Datos para cada sección
-const alquilerData = [
   {
-    id: 1,
-    name: "Sistemas de Sonido Completos",
-    description:
-      "Equipos profesionales de alta gama para eventos de gran escala con calidad de estudio.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 2,
-    name: "Micrófonos Profesionales",
-    description:
-      "Colección completa de micrófonos dinámicos y de condensador para todo tipo de aplicaciones.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 3,
-    name: "Consolas de Mezcla",
-    description:
-      "Mezcladores digitales y analógicos de última generación para control total del audio.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 4,
-    name: "Monitores de Estudio",
-    description:
-      "Monitores de referencia profesionales para monitoreo preciso y mezcla de alta calidad.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-];
-
-const equiposData = [
-  {
-    id: 1,
-    name: "Procesadores de Voz",
-    description:
-      "Equipos especializados en procesamiento vocal con algoritmos avanzados de mejora de voz.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 2,
-    name: "Secuenciadores Digitales",
-    description:
-      "Tecnología de punta para secuenciación y programación musical profesional.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 3,
-    name: "Interfaces de Audio",
-    description:
-      "Interfaces profesionales para grabación y reproducción de audio de alta fidelidad.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 4,
-    name: "Amplificadores de Potencia",
-    description:
-      "Amplificadores de alta potencia y fidelidad para sistemas de sonido profesionales.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-];
-
-const reparacionData = [
-  {
-    id: 1,
-    name: "Reparación de Equipos de Playback",
-    description:
-      "Restauramos tus equipos de playback a su estado óptimo para una experiencia de audio superior.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 2,
-    name: "Reparación de Placas",
-    description:
-      "Servicio especializado en reparación y reemplazo de placas electrónicas dañadas.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 3,
-    name: "Mantenimiento Preventivo",
-    description:
-      "Servicios de mantenimiento regular para prolongar la vida útil de tus equipos.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 4,
-    name: "Calibración de Equipos",
-    description:
-      "Calibración precisa de equipos para garantizar el máximo rendimiento y calidad.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-];
-
-const programacionData = [
-  {
-    id: 1,
-    name: "Diseños Personalizados",
-    description:
-      "Soluciones de audio completamente personalizadas para satisfacer necesidades específicas.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 2,
-    name: "Configuración de Software",
-    description:
-      "Programación y configuración de software especializado para optimización de audio.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 3,
-    name: "Presets Profesionales",
-    description:
-      "Creación de presets personalizados para diferentes tipos de sesiones y aplicaciones.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 4,
-    name: "Optimización de Sistemas",
-    description:
-      "Ajuste fino de sistemas completos para máximo rendimiento y calidad de audio.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-];
-
-const montajeData = [
-  {
-    id: 1,
-    name: "Armado de Cables",
-    description:
-      "Cables personalizados para conexiones específicas y transmisión de audio de alta calidad.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 2,
-    name: "Instalación de Racks",
-    description:
-      "Montaje profesional de racks y organización de equipos para máxima eficiencia.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 3,
-    name: "Cableado Estructurado",
-    description:
-      "Sistemas de cableado organizados y etiquetados para instalaciones permanentes.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
-  },
-  {
-    id: 4,
-    name: "Configuración de Sistemas",
-    description:
-      "Puesta en marcha y configuración completa de sistemas de audio profesionales.",
-    images: [
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-      "/placeholder.jpg?height=400&width=600",
-    ],
+    id: "diseno",
+    title: "Diseño e Impresión 3D",
+    description: "Soluciones de diseño y fabricación tridimensional",
+    icon: Box,
+    sectionId: "diseno-section",
   },
 ];
 
@@ -343,7 +115,7 @@ function ImageCarousel({
         {images.map((image, index) => (
           <div key={index} className="w-full flex-shrink-0 h-full relative">
             <Image
-              src={image || "/placeholder.jpg"}
+              src={image || "/placeholder.svg?height=400&width=600"}
               alt={`${itemName} - Imagen ${index + 1}`}
               fill
               className="object-cover"
@@ -564,14 +336,14 @@ export default function RentalsPage() {
       <Header />
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="py-32 bg-gradient-to-b from-background to-muted/20">
-          <div className="container mx-auto px-4">
-            <div
-              className="max-w-4xl mx-auto text-center opacity-0 translate-y-8 transition-all duration-1000 ease-out animate-in"
-              ref={addToRefs}
-            >
-              <h1 className="text-3xl font-bold">Nuestros Servicios</h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        <section className="py-32 pb-16 bg-gradient-to-b from-background to-muted/20">
+          <div className="text-center mb-8">
+            <div className="inline-block">
+              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                Nuestros Servicios
+              </h2>
+              <div className="h-1 w-full bg-gradient-to-r from-primary/80 via-primary to-primary/80 rounded-full mb-4"></div>
+              <p className="text-muted-foreground max-w-md mx-auto">
                 Servicios profesionales especializados en equipamiento de audio
                 para todas tus necesidades.
               </p>
@@ -580,7 +352,7 @@ export default function RentalsPage() {
         </section>
 
         {/* Services Carousel */}
-        <section className="py-24">
+        <section className="pt-4 pb-16">
           <div className="container mx-auto px-4">
             <ServicesCarousel addToRefs={addToRefs} />
           </div>
@@ -596,12 +368,12 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-4xl md:text-5xl font-light mb-4">
+              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Alquiler de Equipamientos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto"></div>
             </div>
-            <SectionGrid data={alquilerData} addToRefs={addToRefs} />
+            <SectionGrid data={serviciosData.alquiler} addToRefs={addToRefs} />
           </div>
         </section>
 
@@ -612,12 +384,12 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-4xl md:text-5xl font-light mb-4">
+              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Nuestros Equipos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto"></div>
             </div>
-            <SectionGrid data={equiposData} addToRefs={addToRefs} />
+            <SectionGrid data={serviciosData.equipos} addToRefs={addToRefs} />
           </div>
         </section>
 
@@ -631,12 +403,15 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-4xl md:text-5xl font-light mb-4">
+              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Reparación de Equipos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto"></div>
             </div>
-            <SectionGrid data={reparacionData} addToRefs={addToRefs} />
+            <SectionGrid
+              data={serviciosData.reparacion}
+              addToRefs={addToRefs}
+            />
           </div>
         </section>
 
@@ -647,12 +422,15 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-4xl md:text-5xl font-light mb-4">
+              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Programación de Sesiones
               </h2>
               <div className="w-24 h-px bg-primary mx-auto"></div>
             </div>
-            <SectionGrid data={programacionData} addToRefs={addToRefs} />
+            <SectionGrid
+              data={serviciosData.programacion}
+              addToRefs={addToRefs}
+            />
           </div>
         </section>
 
@@ -666,12 +444,28 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-4xl md:text-5xl font-light mb-4">
+              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Montaje de Equipamientos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto"></div>
             </div>
-            <SectionGrid data={montajeData} addToRefs={addToRefs} />
+            <SectionGrid data={serviciosData.montaje} addToRefs={addToRefs} />
+          </div>
+        </section>
+
+        {/* Diseño e Impresión 3D Section */}
+        <section id="diseno-section" className="py-24 scroll-mt-20">
+          <div className="container mx-auto px-4">
+            <div
+              className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+              ref={addToRefs}
+            >
+              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                Diseño e Impresión 3D
+              </h2>
+              <div className="w-24 h-px bg-primary mx-auto"></div>
+            </div>
+            <SectionGrid data={serviciosData.diseno} addToRefs={addToRefs} />
           </div>
         </section>
       </main>

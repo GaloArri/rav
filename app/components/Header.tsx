@@ -10,14 +10,6 @@ import { ThemeToggle } from "./ThemeToggle"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
 
 export default function Header() {
   const { theme, systemTheme, setTheme } = useTheme()
@@ -56,7 +48,6 @@ export default function Header() {
 
   return (
     <>
-      {/* Spacer div with color depending on theme */}
       <div
         className={cn(
           "w-full transition-all duration-300",
@@ -72,7 +63,6 @@ export default function Header() {
           currentTheme === "dark" ? "text-white" : "text-black",
         )}
       >
-        {/* Top row with background image */}
         <div
           className={cn(
             "relative w-full transition-all duration-300",
@@ -91,7 +81,7 @@ export default function Header() {
                   height={680}
                   className={cn(
                     "object-contain transition-all duration-300 hover:opacity-80",
-                    isScrolled ? "h-28 md:h-32" : "h-44 md:h-52", // Logo muy grande cuando está scrolleado
+                    isScrolled ? "h-28 md:h-32" : "h-44 md:h-52", 
                     currentTheme === "dark" ? "invert-0" : "invert",
                   )}
                   priority
@@ -101,7 +91,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Bottom row with navigation */}
         <div
           className={cn(
             "w-full border-b backdrop-blur-md",
@@ -110,13 +99,12 @@ export default function Header() {
         >
           <div className="h-16 flex items-center justify-between">
             <div className="w-full max-w-screen-xl mx-auto px-4 flex items-center justify-center">
-              {/* Desktop Navigation */}
               <nav className="hidden md:flex items-center space-x-12">
                 <Link
                   href="/"
                   className={cn(
-                    "text-sm font-medium hover:text-primary transition-colors",
-                    pathname === "/" && "font-bold text-lg"
+                    "text-sm md:text-base font-medium hover:text-primary transition-colors",
+                    pathname === "/" && "font-bold text-base md:text-lg"
                   )}
                 >
                   Inicio
@@ -124,8 +112,8 @@ export default function Header() {
                 <Link
                   href="/servicios"
                   className={cn(
-                    "text-sm font-medium hover:text-primary transition-colors",
-                    pathname === "/servicios" && "font-bold text-lg"
+                    "text-sm md:text-base font-medium hover:text-primary transition-colors",
+                    pathname === "/servicios" && "font-bold text-base md:text-lg"
                   )}
                 >
                   Servicios
@@ -133,8 +121,8 @@ export default function Header() {
                 <Link
                   href="/projects"
                   className={cn(
-                    "text-sm font-medium hover:text-primary transition-colors",
-                    pathname === "/projects" && "font-bold text-lg"
+                    "text-sm md:text-base font-medium hover:text-primary transition-colors",
+                    pathname === "/projects" && "font-bold text-base md:text-lg"
                   )}
                 >
                   Proyectos
@@ -142,25 +130,26 @@ export default function Header() {
                 <Link
                   href="/about"
                   className={cn(
-                    "text-sm font-medium hover:text-primary transition-colors",
-                    pathname === "/about" && "font-bold text-lg"
+                    "text-sm md:text-base font-medium hover:text-primary transition-colors",
+                    pathname === "/about" && "font-bold text-base md:text-lg"
                   )}
                 >
                   Nosotros
                 </Link>
               </nav>
 
-              {/* Mobile Menu Button - Positioned absolutely */}
+              <div className="md:hidden absolute left-4">
+                <ThemeToggle />
+              </div>
+
               <div className="md:hidden absolute right-4">
-                <div className="flex items-center space-x-4">
-                  <ThemeToggle />
-                  <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                    <SheetTrigger asChild>
-                      <Button variant="ghost" size="icon" className="relative">
-                        <Menu className="h-5 w-5" />
-                        <span className="sr-only"> </span>
-                      </Button>
-                    </SheetTrigger>
+                <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                  <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon" className="relative">
+                      <Menu className="h-5 w-5" />
+                      <span className="sr-only"> </span>
+                    </Button>
+                  </SheetTrigger>
                     <SheetContent
                       side="right"
                       className={`${
@@ -176,8 +165,8 @@ export default function Header() {
                         <Link
                           href="/"
                           className={cn(
-                            "text-lg font-medium hover:text-primary transition-colors",
-                            pathname === "/" && "font-bold text-xl"
+                            "text-base md:text-lg font-medium hover:text-primary transition-colors",
+                            pathname === "/" && "font-bold text-lg md:text-xl"
                           )}
                           onClick={() => setIsOpen(false)}
                         >
@@ -186,8 +175,8 @@ export default function Header() {
                         <Link
                           href="/servicios"
                           className={cn(
-                            "text-lg font-medium hover:text-primary transition-colors",
-                            pathname === "/servicios" && "font-bold text-xl"
+                            "text-base md:text-lg font-medium hover:text-primary transition-colors",
+                            pathname === "/servicios" && "font-bold text-lg md:text-xl"
                           )}
                           onClick={() => setIsOpen(false)}
                         >
@@ -196,8 +185,8 @@ export default function Header() {
                         <Link
                           href="/projects"
                           className={cn(
-                            "text-lg font-medium hover:text-primary transition-colors",
-                            pathname === "/projects" && "font-bold text-xl"
+                            "text-base md:text-lg font-medium hover:text-primary transition-colors",
+                            pathname === "/projects" && "font-bold text-lg md:text-xl"
                           )}
                           onClick={() => setIsOpen(false)}
                         >
@@ -206,8 +195,8 @@ export default function Header() {
                         <Link
                           href="/about"
                           className={cn(
-                            "text-lg font-medium hover:text-primary transition-colors",
-                            pathname === "/about" && "font-bold text-xl"
+                            "text-base md:text-lg font-medium hover:text-primary transition-colors",
+                            pathname === "/about" && "font-bold text-lg md:text-xl"
                           )}
                           onClick={() => setIsOpen(false)}
                         >
@@ -217,9 +206,7 @@ export default function Header() {
                     </SheetContent>
                   </Sheet>
                 </div>
-              </div>
 
-              {/* Desktop Theme Toggle - Positioned absolutely */}
               <div className="hidden md:block absolute right-4">
                 <ThemeToggle />
               </div>

@@ -19,13 +19,12 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   }, [])
 
   useEffect(() => {
-    // Simplificar: solo esperar un tiempo fijo y completar
     const timer = setTimeout(() => {
       setIsVisible(false)
       setTimeout(() => {
         onComplete()
       }, 350)
-    }, 1500) // 1.5 segundos total
+    }, 1500) 
 
     return () => clearTimeout(timer)
   }, [onComplete])
@@ -42,7 +41,6 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         isVisible ? "opacity-100" : "opacity-0",
       )}
     >
-      {/* Logo simple */}
       <div className="flex flex-col items-center">
         <div className="relative">
           <Image

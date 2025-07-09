@@ -1,6 +1,19 @@
+"use client"
+
 import Image from "next/image";
+import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 export default function AboutUs() {
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme = mounted ? (theme === "system" ? systemTheme : theme) : "dark";
   return (
     <section
       className="py-24 relative min-h-screen bg-cover bg-center bg-no-repeat"
@@ -16,11 +29,11 @@ export default function AboutUs() {
           <div className="space-y-8">
             <div className="flex flex-col items-center justify-center space-y-6 text-center min-h-[20rem]">
               <div className="flex-1 flex flex-col justify-center">
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
                   Sobre nosotros
                 </h1>
                 <div className="space-y-4 text-white/90 max-w-3xl">
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-base md:text-lg leading-relaxed">
                     RAV es una empresa joven especializada en soluciones de
                     audio para música en vivo. <br></br> Nacida en Buenos Aires
                     en 2020, surgió con el objetivo de repensar los sistemas de
@@ -47,7 +60,12 @@ export default function AboutUs() {
             </div>
 
             {/* Fila de 3 imágenes con fondo distinto */}
-            <div className="mt-0 p-8 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className={cn(
+              "mt-0 p-8 rounded-xl backdrop-blur-sm grid grid-cols-1 md:grid-cols-3 gap-6",
+              currentTheme === "dark" 
+                ? "bg-black/30 border border-black/50" 
+                : "bg-white/25 border border-white/40"
+            )}>
               <div className="w-full flex justify-center">
                 <Image
                   src="/images/about/FOTO 21.jpg"

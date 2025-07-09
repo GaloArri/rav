@@ -11,7 +11,7 @@ interface ArtistCarouselProps {
 
 export default function ArtistCarousel({ images, artistName }: ArtistCarouselProps) {
   const [currentImage, setCurrentImage] = useState(0)
-    // Normalizar images a array - manejar tanto string como string[]
+
   const normalizeImages = (imgs: string | string[]): string[] => {
     if (!imgs) return []
     if (typeof imgs === "string") return [imgs]
@@ -31,7 +31,7 @@ export default function ArtistCarousel({ images, artistName }: ArtistCarouselPro
     return () => clearInterval(interval)
   }, [validImages.length])
 
-  // Si no hay imágenes válidas, mostrar placeholder
+
   if (validImages.length === 0) {
     return (
       <div className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-xl bg-muted flex items-center justify-center">

@@ -1,20 +1,6 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import {
-  Play,
-  Volume2,
-  Headphones,
-  Award,
-  Users,
-  Globe,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -47,14 +33,13 @@ export default function LandingPage() {
   const currentTheme = mounted ? (theme === "system" ? systemTheme : theme) : "dark";
 
   if (!mounted) {
-    return null; // Evita el flash de contenido incorrecto
+    return null; 
   }
 
   return (
     <div>
       <main>
         <section className="relative w-full py-8 md:py-16 lg:py-20 xl:py-24 overflow-hidden">
-          {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
               src="/images/duko.jpg"
@@ -63,7 +48,6 @@ export default function LandingPage() {
               className="object-cover"
               priority
             />
-            {/* solo para chekear que esta todo bien y es la ultima version xd */}
             <div className={cn(
               "absolute inset-0",
               currentTheme === "dark" 
@@ -90,7 +74,7 @@ export default function LandingPage() {
                   />
                 </div>
                 <p className={cn(
-                  "mx-auto max-w-[700px] md:text-xl text-center leading-relaxed",
+                  "mx-auto max-w-[700px] text-base md:text-lg text-center leading-relaxed",
                   currentTheme === "dark" 
                     ? "text-gray-200" 
                     : "text-gray-800"

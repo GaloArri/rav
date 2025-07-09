@@ -49,7 +49,6 @@ export default function Carousel() {
     <div className="w-full relative">
       <div>
         <div className="relative py-8 md:py-12 rounded-lg overflow-hidden">
-          {/* Background Images */}
           {items.map((item, index) => (
             <div
               key={index}
@@ -65,7 +64,6 @@ export default function Carousel() {
                 priority
                 className="object-cover rounded-lg h-48 md:h-64 w-full"
               />
-              {/* Overlay de sombreado y degradé adaptativo */}
               <div
                 className={cn(
                   "absolute inset-0 rounded-lg pointer-events-none",
@@ -83,7 +81,6 @@ export default function Carousel() {
             </div>
           ))}
 
-          {/* Centered Content */}
           <div className="relative z-20 flex items-center justify-center min-h-[192px] md:min-h-[256px] px-6 mt-28">
             <div className="max-w-3xl text-center">
               {items.map((item, index) => (

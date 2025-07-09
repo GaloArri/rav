@@ -100,4 +100,33 @@
   .smooth-scroll {
     scroll-behavior: smooth;
   }
+
+  /* Typography consistency classes */
+  .text-heading-1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  .text-heading-2 {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+
+  .text-heading-3 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  .text-body-large {
+    @apply text-base md:text-lg;
+  }
+
+  .text-body-base {
+    @apply text-sm md:text-base;
+  }
+
+  .text-nav {
+    @apply text-sm md:text-base font-medium;
+  }
+
+  .text-nav-active {
+    @apply text-base md:text-lg font-bold;
+  }
 }

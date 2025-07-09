@@ -5,48 +5,39 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Mic, Settings, Wrench, Music, Layers, Box } from "lucide-react";
 import Image from "next/image";
 import serviciosData from "../data/servicios.json";
-import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
 const services = [
   {
     id: "alquiler",
     title: "Alquiler de Equipamientos",
-    description:
-      "Equipos profesionales para procesamiento vocal y de secuencia",
     sectionId: "alquiler-section",
   },
   {
     id: "equipos",
     title: "Nuestros Equipos",
-    description: "Catálogo completo de equipamiento disponible",
     sectionId: "equipos-section",
   },
   {
     id: "reparacion",
     title: "Reparación de Equipos",
-    description: "Servicio técnico especializado y garantizado",
     sectionId: "reparacion-section",
   },
   {
     id: "programacion",
     title: "Programación de Sesiones",
-    description: "Configuración y programación personalizada",
     sectionId: "programacion-section",
   },
   {
     id: "montaje",
     title: "Montaje de Equipamientos",
-    description: "Instalación y configuración profesional",
     sectionId: "montaje-section",
   },
   {
     id: "diseno",
     title: "Diseño e Impresión 3D",
-    description: "Soluciones de diseño y fabricación tridimensional",
     sectionId: "diseno-section",
   },
 ];
@@ -187,7 +178,7 @@ function SectionGrid({
             </div>
             {/* Información visible siempre */}
             <div className="pt-4 px-2">
-              <h3 className="font-semibold text-lg group-hover:text-primary transition-colors duration-300">
+              <h3 className="font-semibold text-xl md:text-2xl group-hover:text-primary transition-colors duration-300">
                 {item.name}
               </h3>
               <div className="flex items-center gap-2 mt-1">
@@ -208,6 +199,8 @@ function ServicesCarousel({
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % services.length);
@@ -232,6 +225,32 @@ function ServicesCarousel({
     }
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0); // Reset touchEnd
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+      setIsAutoPlaying(false);
+    }
+    if (isRightSwipe) {
+      prevSlide();
+      setIsAutoPlaying(false);
+    }
+  };
+
   // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -250,7 +269,12 @@ function ServicesCarousel({
     >
       <div className="relative">
         {/* Carrusel principal */}
-        <div className="overflow-hidden rounded-2xl">
+        <div 
+          className="overflow-hidden rounded-2xl select-none"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -259,12 +283,9 @@ function ServicesCarousel({
               <div key={index} className="w-full flex-shrink-0">
                 <div className="bg-background border border-border/50 rounded-2xl p-12 mx-4 hover:border-primary/20 transition-all duration-300">
                   <div className="text-center">
-                    <h3 className="text-3xl font-light mb-6 text-foreground">
+                    <h3 className="text-xl md:text-2xl font-light mb-6 text-foreground">
                       {service.title}
                     </h3>
-                    <p className="text-muted-foreground/80 leading-relaxed text-lg max-w-md mx-auto">
-                      {service.description}
-                    </p>
                     <div className="mt-8">
                       <Button
                         size="lg"
@@ -281,13 +302,13 @@ function ServicesCarousel({
           </div>
         </div>
 
-        {/* Botones de navegación */}
+        {/* Botones de navegación - Solo visible en pantallas medianas y más grandes */}
         <button
           onClick={() => {
             prevSlide();
             setIsAutoPlaying(false);
           }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all duration-300 flex items-center justify-center group"
+          className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all duration-300 items-center justify-center group"
         >
           <ChevronLeft className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
         </button>
@@ -297,7 +318,7 @@ function ServicesCarousel({
             nextSlide();
             setIsAutoPlaying(false);
           }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all duration-300 flex items-center justify-center group"
+          className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all duration-300 items-center justify-center group"
         >
           <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
         </button>
@@ -350,10 +371,10 @@ export default function RentalsPage() {
           <div className="relative z-10">
             <div className="text-center mb-8">
               <div className="inline-block">
-                <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                   Nuestros Servicios
-                </h2>
-                <p className="text-muted-foreground max-w-md mx-auto">
+                </h1>
+                <p className="text-base md:text-lg text-muted-foreground max-w-md mx-auto">
                   Servicios profesionales especializados en equipamiento de
                   audio para todas tus necesidades.
                 </p>
@@ -376,10 +397,13 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Nuestros Equipos
               </h2>
-              <div className="w-24 h-px bg-primary mx-auto"></div>
+              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
+              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+                Catálogo completo de equipamiento disponible
+              </p>
             </div>
             <SectionGrid data={serviciosData.equipos} addToRefs={addToRefs} />
           </div>
@@ -395,10 +419,13 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Alquiler de Equipamientos
               </h2>
-              <div className="w-24 h-px bg-primary mx-auto"></div>
+              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
+              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+                Equipos profesionales para procesamiento vocal y de secuencia
+              </p>
             </div>
             <SectionGrid data={serviciosData.alquiler} addToRefs={addToRefs} />
           </div>
@@ -414,10 +441,13 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Reparación de Equipos
               </h2>
-              <div className="w-24 h-px bg-primary mx-auto"></div>
+              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
+              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+                Servicio técnico especializado y garantizado
+              </p>
             </div>
             <SectionGrid
               data={serviciosData.reparacion}
@@ -433,10 +463,13 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Programación de Diseño
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                Programación de Sesiones
               </h2>
-              <div className="w-24 h-px bg-primary mx-auto"></div>
+              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
+              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+                Configuración y programación personalizada
+              </p>
             </div>
             <SectionGrid
               data={serviciosData.programacion}
@@ -455,10 +488,13 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Montaje de Equipamientos
               </h2>
-              <div className="w-24 h-px bg-primary mx-auto"></div>
+              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
+              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+                Instalación y configuración profesional
+              </p>
             </div>
             <SectionGrid data={serviciosData.montaje} addToRefs={addToRefs} />
           </div>
@@ -471,10 +507,13 @@ export default function RentalsPage() {
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 Diseño e Impresión 3D
               </h2>
-              <div className="w-24 h-px bg-primary mx-auto"></div>
+              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
+              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+                Soluciones de diseño y fabricación tridimensional
+              </p>
             </div>
             <SectionGrid data={serviciosData.diseno} addToRefs={addToRefs} />
           </div>

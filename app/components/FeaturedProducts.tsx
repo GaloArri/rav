@@ -55,12 +55,12 @@ export default function FeaturedProducts() {
           </CardContent>
           <CardFooter className="flex flex-col items-start p-4">
             <div className="w-full mb-3">
-              <h3 className="font-semibold text-base mb-1 group-hover:text-primary transition-colors">
+              <h3 className="font-semibold text-base md:text-lg mb-1 group-hover:text-primary transition-colors">
                 {product.name}
               </h3>
-              <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{product.description}</p>
+              <p className="text-sm md:text-base text-muted-foreground line-clamp-2 mb-3">{product.description}</p>
               <div className="flex justify-between items-center w-full">
-                <p className="text-base font-semibold">${product.price.toFixed(2)}</p>
+                <p className="text-base md:text-lg font-semibold">${product.price.toFixed(2)}</p>
               </div>
             </div>
             <Button size="sm" asChild className="w-full">

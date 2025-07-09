@@ -22,8 +22,7 @@ export default function ContactForm() {
   const [showSuccess, setShowSuccess] = useState(false)
   const [successMessage, setSuccessMessage] = useState("")
   const { toast } = useToast()
-  
-  // Debug effect
+
   useEffect(() => {
     console.log("Estado showSuccess cambió a:", showSuccess)
   }, [showSuccess])
@@ -57,13 +56,11 @@ export default function ContactForm() {
       }
 
       console.log("Mensaje enviado exitosamente, mostrando popup...")
-      
-      // Mostrar popup de éxito
+
       setShowSuccess(true)
       setSuccessMessage("¡Mensaje enviado exitosamente! Nos pondremos en contacto contigo pronto.")
       console.log("Estado showSuccess actualizado a:", true)
-      
-      // También mostrar toast como respaldo
+
       toast({
         title: "¡Mensaje enviado exitosamente!",
         description: "Nos pondremos en contacto contigo lo antes posible.",
@@ -72,7 +69,6 @@ export default function ContactForm() {
       
       form.reset()
       
-      // Ocultar popup después de 5 segundos
       setTimeout(() => {
         console.log("Ocultando popup automáticamente...")
         setShowSuccess(false)
@@ -94,7 +90,7 @@ export default function ContactForm() {
   
   return (
     <div className="relative">
-      {/* Notificación inline de éxito */}
+
       {showSuccess && (
         <div className="mb-6 p-4 bg-[#f7f7f7] dark:bg-[#1a1a1a] border border-[#cccccc] dark:border-[#333333] rounded-lg">
           <div className="flex items-center">
@@ -103,8 +99,7 @@ export default function ContactForm() {
           </div>
         </div>
       )}
-      
-      {/* Popup de éxito */}
+
       {showSuccess && (
         <div className="fixed inset-0 bg-black/50 dark:bg-black/70 flex items-center justify-center z-50">
           <div className="bg-[#f7f7f7] dark:bg-[#1a1a1a] rounded-lg p-8 max-w-md mx-4 shadow-2xl transform transition-all border border-[#cccccc] dark:border-[#333333]">

@@ -384,14 +384,16 @@ export default function RentalsPage() {
         </section>
 
         {/* Services Carousel */}
-        <section className="pt-4 pb-16">
+        {/**
+        <section className="pt-4 pb-8">
           <div className="container mx-auto px-4">
             <ServicesCarousel addToRefs={addToRefs} />
           </div>
         </section>
+        */}
 
         {/* Nuestros Equipos Section */}
-        <section id="equipos-section" className="py-24 scroll-mt-20">
+        <section id="equipos-section" className="pt-8 pb-24 scroll-mt-20">
           <div className="container mx-auto px-4">
             <div
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"

@@ -1,20 +1,17 @@
-import type React from "react"
-import type { Metadata } from "next"
-import ClientLayout from "./ClientLayout"
-
-
+import type React from "react";
+import type { Metadata } from "next";
+import ClientLayout from "./ClientLayout";
 
 export const metadata: Metadata = {
-  title: "RAV",
+  title: "RAV - Soluciones Informáticas",
   description: " ",
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  return <ClientLayout>{children}</ClientLayout>
-''
+  return <ClientLayout>{children}</ClientLayout>;
+  ("");
 }
-

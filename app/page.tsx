@@ -10,18 +10,14 @@ export default function Home() {
       <Header />
       <main className="flex-grow">
         <Carousel />
-        
+
         {/* Separador estético */}
-        <div className="py-8">
+        <div className="py-4">
           <div className="container mx-auto px-4">
-            <div className="flex items-center justify-center">
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-              <div className="mx-4 w-3 h-3 bg-primary rounded-full"></div>
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-            </div>
+            <div className="flex items-center justify-center"></div>
           </div>
         </div>
-        
+
         <LandingPage />
       </main>
       <Footer />

@@ -2,7 +2,7 @@
   "alquiler": [
     {
       "id": 1,
-      "name": "Sistemas de Sonido Completos",
+      "name": "Sistemas de secuencias y proceso vocal",
       "description": "Equipos profesionales de alta gama para eventos de gran escala con calidad de estudio.",
       "images": [
         "/images/servicios/FOTO 20.jpg"
@@ -20,7 +20,7 @@
   "equipos": [
     {
       "id": 1,
-      "name": "Procesadores de Voz",
+      "name": "Sistemas de secuencias y proceso vocal",
       "description": "Equipos especializados en procesamiento vocal con algoritmos avanzados de mejora de voz.",
       "images": [
                 "/images/servicios/FOTO 25.jpg"
@@ -33,12 +33,20 @@
       "images": [
         "/images/servicios/FOTO 2.jpg"
       ]
+    },
+    {
+      "id": 2,
+      "name": "Laptops y computadoras",
+      "description": "",
+      "images": [
+        "/images/servicios/FOTO 2.jpg"
+      ]
     }
   ],
   "reparacion": [
     {
       "id": 1,
-      "name": "Reparación de Equipos de Playback",
+      "name": "Reparación de sistemas de secuencias y proceso vocal",
       "description": "Restauramos tus equipos de playback a su estado óptimo para una experiencia de audio superior.",
       "images": [
         "/images/servicios/taller1.JPG"
@@ -46,7 +54,15 @@
     },
     {
       "id": 2,
-      "name": "Mantenimiento Preventivo",
+      "name": "Mantenimiento",
+      "description": "Servicios de mantenimiento regular para prolongar la vida útil de tus equipos.",
+      "images": [
+        "/images/servicios/IMG_7971.JPG"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Reparación de interfaces de audio",
       "description": "Servicios de mantenimiento regular para prolongar la vida útil de tus equipos.",
       "images": [
         "/images/servicios/IMG_7971.JPG"
@@ -56,7 +72,7 @@
   "programacion": [
     {
       "id": 1,
-      "name": "Diseños Personalizados",
+      "name": "Diseño de sesiones en Ableton Live",
       "description": "Soluciones de audio completamente personalizadas para satisfacer necesidades específicas.",
       "images": [
         "/images/servicios/audio1.jpg"
@@ -65,7 +81,7 @@
     {
       "id": 2,
       "name": "Presets Profesionales",
-      "description": "Creación de presets personalizados para diferentes tipos de sesiones y aplicaciones.",
+      "description": "REVISAR Creación de presets personalizados para diferentes tipos de sesiones y aplicaciones.",
       "images": [
         "/images/servicios/procesador.jpg"
       ]

@@ -8,6 +8,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Mic, Settings, Wrench, Music, Layers, Box } from "lucide-react";
 import Image from "next/image";
 import serviciosData from "../data/servicios.json";
+import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 const services = [
   {
@@ -15,42 +17,36 @@ const services = [
     title: "Alquiler de Equipamientos",
     description:
       "Equipos profesionales para procesamiento vocal y de secuencia",
-    icon: Mic,
     sectionId: "alquiler-section",
   },
   {
     id: "equipos",
     title: "Nuestros Equipos",
     description: "Catálogo completo de equipamiento disponible",
-    icon: Settings,
     sectionId: "equipos-section",
   },
   {
     id: "reparacion",
     title: "Reparación de Equipos",
     description: "Servicio técnico especializado y garantizado",
-    icon: Wrench,
     sectionId: "reparacion-section",
   },
   {
     id: "programacion",
     title: "Programación de Sesiones",
     description: "Configuración y programación personalizada",
-    icon: Music,
     sectionId: "programacion-section",
   },
   {
     id: "montaje",
     title: "Montaje de Equipamientos",
     description: "Instalación y configuración profesional",
-    icon: Layers,
     sectionId: "montaje-section",
   },
   {
     id: "diseno",
     title: "Diseño e Impresión 3D",
     description: "Soluciones de diseño y fabricación tridimensional",
-    icon: Box,
     sectionId: "diseno-section",
   },
 ];
@@ -263,9 +259,6 @@ function ServicesCarousel({
               <div key={index} className="w-full flex-shrink-0">
                 <div className="bg-background border border-border/50 rounded-2xl p-12 mx-4 hover:border-primary/20 transition-all duration-300">
                   <div className="text-center">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-8">
-                      <service.icon className="h-10 w-10 text-primary" />
-                    </div>
                     <h3 className="text-3xl font-light mb-6 text-foreground">
                       {service.title}
                     </h3>
@@ -330,23 +323,41 @@ function ServicesCarousel({
 
 export default function RentalsPage() {
   const addToRefs = useScrollAnimation();
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const currentTheme = mounted
+    ? theme === "system"
+      ? systemTheme
+      : theme
+    : "dark";
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="py-32 pb-16 bg-gradient-to-b from-background to-muted/20">
-          <div className="text-center mb-8">
-            <div className="inline-block">
-              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Nuestros Servicios
-              </h2>
-              <div className="h-1 w-full bg-gradient-to-r from-primary/80 via-primary to-primary/80 rounded-full mb-4"></div>
-              <p className="text-muted-foreground max-w-md mx-auto">
-                Servicios profesionales especializados en equipamiento de audio
-                para todas tus necesidades.
-              </p>
+        <section className="py-32 pb-16 relative">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/duko.jpg"
+              alt="Background"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+          {/* Content */}
+          <div className="relative z-10">
+            <div className="text-center mb-8">
+              <div className="inline-block">
+                <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                  Nuestros Servicios
+                </h2>
+                <p className="text-muted-foreground max-w-md mx-auto">
+                  Servicios profesionales especializados en equipamiento de
+                  audio para todas tus necesidades.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -355,6 +366,22 @@ export default function RentalsPage() {
         <section className="pt-4 pb-16">
           <div className="container mx-auto px-4">
             <ServicesCarousel addToRefs={addToRefs} />
+          </div>
+        </section>
+
+        {/* Nuestros Equipos Section */}
+        <section id="equipos-section" className="py-24 scroll-mt-20">
+          <div className="container mx-auto px-4">
+            <div
+              className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+              ref={addToRefs}
+            >
+              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                Nuestros Equipos
+              </h2>
+              <div className="w-24 h-px bg-primary mx-auto"></div>
+            </div>
+            <SectionGrid data={serviciosData.equipos} addToRefs={addToRefs} />
           </div>
         </section>
 
@@ -374,22 +401,6 @@ export default function RentalsPage() {
               <div className="w-24 h-px bg-primary mx-auto"></div>
             </div>
             <SectionGrid data={serviciosData.alquiler} addToRefs={addToRefs} />
-          </div>
-        </section>
-
-        {/* Nuestros Equipos Section */}
-        <section id="equipos-section" className="py-24 scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div
-              className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
-              ref={addToRefs}
-            >
-              <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Nuestros Equipos
-              </h2>
-              <div className="w-24 h-px bg-primary mx-auto"></div>
-            </div>
-            <SectionGrid data={serviciosData.equipos} addToRefs={addToRefs} />
           </div>
         </section>
 
@@ -423,7 +434,7 @@ export default function RentalsPage() {
               ref={addToRefs}
             >
               <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Programación de Sesiones
+                Programación de Diseño
               </h2>
               <div className="w-24 h-px bg-primary mx-auto"></div>
             </div>

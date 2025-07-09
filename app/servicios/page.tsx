@@ -247,10 +247,10 @@ function SectionGrid({
               />
               {/* Overlay con información - clickeable para abrir imagen */}
               <div 
-                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl cursor-pointer"
+                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 rounded-2xl cursor-pointer"
                 onClick={() => onImageClick(item.images[0])}
               >
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500">
                   <p className="text-sm text-white/90 leading-relaxed">
                     {item.description}
                   </p>

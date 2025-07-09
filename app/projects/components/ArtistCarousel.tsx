@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils"
 interface ArtistCarouselProps {
   images: string[]
   artistName: string
+  onImageClick?: (currentIndex: number) => void
 }
 
-export default function ArtistCarousel({ images, artistName }: ArtistCarouselProps) {
+export default function ArtistCarousel({ images, artistName, onImageClick }: ArtistCarouselProps) {
   const [currentImage, setCurrentImage] = useState(0)
 
   const normalizeImages = (imgs: string | string[]): string[] => {
@@ -53,7 +54,8 @@ export default function ArtistCarousel({ images, artistName }: ArtistCarouselPro
             src={image || "/placeholder.svg"}
             alt={`${artistName} - Imagen ${index + 1}`}
             fill
-            className="object-cover rounded-2xl"
+            className="object-cover rounded-2xl cursor-pointer hover:scale-105 transition-transform duration-300"
+            onClick={() => onImageClick?.(currentImage)}
           />
         </div>
       ))}

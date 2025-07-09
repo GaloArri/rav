@@ -33,13 +33,13 @@
     {
       "id": 6,
       "name": "Zoe Gotusso",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Deslumbró en el Teatro Coliseo con un show íntimo pero potente, donde presentó su disco solista con una puesta minimalista y cálida que conectó con cada asistente."
     },
     {
       "id": 7,
       "name": "Luck Ra",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Hizo vibrar el Quality Estadio de Córdoba con un concierto en el que fusionó cuarteto, pop y rock con un despliegue técnico que acompañó su carisma en el escenario."
     },
     {
@@ -51,19 +51,19 @@
     {
       "id": 9,
       "name": "Lali",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Ofreció un histórico concierto en el Luna Park con su 'Disciplina Tour', fusionando coreografías impactantes y un sistema de sonido de alta fidelidad que la consagró como ícono pop."
     },
     {
       "id": 10,
       "name": "Taichu",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Encendió el escenario del Lollapalooza Argentina con un set cargado de energía y una producción sonora que acompañó su propuesta estética disruptiva."
     },
     {
       "id": 11,
       "name": "Nahuel Pennisi",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Emocionó al público del Teatro Gran Rex con una presentación acústica en la que su voz y guitarra fueron acompañadas por un entorno técnico cálido y preciso."
     },
     {
@@ -81,7 +81,7 @@
     {
       "id": 14,
       "name": "Louta",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Convertimos en realidad su visionario show en el Konex, donde música, performance y tecnología se fusionaron en una experiencia sensorial única e irrepetible."
     },
     {
@@ -93,19 +93,19 @@
     {
       "id": 16,
       "name": "Margarita",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Deslumbró en su primera presentación en el CCK, donde la delicadeza de su voz se destacó gracias a un trabajo técnico de sonido limpio y emocional."
     },
     {
       "id": 17,
       "name": "Trueno",
-      "images": [ "/images/placeholder.jpg"],
+      "images": [ "/placeholder.jpg"],
       "description": "Acompañamos su cierre de gira en el Luna Park con un sistema de sonido que capturó la intensidad de sus rimas y la energía del freestyle, creando una atmósfera única para más de 8,000 espectadores."
     },
     {
       "id": 18,
       "name": "Ángela Torres",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Consolidó su carrera solista en La Trastienda, donde su voz fue protagonista en una mezcla de pop moderno y tintes teatrales con sonido cuidado al detalle."
     },
     {
@@ -117,13 +117,13 @@
     {
       "id": 20,
       "name": "Axel Fiks",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Hipnotizó al público del Centro Cultural Matienzo con una performance íntima y experimental, donde el diseño sonoro acompañó cada pasaje emocional de su set."
     },
     {
       "id": 21,
       "name": "Souiuno",
-      "images": ["/images/placeholder.jpg"],
+      "images": ["/placeholder.jpg"],
       "description": "Llevó su propuesta electrónica y soul al escenario de Camping, donde los graves definidos y capas sonoras envolventes crearon una experiencia auditiva sutil pero poderosa."
     }
   ]

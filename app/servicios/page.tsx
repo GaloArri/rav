@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import serviciosData from "../data/servicios.json";
 import { useTheme } from "next-themes";
@@ -76,12 +76,83 @@ function useScrollAnimation() {
   return addToRefs;
 }
 
+// Nuevo componente Modal para las imágenes
+function ImageModal({
+  isOpen,
+  imageUrl,
+  altText,
+  onClose,
+}: {
+  isOpen: boolean;
+  imageUrl: string;
+  altText: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      {/* Fondo opaco - clickeable para cerrar */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+      
+      {/* Contenido del modal */}
+      <div 
+        className="relative max-w-[90vw] max-h-[90vh] bg-transparent rounded-lg flex items-center justify-center"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Botón cerrar */}
+        <button
+          onClick={onClose}
+          className="absolute -top-12 -right-12 z-10 w-10 h-10 rounded-full bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 transition-all duration-300 flex items-center justify-center"
+        >
+          <X className="h-5 w-5" />
+        </button>
+        
+        {/* Imagen */}
+        <div className="relative max-w-full max-h-full">
+          <Image
+            src={imageUrl}
+            alt={altText}
+            width={1200}
+            height={800}
+            className="object-contain max-w-full max-h-full rounded-lg"
+            quality={100}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ImageCarousel({
   images,
   itemName,
+  onImageClick,
 }: {
   images: string[];
   itemName: string;
+  onImageClick: (imageUrl: string) => void;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -105,7 +176,8 @@ function ImageCarousel({
               src={image || "/placeholder.svg?height=400&width=600"}
               alt={`${itemName} - Imagen ${index + 1}`}
               fill
-              className="object-cover"
+              className="object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+              onClick={() => onImageClick(image)}
             />
           </div>
         ))}
@@ -115,19 +187,19 @@ function ImageCarousel({
         <>
           <button
             onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100"
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-10"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-10"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
 
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
             {images.map((_, index) => (
               <button
                 key={index}
@@ -147,9 +219,11 @@ function ImageCarousel({
 function SectionGrid({
   data,
   addToRefs,
+  onImageClick,
 }: {
   data: any[];
   addToRefs: (el: HTMLElement | null) => void;
+  onImageClick: (imageUrl: string) => void;
 }) {
   return (
     <div className="max-w-7xl mx-auto">
@@ -166,9 +240,16 @@ function SectionGrid({
           >
             {/* Imagen con overlay */}
             <div className="relative">
-              <ImageCarousel images={item.images} itemName={item.name} />
-              {/* Overlay con información */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl">
+              <ImageCarousel 
+                images={item.images} 
+                itemName={item.name} 
+                onImageClick={onImageClick}
+              />
+              {/* Overlay con información - clickeable para abrir imagen */}
+              <div 
+                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl cursor-pointer"
+                onClick={() => onImageClick(item.images[0])}
+              >
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   <p className="text-sm text-white/90 leading-relaxed">
                     {item.description}
@@ -346,11 +427,31 @@ export default function RentalsPage() {
   const addToRefs = useScrollAnimation();
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImageUrl, setModalImageUrl] = useState("");
+  const [modalAltText, setModalAltText] = useState("");
+  
   const currentTheme = mounted
     ? theme === "system"
       ? systemTheme
       : theme
     : "dark";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const openImageModal = (imageUrl: string) => {
+    setModalImageUrl(imageUrl);
+    setModalAltText("Imagen ampliada");
+    setIsModalOpen(true);
+  };
+
+  const closeImageModal = () => {
+    setIsModalOpen(false);
+    setModalImageUrl("");
+    setModalAltText("");
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -407,7 +508,7 @@ export default function RentalsPage() {
                 Catálogo completo de equipamiento disponible
               </p>
             </div>
-            <SectionGrid data={serviciosData.equipos} addToRefs={addToRefs} />
+            <SectionGrid data={serviciosData.equipos} addToRefs={addToRefs} onImageClick={openImageModal} />
           </div>
         </section>
 
@@ -429,7 +530,7 @@ export default function RentalsPage() {
                 Equipos profesionales para procesamiento vocal y de secuencia
               </p>
             </div>
-            <SectionGrid data={serviciosData.alquiler} addToRefs={addToRefs} />
+            <SectionGrid data={serviciosData.alquiler} addToRefs={addToRefs} onImageClick={openImageModal} />
           </div>
         </section>
 
@@ -454,6 +555,7 @@ export default function RentalsPage() {
             <SectionGrid
               data={serviciosData.reparacion}
               addToRefs={addToRefs}
+              onImageClick={openImageModal}
             />
           </div>
         </section>
@@ -476,6 +578,7 @@ export default function RentalsPage() {
             <SectionGrid
               data={serviciosData.programacion}
               addToRefs={addToRefs}
+              onImageClick={openImageModal}
             />
           </div>
         </section>
@@ -498,7 +601,7 @@ export default function RentalsPage() {
                 Instalación y configuración profesional
               </p>
             </div>
-            <SectionGrid data={serviciosData.montaje} addToRefs={addToRefs} />
+            <SectionGrid data={serviciosData.montaje} addToRefs={addToRefs} onImageClick={openImageModal} />
           </div>
         </section>
 
@@ -517,11 +620,19 @@ export default function RentalsPage() {
                 Soluciones de diseño y fabricación tridimensional
               </p>
             </div>
-            <SectionGrid data={serviciosData.diseno} addToRefs={addToRefs} />
+            <SectionGrid data={serviciosData.diseno} addToRefs={addToRefs} onImageClick={openImageModal} />
           </div>
         </section>
       </main>
       <Footer />
+
+      {/* Modal de imagen - Renderizado a nivel de página */}
+      <ImageModal
+        isOpen={isModalOpen}
+        imageUrl={modalImageUrl}
+        altText={modalAltText}
+        onClose={closeImageModal}
+      />
 
       <style jsx global>{`
         .animate-in {

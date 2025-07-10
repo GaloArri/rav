@@ -51,7 +51,7 @@
     {
       "id": 9,
       "name": "Lali",
-      "images": ["/placeholder.jpg"],
+      "images": ["/images/lali1.jpeg", "/images/lali2.jpeg", "/images/lali3.jpeg"],
       "description": "Ofreció un histórico concierto en el Luna Park con su 'Disciplina Tour', fusionando coreografías impactantes y un sistema de sonido de alta fidelidad que la consagró como ícono pop."
     },
     {
@@ -99,7 +99,7 @@
     {
       "id": 17,
       "name": "Trueno",
-      "images": [ "/placeholder.jpg"],
+      "images": ["/images/trueno1.jpeg", "/images/trueno2.jpeg"],
       "description": "Acompañamos su cierre de gira en el Luna Park con un sistema de sonido que capturó la intensidad de sus rimas y la energía del freestyle, creando una atmósfera única para más de 8,000 espectadores."
     },
     {

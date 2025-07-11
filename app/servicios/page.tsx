@@ -109,15 +109,15 @@ function ImageModal({
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
       {/* Fondo opaco - clickeable para cerrar */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
-      
+
       {/* Contenido del modal */}
-      <div 
+      <div
         className="relative max-w-[90vw] max-h-[90vh] bg-transparent rounded-lg flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
@@ -128,7 +128,7 @@ function ImageModal({
         >
           <X className="h-5 w-5" />
         </button>
-        
+
         {/* Imagen */}
         <div className="relative max-w-full max-h-full">
           <Image
@@ -240,13 +240,13 @@ function SectionGrid({
           >
             {/* Imagen con overlay */}
             <div className="relative">
-              <ImageCarousel 
-                images={item.images} 
-                itemName={item.name} 
+              <ImageCarousel
+                images={item.images}
+                itemName={item.name}
                 onImageClick={onImageClick}
               />
               {/* Overlay con información - clickeable para abrir imagen */}
-              <div 
+              <div
                 className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 rounded-2xl cursor-pointer"
                 onClick={() => onImageClick(item.images[0])}
               >
@@ -317,7 +317,7 @@ function ServicesCarousel({
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
@@ -350,7 +350,7 @@ function ServicesCarousel({
     >
       <div className="relative">
         {/* Carrusel principal */}
-        <div 
+        <div
           className="overflow-hidden rounded-2xl select-none"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -430,7 +430,7 @@ export default function RentalsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState("");
   const [modalAltText, setModalAltText] = useState("");
-  
+
   const currentTheme = mounted
     ? theme === "system"
       ? systemTheme
@@ -456,20 +456,15 @@ export default function RentalsPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow relative bg-cover bg-center bg-no-repeat" style={{
-          backgroundImage: "url('/images/cablesfondo.jpg')",
-        }}>
+      <main
+        className="flex-grow relative bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/images/project_artists/duko1.jpg')",
+        }}
+      >
+        {/* Overlay semitransparente para mejor legibilidad */}
+        <div className="absolute inset-0 bg-black/30" />
         <section className="py-32 pb-16 relative">
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/images/duko.jpg"
-              alt="Background"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-black/60" />
-          </div>
           {/* Content */}
           <div className="relative z-10">
             <div className="text-center mb-8">
@@ -482,6 +477,11 @@ export default function RentalsPage() {
                   audio para todas tus necesidades.
                 </p>
               </div>
+            </div>
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+              <div className="mx-4 w-3 h-3 bg-primary rounded-full"></div>
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
             </div>
           </div>
         </section>
@@ -510,7 +510,11 @@ export default function RentalsPage() {
                 Catálogo completo de equipamiento disponible
               </p>
             </div>
-            <SectionGrid data={serviciosData.equipos} addToRefs={addToRefs} onImageClick={openImageModal} />
+            <SectionGrid
+              data={serviciosData.equipos}
+              addToRefs={addToRefs}
+              onImageClick={openImageModal}
+            />
           </div>
         </section>
 
@@ -532,7 +536,11 @@ export default function RentalsPage() {
                 Equipos profesionales para procesamiento vocal y de secuencia
               </p>
             </div>
-            <SectionGrid data={serviciosData.alquiler} addToRefs={addToRefs} onImageClick={openImageModal} />
+            <SectionGrid
+              data={serviciosData.alquiler}
+              addToRefs={addToRefs}
+              onImageClick={openImageModal}
+            />
           </div>
         </section>
 
@@ -603,7 +611,11 @@ export default function RentalsPage() {
                 Instalación y configuración profesional
               </p>
             </div>
-            <SectionGrid data={serviciosData.montaje} addToRefs={addToRefs} onImageClick={openImageModal} />
+            <SectionGrid
+              data={serviciosData.montaje}
+              addToRefs={addToRefs}
+              onImageClick={openImageModal}
+            />
           </div>
         </section>
 
@@ -622,7 +634,11 @@ export default function RentalsPage() {
                 Soluciones de diseño y fabricación tridimensional
               </p>
             </div>
-            <SectionGrid data={serviciosData.diseno} addToRefs={addToRefs} onImageClick={openImageModal} />
+            <SectionGrid
+              data={serviciosData.diseno}
+              addToRefs={addToRefs}
+              onImageClick={openImageModal}
+            />
           </div>
         </section>
       </main>

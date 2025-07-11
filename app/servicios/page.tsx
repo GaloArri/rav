@@ -456,7 +456,9 @@ export default function RentalsPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow relative bg-cover bg-center bg-no-repeat" style={{
+          backgroundImage: "url('/images/cablesfondo.jpg')",
+        }}>
         <section className="py-32 pb-16 relative">
           <div className="absolute inset-0 z-0">
             <Image

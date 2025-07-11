@@ -6,7 +6,8 @@
       "images": [
         "/images/project_artists/duko1.jpg",
         "/images/project_artists/duko2.jpg",
-        "/images/dukp2.jpg"
+        "/images/dukp2.jpg",
+        "/images/dukicables.jpeg"
       ],
       "description": "Montaje de sistema de secuencias analogico. Montaje de sistema digital via Dante para el desarrollo de sus shows. Asistencia y soporte tecnico en cada una de sus presentaciones."
     },
@@ -14,7 +15,8 @@
       "id": 8,
       "name": "Paulo Londra",
       "images": [
-        "/images/about/rav.jpeg"
+        "/images/about/rav.jpeg",
+        "/images/about/londra2.jpeg"
       ],
       "description": "Volvió a los escenarios con un imponente show en el Hipódromo de Palermo, donde reafirmó su lugar como uno de los referentes del trap latino ante miles de seguidores."
     },
@@ -155,38 +157,6 @@
         "/images/unverano2.jpg"
       ],
       "description": "Ofreció un show conceptual en Niceto Club, fusionando música indie con visuales inmersivas y un diseño de sonido envolvente que transportó al público."
-    },
-    {
-      "id": 14,
-      "name": "Louta",
-      "images": [
-        "/placeholder.jpg"
-      ],
-      "description": "Convertimos en realidad su visionario show en el Konex, donde música, performance y tecnología se fusionaron en una experiencia sensorial única e irrepetible."
-    },
-    {
-      "id": 18,
-      "name": "Ángela Torres",
-      "images": [
-        "/placeholder.jpg"
-      ],
-      "description": "Consolidó su carrera solista en La Trastienda, donde su voz fue protagonista en una mezcla de pop moderno y tintes teatrales con sonido cuidado al detalle."
-    },
-    {
-      "id": 20,
-      "name": "Axel Fiks",
-      "images": [
-        "/placeholder.jpg"
-      ],
-      "description": "Hipnotizó al público del Centro Cultural Matienzo con una performance íntima y experimental, donde el diseño sonoro acompañó cada pasaje emocional de su set."
-    },
-    {
-      "id": 21,
-      "name": "Souiuno",
-      "images": [
-        "/placeholder.jpg"
-      ],
-      "description": "Llevó su propuesta electrónica y soul al escenario de Camping, donde los graves definidos y capas sonoras envolventes crearon una experiencia auditiva sutil pero poderosa."
     }
   ]
 }

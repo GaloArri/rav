@@ -67,15 +67,9 @@ export default function Carousel() {
               <div
                 className={cn(
                   "absolute inset-0 rounded-lg pointer-events-none",
-                  currentTheme === "dark" ? "bg-black/40" : "bg-white/40"
-                )}
-              />
-              <div
-                className={cn(
-                  "absolute inset-0 rounded-lg pointer-events-none",
-                  currentTheme === "dark"
-                    ? "bg-gradient-to-b from-black/60 via-transparent to-black/10"
-                    : "bg-gradient-to-b from-white/70 via-transparent to-white/10"
+                  currentTheme === "dark" 
+                    ? "bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                    : "bg-gradient-to-t from-white/90 via-white/40 to-transparent"
                 )}
               />
             </div>
@@ -94,18 +88,20 @@ export default function Carousel() {
                   <div className="space-y-4 px-4">
                     <h2
                       className={cn(
-                        "text-2xl md:text-4xl font-bold mb-3 tracking-tight drop-shadow-2xl",
-                        currentTheme === "dark" ? "text-white" : "text-white"
+                        "text-2xl md:text-4xl font-bold mb-3 tracking-tight",
+                        currentTheme === "dark" 
+                          ? "text-white" 
+                          : "text-gray-900"
                       )}
                     >
                       {item.title}
                     </h2>
                     <p
                       className={cn(
-                        "text-base md:text-lg leading-relaxed max-w-2xl mx-auto drop-shadow-xl",
+                        "text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium",
                         currentTheme === "dark"
                           ? "text-white/95"
-                          : "text-white/95"
+                          : "text-gray-800"
                       )}
                     >
                       {item.description}

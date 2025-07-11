@@ -7,6 +7,7 @@ import artistsData from "../data/artists.json";
 import ArtistCarousel from "./components/ArtistCarousel";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useTheme } from "next-themes";
 
 // Componente Modal para las imágenes
 function ImageModal({
@@ -137,10 +138,22 @@ function ImageModal({
 }
 
 export default function ArtistsPage() {
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImages, setModalImages] = useState<string[]>([]);
   const [modalCurrentIndex, setModalCurrentIndex] = useState(0);
   const [modalArtistName, setModalArtistName] = useState("");
+
+  const currentTheme = mounted
+    ? theme === "system"
+      ? systemTheme
+      : theme
+    : "dark";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const openImageModal = (images: string[], currentIndex: number, artistName: string) => {
     setModalImages(images);
@@ -160,13 +173,23 @@ export default function ArtistsPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main 
-        className="flex-grow relative bg-cover bg-center bg-no-repeat"
+        className="flex-grow relative bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
           backgroundImage: "url('/images/project_artists/duko1.jpg')",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Overlay semitransparente para mejor legibilidad */}
-        <div className="absolute inset-0 bg-black/30" />
+        <div 
+          className={`absolute inset-0 ${
+            currentTheme === 'dark' 
+              ? 'bg-black/50' 
+              : 'bg-white/70'
+          }`} 
+        />
         
         {/* Contenido principal */}
         <div className="relative z-10">
@@ -178,7 +201,11 @@ export default function ArtistsPage() {
                     Todos Nuestros Colaboradores
                   </h1>
                   <div className="h-1 w-full bg-gradient-to-r from-primary/80 via-primary to-primary/80 rounded-full mb-4"></div>
-                  <p className="text-base md:text-lg text-white/90 max-w-md mx-auto">
+                  <p className={`text-base md:text-lg max-w-md mx-auto ${
+                    currentTheme === 'dark' 
+                      ? 'text-white/90' 
+                      : 'text-gray-800'
+                  }`}>
                     Los artistas más importantes con los que hemos trabajado
                   </p>
                 </div>
@@ -215,7 +242,7 @@ export default function ArtistsPage() {
                           className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 rounded-2xl cursor-pointer"
                           onClick={() => openImageModal(artist.images, 0, artist.name)}
                         >
-                          <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500">
+                                                      <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500">
                             <p className="text-sm md:text-base text-white/90 leading-relaxed">
                               {artist.description}
                             </p>
@@ -224,7 +251,11 @@ export default function ArtistsPage() {
                       </div>
 
                       <div className="pt-4 px-2">
-                        <h3 className="font-semibold text-xl md:text-2xl group-hover:text-primary transition-colors duration-300 text-white">
+                        <h3 className={`font-semibold text-xl md:text-2xl group-hover:text-primary transition-colors duration-300 ${
+                          currentTheme === 'dark' 
+                            ? 'text-white' 
+                            : 'text-gray-900'
+                        }`}>
                           {artist.name}
                         </h3>
                         <div className="flex items-center gap-2 mt-1">

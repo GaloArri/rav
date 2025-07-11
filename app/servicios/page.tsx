@@ -457,13 +457,23 @@ export default function RentalsPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main
-        className="flex-grow relative bg-cover bg-center bg-no-repeat"
+        className="flex-grow relative bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
           backgroundImage: "url('/images/project_artists/duko1.jpg')",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Overlay semitransparente para mejor legibilidad */}
-        <div className="absolute inset-0 bg-black/30" />
+        <div 
+          className={`absolute inset-0 ${
+            currentTheme === 'dark' 
+              ? 'bg-black/50' 
+              : 'bg-white/70'
+          }`} 
+        />
         <section className="py-32 pb-16 relative">
           {/* Content */}
           <div className="relative z-10">
@@ -472,7 +482,11 @@ export default function RentalsPage() {
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                   Nuestros Servicios
                 </h1>
-                <p className="text-base md:text-lg text-muted-foreground max-w-md mx-auto">
+                <p className={`text-base md:text-lg max-w-md mx-auto ${
+                  currentTheme === 'dark' 
+                    ? 'text-muted-foreground' 
+                    : 'text-gray-800'
+                }`}>
                   Servicios profesionales especializados en equipamiento de
                   audio para todas tus necesidades.
                 </p>
@@ -496,7 +510,14 @@ export default function RentalsPage() {
         */}
 
         {/* Nuestros Equipos Section */}
-        <section id="equipos-section" className="pt-8 pb-24 scroll-mt-20">
+        <section 
+          id="equipos-section" 
+          className={`pt-8 pb-24 scroll-mt-20 ${
+            currentTheme === 'dark' 
+              ? 'bg-black/20' 
+              : 'bg-white/50'
+          }`}
+        >
           <div className="container mx-auto px-4">
             <div
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
@@ -506,7 +527,11 @@ export default function RentalsPage() {
                 Nuestros Equipos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                currentTheme === 'dark' 
+                  ? 'text-muted-foreground/80' 
+                  : 'text-gray-700'
+              }`}>
                 Catálogo completo de equipamiento disponible
               </p>
             </div>
@@ -521,7 +546,7 @@ export default function RentalsPage() {
         {/* Alquiler de Equipamientos Section */}
         <section
           id="alquiler-section"
-          className="py-24 bg-muted/20 scroll-mt-20"
+          className="py-24 scroll-mt-20"
         >
           <div className="container mx-auto px-4">
             <div
@@ -532,7 +557,11 @@ export default function RentalsPage() {
                 Alquiler de Equipamientos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                currentTheme === 'dark' 
+                  ? 'text-muted-foreground/80' 
+                  : 'text-gray-700'
+              }`}>
                 Equipos profesionales para procesamiento vocal y de secuencia
               </p>
             </div>
@@ -547,7 +576,11 @@ export default function RentalsPage() {
         {/* Reparación de Equipos Section */}
         <section
           id="reparacion-section"
-          className="py-24 bg-muted/20 scroll-mt-20"
+          className={`py-24 scroll-mt-20 ${
+            currentTheme === 'dark' 
+              ? 'bg-black/20' 
+              : 'bg-white/50'
+          }`}
         >
           <div className="container mx-auto px-4">
             <div
@@ -558,7 +591,11 @@ export default function RentalsPage() {
                 Reparación de Equipos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                currentTheme === 'dark' 
+                  ? 'text-muted-foreground/80' 
+                  : 'text-gray-700'
+              }`}>
                 Servicio técnico especializado y garantizado
               </p>
             </div>
@@ -571,7 +608,10 @@ export default function RentalsPage() {
         </section>
 
         {/* Programación de Sesiones Section */}
-        <section id="programacion-section" className="py-24 scroll-mt-20">
+        <section 
+          id="programacion-section" 
+          className="py-24 scroll-mt-20"
+        >
           <div className="container mx-auto px-4">
             <div
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
@@ -581,7 +621,11 @@ export default function RentalsPage() {
                 Programación de Sesiones
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                currentTheme === 'dark' 
+                  ? 'text-muted-foreground/80' 
+                  : 'text-gray-700'
+              }`}>
                 Configuración y programación personalizada
               </p>
             </div>
@@ -596,7 +640,11 @@ export default function RentalsPage() {
         {/* Montaje de Equipamientos Section */}
         <section
           id="montaje-section"
-          className="py-24 bg-muted/20 scroll-mt-20"
+          className={`py-24 scroll-mt-20 ${
+            currentTheme === 'dark' 
+              ? 'bg-black/20' 
+              : 'bg-white/50'
+          }`}
         >
           <div className="container mx-auto px-4">
             <div
@@ -607,7 +655,11 @@ export default function RentalsPage() {
                 Montaje de Equipamientos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                currentTheme === 'dark' 
+                  ? 'text-muted-foreground/80' 
+                  : 'text-gray-700'
+              }`}>
                 Instalación y configuración profesional
               </p>
             </div>
@@ -620,7 +672,10 @@ export default function RentalsPage() {
         </section>
 
         {/* Diseño e Impresión 3D Section */}
-        <section id="diseno-section" className="py-24 scroll-mt-20">
+        <section 
+          id="diseno-section" 
+          className="py-24 scroll-mt-20"
+        >
           <div className="container mx-auto px-4">
             <div
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
@@ -630,7 +685,11 @@ export default function RentalsPage() {
                 Diseño e Impresión 3D
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className="text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto">
+              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                currentTheme === 'dark' 
+                  ? 'text-muted-foreground/80' 
+                  : 'text-gray-700'
+              }`}>
                 Soluciones de diseño y fabricación tridimensional
               </p>
             </div>

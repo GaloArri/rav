@@ -1,22 +1,16 @@
 {
   "artists": [
     {
-      "id": 1,
-      "name": "Milo J",
-      "images": ["/images/miloj.jpeg", "/images/miloj2.jpeg", "/images/miloj3.jpeg"],
-      "description": "Proveeduria de sistemas de secuencias y procesamiento vocal, asesoramiento y soporte tecnico para cada uno de sus shows."
-    },
-    {
       "id": 2,
       "name": "Duki",
       "images": ["/images/project_artists/duko1.jpg", "/images/project_artists/duko2.jpg", "/images/dukp2.jpg"],
       "description": "Montaje de sistema de secuencias analogico. Montaje de sistema digital via Dante para el desarrollo de sus shows. Asistencia y soporte tecnico en cada una de sus presentaciones."
     },
     {
-      "id": 3,
-      "name": "Buenos Aires Trap",
-      "images": [ "/images/bsas1.jpg", "/images/bsas2.jpg", "/images/bsas3.jpg"],
-      "description": "Festival que reunió a los mejores exponentes del trap argentino en un evento masivo, donde nuestro sistema de sonido potenció cada beat y cada rima, creando una experiencia inmersiva para miles de asistentes."
+      "id": 8,
+      "name": "Paulo Londra",
+      "images": ["/images/about/rav.jpeg"],
+      "description": "Volvió a los escenarios con un imponente show en el Hipódromo de Palermo, donde reafirmó su lugar como uno de los referentes del trap latino ante miles de seguidores."
     },
     {
       "id": 4,
@@ -25,10 +19,52 @@
       "description": "Proveeduria de sistemas de secuencias y procesamiento vocal, asesoramiento y soporte tecnico para cada uno de sus shows."
     },
     {
+      "id": 17,
+      "name": "Trueno",
+      "images": ["/images/trueno1.jpeg", "/images/trueno2.jpeg"],
+      "description": "Acompañamos su cierre de gira en el Luna Park con un sistema de sonido que capturó la intensidad de sus rimas y la energía del freestyle, creando una atmósfera única para más de 8,000 espectadores."
+    },
+    {
+      "id": 19,
+      "name": "Dillom",
+      "images": ["/images/dillom1.jpg", "/images/dillom2.jpg"],
+      "description": "Presentó su disco 'Post Mortem' en el Teatro Vorterix con un show oscuro, teatral y visceral, donde el sonido cumplió un rol clave en la atmósfera impactante."
+    },
+    {
+      "id": 15,
+      "name": "Tiago PZK",
+      "images": ["/images/project_artists/tiago1.jpg", "/images/project_artists/tiago2.jpg"],
+      "description": "Llenó el Movistar Arena con un show de altísimo nivel técnico y visual, donde los graves controlados y voces nítidas acompañaron su potencia escénica."
+    },
+    {
       "id": 5,
       "name": "Emilia",
-      "images": ["/images/emilia1.jpg", "/images/emilia2.jpg"],
+      "images": ["/images/emilia1.jpg", "/images/emilia2.jpg", "/images/emilia.jpeg"],
       "description": "Montaje de sistema de secuencias, programacion de sesion Ableton Live con automatizaciones para control de proceso vocal. Soporte tecnico y operacion."
+    },
+    {
+      "id": 1,
+      "name": "Milo J",
+      "images": ["/images/miloj.jpeg", "/images/miloj2.jpeg", "/images/miloj3.jpeg"],
+      "description": "Proveeduria de sistemas de secuencias y procesamiento vocal, asesoramiento y soporte tecnico para cada uno de sus shows."
+    },
+    {
+      "id": 9,
+      "name": "Lali",
+      "images": ["/images/lali1.jpeg", "/images/lali2.jpeg", "/images/lali3.jpeg"],
+      "description": "Ofreció un histórico concierto en el Luna Park con su 'Disciplina Tour', fusionando coreografías impactantes y un sistema de sonido de alta fidelidad que la consagró como ícono pop."
+    },
+    {
+      "id": 16,
+      "name": "Margarita",
+      "images": ["/placeholder.jpg"],
+      "description": "Deslumbró en su primera presentación en el CCK, donde la delicadeza de su voz se destacó gracias a un trabajo técnico de sonido limpio y emocional."
+    },
+    {
+      "id": 3,
+      "name": "Buenos Aires Trap",
+      "images": [ "/images/bsas1.jpg", "/images/bsas2.jpg", "/images/bsas3.jpg"],
+      "description": "Festival que reunió a los mejores exponentes del trap argentino en un evento masivo, donde nuestro sistema de sonido potenció cada beat y cada rima, creando una experiencia inmersiva para miles de asistentes."
     },
     {
       "id": 6,
@@ -41,18 +77,6 @@
       "name": "Luck Ra",
       "images": ["/placeholder.jpg"],
       "description": "Hizo vibrar el Quality Estadio de Córdoba con un concierto en el que fusionó cuarteto, pop y rock con un despliegue técnico que acompañó su carisma en el escenario."
-    },
-    {
-      "id": 8,
-      "name": "Paulo Londra",
-      "images": ["/images/about/rav.jpeg"],
-      "description": "Volvió a los escenarios con un imponente show en el Hipódromo de Palermo, donde reafirmó su lugar como uno de los referentes del trap latino ante miles de seguidores."
-    },
-    {
-      "id": 9,
-      "name": "Lali",
-      "images": ["/images/lali1.jpeg", "/images/lali2.jpeg", "/images/lali3.jpeg"],
-      "description": "Ofreció un histórico concierto en el Luna Park con su 'Disciplina Tour', fusionando coreografías impactantes y un sistema de sonido de alta fidelidad que la consagró como ícono pop."
     },
     {
       "id": 10,
@@ -85,34 +109,10 @@
       "description": "Convertimos en realidad su visionario show en el Konex, donde música, performance y tecnología se fusionaron en una experiencia sensorial única e irrepetible."
     },
     {
-      "id": 15,
-      "name": "Tiago PZK",
-      "images": ["/images/project_artists/tiago1.jpg", "/images/project_artists/tiago2.jpg"],
-      "description": "Llenó el Movistar Arena con un show de altísimo nivel técnico y visual, donde los graves controlados y voces nítidas acompañaron su potencia escénica."
-    },
-    {
-      "id": 16,
-      "name": "Margarita",
-      "images": ["/placeholder.jpg"],
-      "description": "Deslumbró en su primera presentación en el CCK, donde la delicadeza de su voz se destacó gracias a un trabajo técnico de sonido limpio y emocional."
-    },
-    {
-      "id": 17,
-      "name": "Trueno",
-      "images": ["/images/trueno1.jpeg", "/images/trueno2.jpeg"],
-      "description": "Acompañamos su cierre de gira en el Luna Park con un sistema de sonido que capturó la intensidad de sus rimas y la energía del freestyle, creando una atmósfera única para más de 8,000 espectadores."
-    },
-    {
       "id": 18,
       "name": "Ángela Torres",
       "images": ["/placeholder.jpg"],
       "description": "Consolidó su carrera solista en La Trastienda, donde su voz fue protagonista en una mezcla de pop moderno y tintes teatrales con sonido cuidado al detalle."
-    },
-    {
-      "id": 19,
-      "name": "Dillom",
-      "images": ["/images/dillom1.jpg", "/images/dillom2.jpg"],
-      "description": "Presentó su disco 'Post Mortem' en el Teatro Vorterix con un show oscuro, teatral y visceral, donde el sonido cumplió un rol clave en la atmósfera impactante."
     },
     {
       "id": 20,

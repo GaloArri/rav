@@ -112,7 +112,9 @@
       "id": 6,
       "name": "Zoe Gotusso",
       "images": [
-        "/placeholder.jpg"
+        "/images/zoe.jpg",
+        "/images/zoe2.jpg",
+        "/images/zoe3.jpg"
       ],
       "description": "Deslumbró en el Teatro Coliseo con un show íntimo pero potente, donde presentó su disco solista con una puesta minimalista y cálida que conectó con cada asistente."
     },

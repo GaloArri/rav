@@ -53,14 +53,9 @@
 
 **Faltan fotos de:**
 - Margarita
-- Zoe
 - Luck ra
 - Taichung
 - Manuel Penissi
-- Louta
-- Angela Torres
-- Axel Fiks
-- Souiuno
 
 **Faltan textos de:**
 - Paulo
@@ -76,7 +71,3 @@
 - Penissi
 - Ronpe
 - Un Verano
-- Louta
-- Angela Torres
-- Excel Fiks
-- Souiuno

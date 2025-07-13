@@ -65,15 +65,15 @@ function ImageModal({
   if (!isOpen || !images[modalIndex]) return null;
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
       {/* Fondo opaco - clickeable para cerrar */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
-      
+
       {/* Contenido del modal */}
-      <div 
+      <div
         className="relative max-w-[90vw] max-h-[90vh] bg-transparent rounded-lg flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
@@ -103,7 +103,7 @@ function ImageModal({
             </button>
           </>
         )}
-        
+
         {/* Imagen */}
         <div className="relative max-w-full max-h-full">
           <Image
@@ -155,7 +155,11 @@ export default function ArtistsPage() {
     setMounted(true);
   }, []);
 
-  const openImageModal = (images: string[], currentIndex: number, artistName: string) => {
+  const openImageModal = (
+    images: string[],
+    currentIndex: number,
+    artistName: string
+  ) => {
     setModalImages(images);
     setModalCurrentIndex(currentIndex);
     setModalArtistName(artistName);
@@ -172,10 +176,10 @@ export default function ArtistsPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main 
+      <main
         className="flex-grow relative bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: "url('/images/project_artists/duko1.jpg')",
+          backgroundImage: "url('/images/marg6.jpeg')",
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -183,14 +187,12 @@ export default function ArtistsPage() {
         }}
       >
         {/* Overlay semitransparente para mejor legibilidad */}
-        <div 
+        <div
           className={`absolute inset-0 ${
-            currentTheme === 'dark' 
-              ? 'bg-black/50' 
-              : 'bg-white/70'
-          }`} 
+            currentTheme === "dark" ? "bg-black/50" : "bg-white/70"
+          }`}
         />
-        
+
         {/* Contenido principal */}
         <div className="relative z-10">
           <section className="pt-32 pb-8">
@@ -201,11 +203,13 @@ export default function ArtistsPage() {
                     Todos Nuestros Colaboradores
                   </h1>
                   <div className="h-1 w-full bg-gradient-to-r from-primary/80 via-primary to-primary/80 rounded-full mb-4"></div>
-                  <p className={`text-base md:text-lg max-w-md mx-auto ${
-                    currentTheme === 'dark' 
-                      ? 'text-white/90' 
-                      : 'text-gray-800'
-                  }`}>
+                  <p
+                    className={`text-base md:text-lg max-w-md mx-auto ${
+                      currentTheme === "dark"
+                        ? "text-white/90"
+                        : "text-gray-800"
+                    }`}
+                  >
                     Los artistas más importantes con los que hemos trabajado
                   </p>
                 </div>
@@ -235,14 +239,22 @@ export default function ArtistsPage() {
                         <ArtistCarousel
                           images={artist.images}
                           artistName={artist.name}
-                          onImageClick={(currentIndex: number) => openImageModal(artist.images, currentIndex, artist.name)}
+                          onImageClick={(currentIndex: number) =>
+                            openImageModal(
+                              artist.images,
+                              currentIndex,
+                              artist.name
+                            )
+                          }
                         />
 
-                        <div 
+                        <div
                           className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 rounded-2xl cursor-pointer"
-                          onClick={() => openImageModal(artist.images, 0, artist.name)}
+                          onClick={() =>
+                            openImageModal(artist.images, 0, artist.name)
+                          }
                         >
-                                                      <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500">
+                          <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500">
                             <p className="text-sm md:text-base text-white/90 leading-relaxed">
                               {artist.description}
                             </p>
@@ -251,11 +263,13 @@ export default function ArtistsPage() {
                       </div>
 
                       <div className="pt-4 px-2">
-                        <h3 className={`font-semibold text-xl md:text-2xl group-hover:text-primary transition-colors duration-300 ${
-                          currentTheme === 'dark' 
-                            ? 'text-white' 
-                            : 'text-gray-900'
-                        }`}>
+                        <h3
+                          className={`font-semibold text-xl md:text-2xl group-hover:text-primary transition-colors duration-300 ${
+                            currentTheme === "dark"
+                              ? "text-white"
+                              : "text-gray-900"
+                          }`}
+                        >
                           {artist.name}
                         </h3>
                         <div className="flex items-center gap-2 mt-1">

@@ -111,7 +111,8 @@
       "name": "Modelado 3D Personalizado",
       "description": "Creación de modelos tridimensionales personalizados para prototipos y piezas específicas.",
       "images": [
-        "/images/servicios/diseno1.jpg"
+        "/images/servicios/diseno1.jpg",
+        "/images/servicios/diseno2.jpg"
       ]
     },
     {
@@ -119,7 +120,12 @@
       "name": "Impresión 3D Profesional",
       "description": "Servicio de impresión 3D de alta calidad con diferentes materiales y acabados.",
       "images": [
-        "/images/servicios/diseno2.jpg"
+        "/images/servicios/dante1.jpeg",
+        "/images/servicios/dante2.jpeg",
+        "/images/servicios/dante3.jpeg",
+        "/images/servicios/dante4.jpeg",
+        "/images/servicios/dante5.jpeg"
+
       ]
     }
   ]

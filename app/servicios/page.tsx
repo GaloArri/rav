@@ -79,19 +79,32 @@ function useScrollAnimation() {
 // Nuevo componente Modal para las imágenes
 function ImageModal({
   isOpen,
-  imageUrl,
-  altText,
+  images,
+  currentIndex,
   onClose,
 }: {
   isOpen: boolean;
-  imageUrl: string;
-  altText: string;
+  images: string[];
+  currentIndex: number;
   onClose: () => void;
 }) {
+  const [modalIndex, setModalIndex] = useState(currentIndex);
+
+  // Actualizar el índice del modal cuando cambie currentIndex
+  useEffect(() => {
+    setModalIndex(currentIndex);
+  }, [currentIndex]);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
+      }
+      if (e.key === "ArrowLeft") {
+        goToPrevious();
+      }
+      if (e.key === "ArrowRight") {
+        goToNext();
       }
     };
 
@@ -106,7 +119,15 @@ function ImageModal({
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  const goToNext = () => {
+    setModalIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const goToPrevious = () => {
+    setModalIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  if (!isOpen || !images[modalIndex]) return null;
 
   return (
     <div
@@ -129,17 +150,53 @@ function ImageModal({
           <X className="h-5 w-5" />
         </button>
 
+        {/* Botones de navegación - Solo si hay más de una imagen */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={goToPrevious}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 transition-all duration-300 flex items-center justify-center z-10"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+
+            <button
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 transition-all duration-300 flex items-center justify-center z-10"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          </>
+        )}
+
         {/* Imagen */}
         <div className="relative max-w-full max-h-full">
           <Image
-            src={imageUrl}
-            alt={altText}
+            src={images[modalIndex]}
+            alt={` Imagen ${modalIndex + 1}`}
             width={1200}
             height={800}
             className="object-contain max-w-full max-h-full rounded-lg"
             quality={100}
           />
         </div>
+
+        {/* Indicadores de posición - Solo si hay más de una imagen */}
+        {images.length > 1 && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setModalIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === modalIndex
+                    ? "bg-white w-6"
+                    : "bg-white/50 hover:bg-white/70"
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -431,6 +488,8 @@ export default function RentalsPage() {
   const [modalImageUrl, setModalImageUrl] = useState("");
   const [modalAltText, setModalAltText] = useState("");
 
+  const [modalImages, setModalImages] = useState<string[]>([]);
+  const [modalCurrentIndex, setModalCurrentIndex] = useState(0);
   const currentTheme = mounted
     ? theme === "system"
       ? systemTheme
@@ -467,12 +526,10 @@ export default function RentalsPage() {
         }}
       >
         {/* Overlay semitransparente para mejor legibilidad */}
-        <div 
+        <div
           className={`absolute inset-0 ${
-            currentTheme === 'dark' 
-              ? 'bg-black/50' 
-              : 'bg-white/70'
-          }`} 
+            currentTheme === "dark" ? "bg-black/50" : "bg-white/70"
+          }`}
         />
         <section className="py-32 pb-16 relative">
           {/* Content */}
@@ -482,11 +539,13 @@ export default function RentalsPage() {
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                   Nuestros Servicios
                 </h1>
-                <p className={`text-base md:text-lg max-w-md mx-auto ${
-                  currentTheme === 'dark' 
-                    ? 'text-muted-foreground' 
-                    : 'text-gray-800'
-                }`}>
+                <p
+                  className={`text-base md:text-lg max-w-md mx-auto ${
+                    currentTheme === "dark"
+                      ? "text-muted-foreground"
+                      : "text-gray-800"
+                  }`}
+                >
                   Servicios profesionales especializados en equipamiento de
                   audio para todas tus necesidades.
                 </p>
@@ -510,12 +569,10 @@ export default function RentalsPage() {
         */}
 
         {/* Nuestros Equipos Section */}
-        <section 
-          id="equipos-section" 
+        <section
+          id="equipos-section"
           className={`pt-8 pb-24 scroll-mt-20 ${
-            currentTheme === 'dark' 
-              ? 'bg-black/20' 
-              : 'bg-white/50'
+            currentTheme === "dark" ? "bg-black/20" : "bg-white/50"
           }`}
         >
           <div className="container mx-auto px-4">
@@ -527,11 +584,13 @@ export default function RentalsPage() {
                 Nuestros Equipos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                currentTheme === 'dark' 
-                  ? 'text-muted-foreground/80' 
-                  : 'text-gray-700'
-              }`}>
+              <p
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                  currentTheme === "dark"
+                    ? "text-muted-foreground/80"
+                    : "text-gray-700"
+                }`}
+              >
                 Catálogo completo de equipamiento disponible
               </p>
             </div>
@@ -544,10 +603,7 @@ export default function RentalsPage() {
         </section>
 
         {/* Alquiler de Equipamientos Section */}
-        <section
-          id="alquiler-section"
-          className="py-24 scroll-mt-20"
-        >
+        <section id="alquiler-section" className="py-24 scroll-mt-20">
           <div className="container mx-auto px-4">
             <div
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
@@ -557,11 +613,13 @@ export default function RentalsPage() {
                 Alquiler de Equipamientos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                currentTheme === 'dark' 
-                  ? 'text-muted-foreground/80' 
-                  : 'text-gray-700'
-              }`}>
+              <p
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                  currentTheme === "dark"
+                    ? "text-muted-foreground/80"
+                    : "text-gray-700"
+                }`}
+              >
                 Equipos profesionales para procesamiento vocal y de secuencia
               </p>
             </div>
@@ -577,9 +635,7 @@ export default function RentalsPage() {
         <section
           id="reparacion-section"
           className={`py-24 scroll-mt-20 ${
-            currentTheme === 'dark' 
-              ? 'bg-black/20' 
-              : 'bg-white/50'
+            currentTheme === "dark" ? "bg-black/20" : "bg-white/50"
           }`}
         >
           <div className="container mx-auto px-4">
@@ -591,11 +647,13 @@ export default function RentalsPage() {
                 Reparación de Equipos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                currentTheme === 'dark' 
-                  ? 'text-muted-foreground/80' 
-                  : 'text-gray-700'
-              }`}>
+              <p
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                  currentTheme === "dark"
+                    ? "text-muted-foreground/80"
+                    : "text-gray-700"
+                }`}
+              >
                 Servicio técnico especializado y garantizado
               </p>
             </div>
@@ -608,10 +666,7 @@ export default function RentalsPage() {
         </section>
 
         {/* Programación de Sesiones Section */}
-        <section 
-          id="programacion-section" 
-          className="py-24 scroll-mt-20"
-        >
+        <section id="programacion-section" className="py-24 scroll-mt-20">
           <div className="container mx-auto px-4">
             <div
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
@@ -621,11 +676,13 @@ export default function RentalsPage() {
                 Programación de Sesiones
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                currentTheme === 'dark' 
-                  ? 'text-muted-foreground/80' 
-                  : 'text-gray-700'
-              }`}>
+              <p
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                  currentTheme === "dark"
+                    ? "text-muted-foreground/80"
+                    : "text-gray-700"
+                }`}
+              >
                 Configuración y programación personalizada
               </p>
             </div>
@@ -641,9 +698,7 @@ export default function RentalsPage() {
         <section
           id="montaje-section"
           className={`py-24 scroll-mt-20 ${
-            currentTheme === 'dark' 
-              ? 'bg-black/20' 
-              : 'bg-white/50'
+            currentTheme === "dark" ? "bg-black/20" : "bg-white/50"
           }`}
         >
           <div className="container mx-auto px-4">
@@ -655,11 +710,13 @@ export default function RentalsPage() {
                 Montaje de Equipamientos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                currentTheme === 'dark' 
-                  ? 'text-muted-foreground/80' 
-                  : 'text-gray-700'
-              }`}>
+              <p
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                  currentTheme === "dark"
+                    ? "text-muted-foreground/80"
+                    : "text-gray-700"
+                }`}
+              >
                 Instalación y configuración profesional
               </p>
             </div>
@@ -672,10 +729,7 @@ export default function RentalsPage() {
         </section>
 
         {/* Diseño e Impresión 3D Section */}
-        <section 
-          id="diseno-section" 
-          className="py-24 scroll-mt-20"
-        >
+        <section id="diseno-section" className="py-24 scroll-mt-20">
           <div className="container mx-auto px-4">
             <div
               className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
@@ -685,11 +739,13 @@ export default function RentalsPage() {
                 Diseño e Impresión 3D
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                currentTheme === 'dark' 
-                  ? 'text-muted-foreground/80' 
-                  : 'text-gray-700'
-              }`}>
+              <p
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
+                  currentTheme === "dark"
+                    ? "text-muted-foreground/80"
+                    : "text-gray-700"
+                }`}
+              >
                 Soluciones de diseño y fabricación tridimensional
               </p>
             </div>
@@ -706,8 +762,8 @@ export default function RentalsPage() {
       {/* Modal de imagen - Renderizado a nivel de página */}
       <ImageModal
         isOpen={isModalOpen}
-        imageUrl={modalImageUrl}
-        altText={modalAltText}
+        images={modalImages}
+        currentIndex={modalCurrentIndex}
         onClose={closeImageModal}
       />
 

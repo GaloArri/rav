@@ -57,7 +57,7 @@
       "name": "Mantenimiento",
       "description": "Servicios de mantenimiento regular para prolongar la vida útil de tus equipos.",
       "images": [
-        "/images/emilia.jpeg"
+        "/images/about/FOTO 2.jpg"
       ]
     },
     {
@@ -111,8 +111,8 @@
       "name": "Modelado 3D Personalizado",
       "description": "Creación de modelos tridimensionales personalizados para prototipos y piezas específicas.",
       "images": [
-        "/images/servicios/diseno1.jpg",
-        "/images/servicios/diseno2.jpg"
+        "/images/servicios/3d.jpeg",
+        "/images/servicios/3d2.jpeg"
       ]
     },
     {
@@ -121,10 +121,8 @@
       "description": "Servicio de impresión 3D de alta calidad con diferentes materiales y acabados.",
       "images": [
         "/images/servicios/dante1.jpeg",
-        "/images/servicios/dante2.jpeg",
         "/images/servicios/dante3.jpeg",
-        "/images/servicios/dante4.jpeg",
-        "/images/servicios/dante5.jpeg"
+        "/images/servicios/diseno1.jpg"
 
       ]
     }

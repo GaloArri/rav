@@ -45,14 +45,13 @@
   - Mismo que en reparación
 
 - **Diseño e Impresión 3D**
-  - Fotos del rack/cajas/switches
+  - Fotos del rack
 
 ------
 
 ## PROYECTOS
 
 **Faltan fotos de:**
-- Margarita
 - Luck ra
 - Taichung
 - Manuel Penissi

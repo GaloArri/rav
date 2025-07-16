@@ -18,7 +18,7 @@
         "/images/about/rav.jpeg",
         "/images/londra2.jpeg"
       ],
-      "description": "Volvió a los escenarios con un imponente show en el Hipódromo de Palermo, donde reafirmó su lugar como uno de los referentes del trap latino ante miles de seguidores."
+      "description": "--------------------------------"
     },
     {
       "id": 4,
@@ -36,7 +36,7 @@
         "/images/trueno1.jpeg",
         "/images/trueno2.jpeg"
       ],
-      "description": "Acompañamos su cierre de gira en el Luna Park con un sistema de sonido que capturó la intensidad de sus rimas y la energía del freestyle, creando una atmósfera única para más de 8,000 espectadores."
+      "description": "--------------------------------"
     },
     {
       "id": 19,
@@ -45,7 +45,7 @@
         "/images/dillom1.jpg",
         "/images/dillom2.jpg"
       ],
-      "description": "Presentó su disco 'Post Mortem' en el Teatro Vorterix con un show oscuro, teatral y visceral, donde el sonido cumplió un rol clave en la atmósfera impactante."
+      "description": "--------------------------------"
     },
     {
       "id": 15,
@@ -54,7 +54,7 @@
         "/images/project_artists/tiago1.jpg",
         "/images/project_artists/tiago2.jpg"
       ],
-      "description": "Llenó el Movistar Arena con un show de altísimo nivel técnico y visual, donde los graves controlados y voces nítidas acompañaron su potencia escénica."
+      "description": "--------------------------------"
     },
     {
       "id": 5,
@@ -82,7 +82,7 @@
         "/images/lali2.jpeg",
         "/images/lali3.jpeg"
       ],
-      "description": "Ofreció un histórico concierto en el Luna Park con su 'Disciplina Tour', fusionando coreografías impactantes y un sistema de sonido de alta fidelidad que la consagró como ícono pop."
+      "description": "--------------------------------"
     },
     {
       "id": 16,
@@ -94,7 +94,7 @@
         "/images/margarita4.jpeg",
         "/images/margarita5.jpeg"
       ],
-      "description": "Deslumbró en su primera presentación en el CCK, donde la delicadeza de su voz se destacó gracias a un trabajo técnico de sonido limpio y emocional."
+      "description": "--------------------------------"
     },
     {
       "id": 3,
@@ -104,7 +104,7 @@
         "/images/bsas2.jpg",
         "/images/bsas3.jpg"
       ],
-      "description": "Festival que reunió a los mejores exponentes del trap argentino en un evento masivo, donde nuestro sistema de sonido potenció cada beat y cada rima, creando una experiencia inmersiva para miles de asistentes."
+      "description": "--------------------------------"
     },
     {
       "id": 6,
@@ -113,7 +113,7 @@
         "/images/zoe2.jpg",
         "/images/zoe3.jpg"
       ],
-      "description": "Deslumbró en el Teatro Coliseo con un show íntimo pero potente, donde presentó su disco solista con una puesta minimalista y cálida que conectó con cada asistente."
+      "description": "--------------------------------"
     },
     {
       "id": 7,
@@ -121,7 +121,7 @@
       "images": [
         "/placeholder.jpg"
       ],
-      "description": "Hizo vibrar el Quality Estadio de Córdoba con un concierto en el que fusionó cuarteto, pop y rock con un despliegue técnico que acompañó su carisma en el escenario."
+      "description": "--------------------------------"
     },
     {
       "id": 10,
@@ -129,7 +129,7 @@
       "images": [
         "/placeholder.jpg"
       ],
-      "description": "Encendió el escenario del Lollapalooza Argentina con un set cargado de energía y una producción sonora que acompañó su propuesta estética disruptiva."
+      "description": "--------------------------------"
     },
     {
       "id": 11,
@@ -137,7 +137,7 @@
       "images": [
         "/placeholder.jpg"
       ],
-      "description": "Emocionó al público del Teatro Gran Rex con una presentación acústica en la que su voz y guitarra fueron acompañadas por un entorno técnico cálido y preciso."
+      "description": "--------------------------------"
     },
     {
       "id": 12,
@@ -145,7 +145,7 @@
       "images": [
         "/images/ronpe1.jpg"
       ],
-      "description": "Debutó en el Festival Buenos Aires Trap con un show intenso y crudo, donde el sonido envolvente potenció cada línea y beat con claridad absoluta."
+      "description": "--------------------------------"
     },
     {
       "id": 13,
@@ -155,7 +155,7 @@
         "/images/servicios/IMG_7971.JPG",
         "/images/unverano2.jpg"
       ],
-      "description": "Ofreció un show conceptual en Niceto Club, fusionando música indie con visuales inmersivas y un diseño de sonido envolvente que transportó al público."
+      "description": "--------------------------------"
     }
   ]
 }

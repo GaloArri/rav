@@ -5,20 +5,11 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className=" w-full"></div>
+    <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-grow">
-        <Carousel />
-
-        {/* Separador estético */}
-        <div className="py-4">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-center"></div>
-          </div>
-        </div>
-
         <LandingPage />
+        <Carousel />
       </main>
       <Footer />
     </div>

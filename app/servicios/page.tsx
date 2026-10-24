@@ -233,6 +233,7 @@ function ImageCarousel({
               src={image || "/placeholder.svg?height=400&width=600"}
               alt={`${itemName} - Imagen ${index + 1}`}
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
               onClick={() => onImageClick(image)}
             />
@@ -288,7 +289,7 @@ function SectionGrid({
         {data.map((item, index) => (
           <div
             key={item.id}
-            className="group relative overflow-hidden opacity-0 translate-y-8 transition-all duration-700 ease-out"
+            className="group relative overflow-hidden transition-all duration-700 ease-out"
             style={{
               animationDelay: `${index * 0.1}s`,
               transitionDelay: `${index * 100}ms`,
@@ -402,7 +403,7 @@ function ServicesCarousel({
 
   return (
     <div
-      className="max-w-6xl mx-auto opacity-0 translate-y-8 transition-all duration-700 ease-out"
+      className="max-w-6xl mx-auto transition-all duration-700 ease-out"
       ref={addToRefs}
     >
       <div className="relative">
@@ -518,7 +519,7 @@ export default function RentalsPage() {
       <main
         className="flex-grow relative bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: "url('/images/project_artists/duko1.jpg')",
+          backgroundImage: "url('/images/project-artists/duko1.webp')",
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -527,28 +528,16 @@ export default function RentalsPage() {
       >
         {/* Overlay semitransparente para mejor legibilidad */}
         <div
-          className={`absolute inset-0 ${
-            currentTheme === "dark" ? "bg-black/50" : "bg-white/70"
-          }`}
+          className={`absolute inset-0 bg-white/70 dark:bg-black/50`}
         />
         <section className="py-32 pb-16 relative">
           {/* Content */}
           <div className="relative z-10">
             <div className="text-center mb-8">
               <div className="inline-block">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-[-0.03em] mb-2">
                   Nuestros Servicios
                 </h1>
-                <p
-                  className={`text-base md:text-lg max-w-md mx-auto ${
-                    currentTheme === "dark"
-                      ? "text-muted-foreground"
-                      : "text-gray-800"
-                  }`}
-                >
-                  Servicios profesionales especializados en equipamiento de
-                  audio para todas tus necesidades.
-                </p>
               </div>
             </div>
             <div className="flex items-center justify-center mb-8">
@@ -571,28 +560,16 @@ export default function RentalsPage() {
         {/* Nuestros Equipos Section */}
         <section
           id="equipos-section"
-          className={`pt-8 pb-24 scroll-mt-20 ${
-            currentTheme === "dark" ? "bg-black/20" : "bg-white/50"
-          }`}
+          className={`pt-8 pb-24 scroll-mt-20 bg-white/50 dark:bg-black/20`}
         >
           <div className="container mx-auto px-4">
             <div
-              className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+              className="text-center mb-16 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Nuestros Equipos
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
+                Catálogo de equipamiento
               </h2>
-              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                  currentTheme === "dark"
-                    ? "text-muted-foreground/80"
-                    : "text-gray-700"
-                }`}
-              >
-                Catálogo completo de equipamiento disponible
-              </p>
             </div>
             <SectionGrid
               data={serviciosData.equipos}
@@ -606,19 +583,15 @@ export default function RentalsPage() {
         <section id="alquiler-section" className="py-24 scroll-mt-20">
           <div className="container mx-auto px-4">
             <div
-              className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+              className="text-center mb-16 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
                 Alquiler de Equipamientos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
               <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                  currentTheme === "dark"
-                    ? "text-muted-foreground/80"
-                    : "text-gray-700"
-                }`}
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
               >
                 Equipos profesionales para procesamiento vocal y de secuencia
               </p>
@@ -634,25 +607,19 @@ export default function RentalsPage() {
         {/* Reparación de Equipos Section */}
         <section
           id="reparacion-section"
-          className={`py-24 scroll-mt-20 ${
-            currentTheme === "dark" ? "bg-black/20" : "bg-white/50"
-          }`}
+          className={`py-24 scroll-mt-20 bg-white/50 dark:bg-black/20`}
         >
           <div className="container mx-auto px-4">
             <div
-              className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+              className="text-center mb-16 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
                 Reparación de Equipos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
               <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                  currentTheme === "dark"
-                    ? "text-muted-foreground/80"
-                    : "text-gray-700"
-                }`}
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
               >
                 Servicio técnico especializado y garantizado
               </p>
@@ -669,19 +636,15 @@ export default function RentalsPage() {
         <section id="programacion-section" className="py-24 scroll-mt-20">
           <div className="container mx-auto px-4">
             <div
-              className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+              className="text-center mb-16 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
                 Programación de Sesiones
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
               <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                  currentTheme === "dark"
-                    ? "text-muted-foreground/80"
-                    : "text-gray-700"
-                }`}
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
               >
                 Configuración y programación personalizada
               </p>
@@ -697,25 +660,19 @@ export default function RentalsPage() {
         {/* Montaje de Equipamientos Section */}
         <section
           id="montaje-section"
-          className={`py-24 scroll-mt-20 ${
-            currentTheme === "dark" ? "bg-black/20" : "bg-white/50"
-          }`}
+          className={`py-24 scroll-mt-20 bg-white/50 dark:bg-black/20`}
         >
           <div className="container mx-auto px-4">
             <div
-              className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+              className="text-center mb-16 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
                 Montaje de Equipamientos
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
               <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                  currentTheme === "dark"
-                    ? "text-muted-foreground/80"
-                    : "text-gray-700"
-                }`}
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
               >
                 Instalación y configuración profesional
               </p>
@@ -732,19 +689,15 @@ export default function RentalsPage() {
         <section id="diseno-section" className="py-24 scroll-mt-20">
           <div className="container mx-auto px-4">
             <div
-              className="text-center mb-16 opacity-0 translate-y-8 transition-all duration-700 ease-out"
+              className="text-center mb-16 transition-all duration-700 ease-out"
               ref={addToRefs}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
                 Diseño e Impresión 3D
               </h2>
               <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
               <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto ${
-                  currentTheme === "dark"
-                    ? "text-muted-foreground/80"
-                    : "text-gray-700"
-                }`}
+                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
               >
                 Soluciones de diseño y fabricación tridimensional
               </p>

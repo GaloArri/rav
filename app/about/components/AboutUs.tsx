@@ -18,7 +18,7 @@ export default function AboutUs() {
     <section
       className="py-24 relative min-h-screen bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/images/about/rav.jpeg')",
+        backgroundImage: "url('/images/about/rav.webp')",
       }}
     >
       {/* Overlay para mejorar legibilidad */}
@@ -68,7 +68,7 @@ export default function AboutUs() {
             )}>
               <div className="w-full flex justify-center">
                 <Image
-                  src="/images/about/FOTO 21.jpg"
+                  src="/images/about/foto-21.webp"
                   alt="Foto del taller 1"
                   width={320}
                   height={200}
@@ -77,7 +77,7 @@ export default function AboutUs() {
               </div>
               <div className="w-full flex justify-center">
                 <Image
-                  src="/images/about/FOTO 23.jpg"
+                  src="/images/about/foto-23.webp"
                   alt="Foto del taller 2"
                   width={320}
                   height={200}
@@ -86,7 +86,7 @@ export default function AboutUs() {
               </div>
               <div className="w-full flex justify-center">
                 <Image
-                  src="/images/about/FOTO 34.jpg"
+                  src="/images/about/foto-34.webp"
                   alt="Foto del taller 3"
                   width={320}
                   height={200}

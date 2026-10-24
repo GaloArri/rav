@@ -2,117 +2,101 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
 import carouselData from "../data/carousel.json";
+import { useIdioma } from "@/lib/idioma";
 
+/**
+ * Banda de apertura: la foto al fondo, el título apretado adelante y el
+ * índice en mono a un costado, como la numeración de un panel de rack.
+ * La lógica es la de siempre: pasa sola cada seis segundos.
+ */
 export default function Carousel() {
-  const [current, setCurrent] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { theme, systemTheme } = useTheme();
+  const [actual, setActual] = useState(0);
   const { items } = carouselData;
+  const { idioma } = useIdioma();
+
+  const siguiente = useCallback(() => {
+    setActual((i) => (i + 1) % items.length);
+  }, [items.length]);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const currentTheme = mounted
-    ? theme === "system"
-      ? systemTheme
-      : theme
-    : "dark";
-
-  const next = useCallback(() => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrent((current + 1) % items.length);
-    setTimeout(() => setIsAnimating(false), 500);
-  }, [current, isAnimating, items.length]);
-
-  const prev = useCallback(() => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrent((current - 1 + items.length) % items.length);
-    setTimeout(() => setIsAnimating(false), 500);
-  }, [current, isAnimating, items.length]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      next();
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [next]);
+    const t = setInterval(siguiente, 6000);
+    return () => clearInterval(t);
+  }, [siguiente]);
 
   return (
-    <div className="w-full relative">
-      <div>
-        <div className="relative py-8 md:py-12 rounded-lg overflow-hidden">
-          {items.map((item, index) => (
+    <section className="relative border-b bg-placa" aria-label="Qué hacemos">
+      <div className="relative h-[420px] md:h-[520px]">
+        {items.map((item, i) => (
+          <div
+            key={item.image}
+            data-placa={i}
+            className={cn(
+              "absolute inset-0 transition-opacity duration-700 ease-in-out",
+              actual === i ? "opacity-100" : "opacity-0"
+            )}
+            aria-hidden={actual !== i}
+          >
+            <Image
+              src={item.image}
+              alt=""
+              fill
+              sizes="100vw"
+              priority={i === 0}
+              className="object-cover"
+            />
+            {/* El negro come la foto de abajo hacia arriba para que entre el texto */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/20" />
+          </div>
+        ))}
+
+        <div className="relative mx-auto flex h-full max-w-screen-xl flex-col justify-end px-4 pb-12 md:px-8 md:pb-16">
+          {items.map((item, i) => (
             <div
-              key={index}
+              key={item.image + "-txt"}
+              data-texto={i}
               className={cn(
-                "absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out",
-                current === index ? "opacity-100 z-10" : "opacity-0 z-0"
+                "absolute bottom-12 left-4 right-4 transition-opacity duration-700 md:bottom-16 md:left-8 md:right-8",
+                actual === i ? "opacity-100" : "pointer-events-none opacity-0"
               )}
+              aria-hidden={actual !== i}
             >
-              <Image
-                src={item.image || "/placeholder.svg"}
-                alt={item.alt}
-                fill
-                priority
-                className="object-cover rounded-lg h-48 md:h-64 w-full"
-              />
-              <div
-                className={cn(
-                  "absolute inset-0 rounded-lg pointer-events-none",
-                  currentTheme === "dark" 
-                    ? "bg-gradient-to-t from-black/80 via-black/20 to-transparent"
-                    : "bg-gradient-to-t from-white/90 via-white/40 to-transparent"
-                )}
-              />
+              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-white/55">
+                {String(i + 1).padStart(2, "0")} · {String(items.length).padStart(2, "0")}
+              </p>
+              <h2 className="max-w-[14ch] text-5xl font-black uppercase leading-[0.94] tracking-[-0.035em] text-white md:text-7xl">
+                {item.title[idioma]}
+              </h2>
+              <p className="mt-4 max-w-[46ch] text-sm leading-relaxed text-white/70 md:text-base">
+                {item.description[idioma]}
+              </p>
             </div>
           ))}
-
-          <div className="relative z-20 flex items-center justify-center min-h-[192px] md:min-h-[256px] px-6 mt-28">
-            <div className="max-w-3xl text-center">
-              {items.map((item, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    "absolute inset-0 w-full transition-opacity duration-500 ease-in-out flex items-center justify-center",
-                    current === index ? "opacity-100 z-10" : "opacity-0 z-0"
-                  )}
-                >
-                  <div className="space-y-4 px-4">
-                    <h2
-                      className={cn(
-                        "text-2xl md:text-4xl font-bold mb-3 tracking-tight",
-                        currentTheme === "dark" 
-                          ? "text-white" 
-                          : "text-gray-900"
-                      )}
-                    >
-                      {item.title}
-                    </h2>
-                    <p
-                      className={cn(
-                        "text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium",
-                        currentTheme === "dark"
-                          ? "text-white/95"
-                          : "text-gray-800"
-                      )}
-                    >
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
-    </div>
+
+      {/* Los puntos, abajo a la derecha, como los indicadores de un panel */}
+      <div className="absolute bottom-6 right-4 flex gap-2 md:right-8">
+        {items.map((item, i) => (
+          <button
+            key={item.image}
+            type="button"
+            data-punto={i}
+            onClick={() => setActual(i)}
+            aria-label={item.title[idioma]}
+            aria-current={actual === i ? "true" : undefined}
+            className="flex h-11 w-5 items-center justify-center"
+          >
+            <span
+              className={cn(
+                "block h-[6px] w-[6px] rounded-full transition-colors",
+                actual === i ? "bg-senal" : "bg-white/30"
+              )}
+            />
+          </button>
+        ))}
+      </div>
+    </section>
   );
 }

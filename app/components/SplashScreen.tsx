@@ -1,61 +1,63 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import { useTheme } from "next-themes"
-import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-interface SplashScreenProps {
-  onComplete: () => void
-}
+const DURACION = 700; // ms visible
+const FADE = 300; // ms de salida
 
-export default function SplashScreen({ onComplete }: SplashScreenProps) {
-  const [isVisible, setIsVisible] = useState(true)
-  const { theme, systemTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+export default function SplashScreen() {
+  // Se decide antes del primer paint del cliente: si ya visitó, nunca se monta.
+  const [activo, setActivo] = useState(false);
+  const [saliendo, setSaliendo] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    const yaVisito = sessionStorage.getItem("hasVisited");
+    const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false)
-      setTimeout(() => {
-        onComplete()
-      }, 350)
-    }, 1500) 
+    if (yaVisito || sinMovimiento) {
+      sessionStorage.setItem("hasVisited", "true");
+      return;
+    }
 
-    return () => clearTimeout(timer)
-  }, [onComplete])
+    setActivo(true);
+    document.body.style.overflow = "hidden";
 
-  const currentTheme = mounted ? (theme === "system" ? systemTheme : theme) : "dark"
+    const salida = setTimeout(() => setSaliendo(true), DURACION);
+    const fin = setTimeout(() => {
+      setActivo(false);
+      document.body.style.overflow = "";
+      sessionStorage.setItem("hasVisited", "true");
+    }, DURACION + FADE);
+
+    return () => {
+      clearTimeout(salida);
+      clearTimeout(fin);
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  if (!activo) return null;
 
   return (
     <div
+      aria-hidden
       className={cn(
-        "fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-500",
-        currentTheme === "dark"
-          ? "bg-gradient-to-br from-[#1a1a1a] to-[#222222]"
-          : "bg-gradient-to-br from-[#f7f7f7] to-white",
-        isVisible ? "opacity-100" : "opacity-0",
+        "fixed inset-0 z-[9999] flex items-center justify-center bg-background",
+        "transition-opacity duration-300",
+        saliendo ? "opacity-0" : "opacity-100"
       )}
     >
-      <div className="flex flex-col items-center">
-        <div className="relative">
-          <Image
-            src="/assets/logorav1.png"
-            alt="Logo RAV"
-            width={900}
-            height={900}
-            className={cn(
-              "transition-all duration-500 object-contain drop-shadow-xl",
-              currentTheme === "dark" ? "invert-0" : "invert",
-            )}
-            priority
-          />
-        </div>
-      </div>
+      <Image
+        src="/assets/logorav1.png"
+        alt=""
+        width={480}
+        height={192}
+        sizes="(max-width: 768px) 70vw, 480px"
+        className="object-contain w-2/3 max-w-sm dark:invert-0 invert"
+        priority
+      />
     </div>
-  )
+  );
 }

@@ -54,6 +54,7 @@ export default function ArtistCarousel({ images, artistName, onImageClick }: Art
             src={image || "/placeholder.svg"}
             alt={`${artistName} - Imagen ${index + 1}`}
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover rounded-2xl cursor-pointer hover:scale-105 transition-transform duration-300"
             onClick={() => onImageClick?.(currentImage)}
           />

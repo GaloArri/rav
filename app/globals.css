@@ -2,64 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────────
+   Sistema visual de RAV — "la página se ve como los equipos".
+   Negro real, reglas finas, etiquetas en mono con tracking, y el
+   verde y el rojo de los devices usados sólo como estado.
+   ───────────────────────────────────────────────────────────────── */
+
 @layer base {
   :root {
-    /* Base theme colors */
-    --background: 0 0% 100%; /* Fondo blanco */
-    --foreground: 0 0% 10%; /* Texto negro */
-    --card: 0 0% 100%; /* Fondo blanco para tarjetas */
-    --card-foreground: 0 0% 10%; /* Texto negro en las tarjetas */
-    --popover: 0 0% 100%; /* Fondo blanco para popovers */
-    --popover-foreground: 0 0% 10%; /* Texto negro en popovers */
-    --primary: 0 0% 10%; /* Texto negro */
-    --primary-foreground: 0 0% 100%; /* Fondo blanco */
-    --secondary: 0 0% 80%; /* Gris claro */
-    --secondary-foreground: 0 0% 20%; /* Gris oscuro */
-    --muted: 0 0% 90%; /* Gris más claro */
-    --muted-foreground: 0 0% 20%; /* Gris oscuro para texto */
-    --accent: 0 0% 50%; /* Gris medio */
-    --accent-foreground: 0 0% 100%; /* Texto blanco */
-    --destructive: 0 0% 100%; /* Blanco para acciones destructivas */
-    --destructive-foreground: 0 0% 10%; /* Negro para texto destructivo */
-    --border: 0 0% 80%; /* Gris claro para bordes */
-    --input: 0 0% 90%; /* Gris claro para entradas */
-    --ring: 0 0% 50%; /* Gris para anillos */
-    --radius: 0.5rem; /* Radio de bordes */
-    
-    /* Header specific colors - Light theme */
-    --header-nav-bg: 0 0% 100% / 0.95; /* Fondo transparente blanco para cabecera */
-    --header-nav-border: 0 0% 80%; /* Gris para borde */
-    --header-overlay: 0 0% 100% / 0.6; /* Fondo transparente blanco para overlay */
-    --header-text: 0 0% 10%; /* Texto negro */
+    /* Claro: papel. El oscuro es el modo principal. */
+    --background: 40 9% 97%;
+    --foreground: 0 0% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 0 0% 7%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 6% 93%;
+    --secondary-foreground: 0 0% 20%;
+    --muted: 40 6% 93%;
+    --muted-foreground: 36 5% 38%;
+    --accent: 38 18% 24%;
+    --accent-foreground: 40 9% 97%;
+    --destructive: 6 74% 44%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 36 8% 86%;
+    --input: 36 8% 86%;
+    --ring: 38 18% 24%;
+
+    /* Esquinas casi rectas: los equipos no tienen esquinas redondas. */
+    --radius: 0.125rem;
+
+    /* Señal en hueso: sin color de aviso, el rojo queda sólo para alertas. */
+    --senal: 38 18% 24%;
+    --alerta: 6 74% 44%;
+    /* Placa oscura donde van las capturas de los devices. */
+    --placa: 0 0% 2%;
+
+    --header-nav-bg: 40 9% 97% / 0.92;
+    --header-nav-border: 0 0% 88%;
+    --header-overlay: 40 9% 97% / 0.7;
+    --header-text: 0 0% 7%;
   }
 
   .dark {
-    /* Dark theme colors */
-    --background: 0 0% 10%; /* Fondo negro */
-    --foreground: 0 0% 100%; /* Texto blanco */
-    --card: 0 0% 10%; /* Fondo negro para tarjetas */
-    --card-foreground: 0 0% 100%; /* Texto blanco en las tarjetas */
-    --popover: 0 0% 10%; /* Fondo negro para popovers */
-    --popover-foreground: 0 0% 100%; /* Texto blanco en popovers */
-    --primary: 0 0% 100%; /* Texto blanco */
-    --primary-foreground: 0 0% 10%; /* Fondo negro */
-    --secondary: 0 0% 30%; /* Gris muy oscuro */
-    --secondary-foreground: 0 0% 100%; /* Blanco para texto secundario */
-    --muted: 0 0% 20%; /* Gris muy oscuro */
-    --muted-foreground: 0 0% 100%; /* Blanco para texto apagado */
-    --accent: 0 0% 50%; /* Gris medio */
-    --accent-foreground: 0 0% 100%; /* Blanco para texto de acento */
-    --destructive: 0 0% 100%; /* Blanco para acciones destructivas */
-    --destructive-foreground: 0 0% 10%; /* Negro para texto destructivo */
-    --border: 0 0% 80%; /* Gris para bordes */
-    --input: 0 0% 30%; /* Gris oscuro para entradas */
-    --ring: 0 0% 100%; /* Blanco para anillos */
-    
-    /* Header specific colors - Dark theme */
-    --header-nav-bg: 0 0% 10% / 0.95; /* Fondo negro para cabecera */
-    --header-nav-border: 0 0% 80%; /* Gris para borde */
-    --header-overlay: 0 0% 0% / 0.6; /* Fondo transparente oscuro para overlay */
-    --header-text: 0 0% 100%; /* Texto blanco en la cabecera */
+    /* Negro real, no gris: el gris es lo que hacía ver viejo al sitio. */
+    --background: 0 0% 2%;
+    --foreground: 42 14% 93%;
+    --card: 36 7% 5%;
+    --card-foreground: 42 14% 93%;
+    --popover: 36 7% 5%;
+    --popover-foreground: 42 14% 93%;
+    --primary: 42 30% 87%;
+    --primary-foreground: 30 11% 7%;
+    --secondary: 36 6% 10%;
+    --secondary-foreground: 42 14% 93%;
+    --muted: 36 6% 10%;
+    --muted-foreground: 40 5% 58%;
+    --accent: 42 30% 87%;
+    --accent-foreground: 30 11% 7%;
+    --destructive: 4 100% 64%;
+    --destructive-foreground: 30 11% 7%;
+    --border: 36 7% 14%;
+    --input: 36 7% 17%;
+    --ring: 42 30% 87%;
+
+    --senal: 42 30% 87%;
+    --alerta: 4 100% 64%;
+    --placa: 0 0% 2%;
+
+    --header-nav-bg: 0 0% 2% / 0.92;
+    --header-nav-border: 240 5% 13%;
+    --header-overlay: 0 0% 0% / 0.7;
+    --header-text: 60 5% 95%;
   }
 
   * {
@@ -68,9 +84,9 @@
 
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* Prevent scroll jumps on button clicks */
   html {
     scroll-behavior: smooth;
     height: 100%;
@@ -81,37 +97,152 @@
     position: relative;
   }
 
-  /* Prevent focus outline from causing layout shifts */
-  :focus {
-    outline: none !important;
+  /* El foco se ve cuando se navega con teclado, no con el mouse. */
+  :focus:not(:focus-visible) {
+    outline: none;
   }
 
-  /* Prevent unwanted scrolling on dialog opens */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
   body.dialog-open {
     overflow: hidden;
   }
 
-  /* Prevent scroll anchoring issues */
   * {
     overflow-anchor: none !important;
   }
 
-  /* Ensure smooth scrolling behavior */
   .smooth-scroll {
     scroll-behavior: smooth;
   }
+}
 
-  /* Typography consistency classes */
+@layer components {
+  /* ── Etiqueta de serigrafía: la voz de los equipos ─────────────── */
+  .etiqueta {
+    @apply font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground;
+  }
+
+  /* ── La regla que abre cada sección, como un panel de 1U ───────── */
+  .regla-rack {
+    @apply flex items-baseline justify-between border-b py-5;
+  }
+
+  /* ── Números y precios: siempre en mono, siempre tabulares ─────── */
+  .dato {
+    @apply font-mono tabular-nums;
+  }
+
+  /* ── LED de estado ─────────────────────────────────────────────── */
+  .led {
+    @apply inline-block h-[7px] w-[7px] shrink-0 rounded-full;
+    background: hsl(var(--senal));
+    box-shadow: 0 0 7px hsl(var(--senal) / 0.45);
+  }
+
+  .led-apagado {
+    @apply inline-block h-[7px] w-[7px] shrink-0 rounded-full;
+    background: hsl(var(--muted-foreground));
+    box-shadow: none;
+  }
+
+  .led-alerta {
+    @apply inline-block h-[7px] w-[7px] shrink-0 rounded-full;
+    background: hsl(var(--alerta));
+    box-shadow: 0 0 8px hsl(var(--alerta) / 0.8);
+  }
+
+  /* ── Título grande: Chivo pesado, apretado y en mayúsculas ─────── */
+  .titulo-grande {
+    @apply font-black uppercase tracking-[-0.03em] leading-[0.96];
+  }
+
+  /* ── El objeto flotando sobre negro ────────────────────────────── */
+  .objeto-3d {
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.85));
+  }
+
+  /* ── El loop de portada ─────────────────────────────────────────
+     Atrás del logo, desenfocado y apagado: tiene que leerse como
+     movimiento, no como un video que compite con el texto. En claro no
+     va, porque el render está hecho sobre negro. */
+  .loop-portada {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    display: none;
+  }
+
+  .dark .loop-portada {
+    display: block;
+  }
+
+  .loop-portada video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Agrandado para que el movimiento llene la banda y el desenfoque
+       no deje ver los bordes */
+    transform: scale(1.2);
+    filter: blur(9px) saturate(0.35) contrast(1.2);
+    opacity: 0.32;
+  }
+
+  /* Le devuelve el negro atrás del logo y apaga los bordes */
+  .loop-velo {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        42% 46% at 50% 44%,
+        hsl(var(--background) / 0.82) 0%,
+        hsl(var(--background) / 0.4) 60%,
+        transparent 100%
+      ),
+      radial-gradient(
+        125% 95% at 50% 40%,
+        transparent 40%,
+        hsl(var(--background) / 0.7) 78%,
+        hsl(var(--background)) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        hsl(var(--background) / 0.85) 0%,
+        transparent 22%,
+        transparent 62%,
+        hsl(var(--background)) 100%
+      );
+  }
+
+  /* Si el sistema pide menos movimiento, queda el cuadro quieto */
+  @media (prefers-reduced-motion: reduce) {
+    .loop-portada video {
+      display: none;
+    }
+    .loop-portada {
+      background: url("/video/rav-portada.webp") center / cover no-repeat;
+    }
+    .dark .loop-portada {
+      filter: blur(9px) saturate(0.35);
+      opacity: 0.32;
+    }
+  }
+
+  /* ── Tipografía heredada, para no romper lo que ya la usaba ────── */
   .text-heading-1 {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+    @apply text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-[-0.03em];
   }
 
   .text-heading-2 {
-    @apply text-2xl md:text-3xl font-bold;
+    @apply text-2xl md:text-3xl font-bold tracking-[-0.02em];
   }
 
   .text-heading-3 {
-    @apply text-xl md:text-2xl font-semibold;
+    @apply text-xl md:text-2xl font-semibold tracking-[-0.015em];
   }
 
   .text-body-large {
@@ -123,10 +254,10 @@
   }
 
   .text-nav {
-    @apply text-sm md:text-base font-medium;
+    @apply font-mono text-[11px] uppercase tracking-[0.14em];
   }
 
   .text-nav-active {
-    @apply text-base md:text-lg font-bold;
+    @apply font-mono text-[11px] uppercase tracking-[0.14em] text-foreground;
   }
 }

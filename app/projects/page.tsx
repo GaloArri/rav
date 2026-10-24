@@ -179,7 +179,7 @@ export default function ArtistsPage() {
       <main
         className="flex-grow relative bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: "url('/images/marg6.jpeg')",
+          backgroundImage: "url('/images/marg6.webp')",
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -188,9 +188,7 @@ export default function ArtistsPage() {
       >
         {/* Overlay semitransparente para mejor legibilidad */}
         <div
-          className={`absolute inset-0 ${
-            currentTheme === "dark" ? "bg-black/50" : "bg-white/70"
-          }`}
+          className={`absolute inset-0 bg-white/70 dark:bg-black/50`}
         />
 
         {/* Contenido principal */}
@@ -199,19 +197,9 @@ export default function ArtistsPage() {
             <div className="container mx-auto px-4">
               <div className="text-center mb-8">
                 <div className="inline-block">
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                    Todos Nuestros Colaboradores
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-[-0.03em] mb-2">
+                    Todos nuestros colaboradores
                   </h1>
-                  <div className="h-1 w-full bg-gradient-to-r from-primary/80 via-primary to-primary/80 rounded-full mb-4"></div>
-                  <p
-                    className={`text-base md:text-lg max-w-md mx-auto ${
-                      currentTheme === "dark"
-                        ? "text-white/90"
-                        : "text-gray-800"
-                    }`}
-                  >
-                    Los artistas más importantes con los que hemos trabajado
-                  </p>
                 </div>
               </div>
 
@@ -264,11 +252,7 @@ export default function ArtistsPage() {
 
                       <div className="pt-4 px-2">
                         <h3
-                          className={`font-semibold text-xl md:text-2xl group-hover:text-primary transition-colors duration-300 ${
-                            currentTheme === "dark"
-                              ? "text-white"
-                              : "text-gray-900"
-                          }`}
+                          className={`font-semibold text-xl md:text-2xl group-hover:text-primary transition-colors duration-300 text-gray-900 dark:text-white`}
                         >
                           {artist.name}
                         </h3>

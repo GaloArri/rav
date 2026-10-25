@@ -185,8 +185,12 @@ export default function ProductoPage({ params }: Props) {
               <dl className="border-t">
                 {p.specs.map((s) => (
                   <div key={s.label} className="flex justify-between gap-5 border-b py-2.5 text-[13px]">
-                    <dt className="text-muted-foreground">{s.label}</dt>
-                    <dd className="text-right">{s.valor}</dd>
+                    <dt className="text-muted-foreground">
+                      <Bilingue es={s.label} en={s.labelEn} />
+                    </dt>
+                    <dd className="text-right">
+                      <Bilingue es={s.valor} en={s.valorEn} />
+                    </dd>
                   </div>
                 ))}
                 {p.version && (
@@ -201,10 +205,12 @@ export default function ProductoPage({ params }: Props) {
                 <>
                   <p className="etiqueta mb-4 mt-9"><Texto clave="requisitos" /></p>
                   <ul className="space-y-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                    {p.requisitos.map((r) => (
+                    {p.requisitos.map((r, i) => (
                       <li key={r} className="flex gap-2.5">
                         <span className="led-apagado mt-[7px]" aria-hidden="true" />
-                        <span>{r}</span>
+                        <span>
+                          <Bilingue es={r} en={p.requisitosEn?.[i]} />
+                        </span>
                       </li>
                     ))}
                   </ul>

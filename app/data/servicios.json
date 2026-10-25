@@ -3,15 +3,19 @@
     {
       "id": 1,
       "name": "Sistemas de secuencias y proceso vocal",
+      "nameEn": "Playback and vocal processing systems",
       "description": "Equipos profesionales de alta gama para eventos de gran escala con calidad de estudio.",
+      "descriptionEn": "High-end professional rigs for large-scale shows, at studio quality.",
       "images": [
         "/images/servicios/foto-20.webp"
       ]
     },
     {
       "id": 2,
-      "name": "Consolas de Mezcla",
+      "name": "Consolas de mezcla",
+      "nameEn": "Mixing consoles",
       "description": "Mezcladores digitales y analógicos de última generación para control total del audio.",
+      "descriptionEn": "Current-generation digital and analogue desks, for full control of the audio.",
       "images": [
         "/images/servicios/emilia-palau-saint-jordi.webp"
       ]
@@ -21,23 +25,29 @@
     {
       "id": 1,
       "name": "Sistemas de secuencias y proceso vocal",
+      "nameEn": "Playback and vocal processing systems",
       "description": "Equipos especializados en procesamiento vocal con algoritmos avanzados de mejora de voz.",
+      "descriptionEn": "Gear built around vocal processing, with advanced voice-treatment algorithms.",
       "images": [
-                "/images/servicios/foto-25.webp"
+        "/images/servicios/foto-25.webp"
       ]
     },
     {
       "id": 2,
-      "name": "Interfaces de Audio",
+      "name": "Interfaces de audio",
+      "nameEn": "Audio interfaces",
       "description": "Interfaces profesionales para grabación y reproducción de audio de alta fidelidad.",
+      "descriptionEn": "Professional interfaces for high-fidelity recording and playback.",
       "images": [
         "/images/interfaz.webp"
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "Laptops y computadoras",
+      "nameEn": "Laptops and computers",
       "description": "",
+      "descriptionEn": "",
       "images": [
         "/images/emilia1.webp"
       ]
@@ -47,7 +57,9 @@
     {
       "id": 1,
       "name": "Reparación de sistemas de secuencias y proceso vocal",
+      "nameEn": "Repair of playback and vocal processing systems",
       "description": "Restauramos tus equipos de playback a su estado óptimo para una experiencia de audio superior.",
+      "descriptionEn": "We bring your playback gear back to its best, so the audio holds up.",
       "images": [
         "/images/armado.webp"
       ]
@@ -55,7 +67,9 @@
     {
       "id": 2,
       "name": "Mantenimiento",
+      "nameEn": "Maintenance",
       "description": "Servicios de mantenimiento regular para prolongar la vida útil de tus equipos.",
+      "descriptionEn": "Regular servicing, to make your gear last longer.",
       "images": [
         "/images/about/foto-2.webp"
       ]
@@ -63,7 +77,9 @@
     {
       "id": 3,
       "name": "Reparación de interfaces de audio",
+      "nameEn": "Audio interface repair",
       "description": "Servicios de mantenimiento regular para prolongar la vida útil de tus equipos.",
+      "descriptionEn": "Regular servicing, to make your gear last longer.",
       "images": [
         "/images/servicios/img-7971.webp"
       ]
@@ -73,15 +89,19 @@
     {
       "id": 1,
       "name": "Diseño de sesiones en Ableton Live",
+      "nameEn": "Ableton Live session design",
       "description": "Soluciones de audio completamente personalizadas para satisfacer necesidades específicas.",
+      "descriptionEn": "Audio set-ups built from scratch around what each show needs.",
       "images": [
         "/images/servicios/audio1.webp"
       ]
     },
     {
       "id": 2,
-      "name": "Presets Profesionales",
-      "description": "REVISAR Creación de presets personalizados para diferentes tipos de sesiones y aplicaciones.",
+      "name": "Presets profesionales",
+      "nameEn": "Professional presets",
+      "description": "Creación de presets personalizados para diferentes tipos de sesiones y aplicaciones.",
+      "descriptionEn": "Custom presets for different kinds of sessions and uses.",
       "images": [
         "/images/servicios/procesador.webp"
       ]
@@ -90,16 +110,20 @@
   "montaje": [
     {
       "id": 1,
-      "name": "Armado de Cables",
+      "name": "Armado de cables",
+      "nameEn": "Cable building",
       "description": "Cables personalizados para conexiones específicas y transmisión de audio de alta calidad.",
+      "descriptionEn": "Cables made to measure for specific connections, without losing audio quality.",
       "images": [
         "/images/servicios/audio2.webp"
       ]
     },
     {
       "id": 2,
-      "name": "Set Up",
+      "name": "Set up",
+      "nameEn": "Set up",
       "description": "Montaje profesional de racks y organización de equipos para máxima eficiencia.",
+      "descriptionEn": "Professional rack assembly and gear layout, arranged to work fast.",
       "images": [
         "/images/servicios/foto-7.webp"
       ]
@@ -108,8 +132,10 @@
   "diseno": [
     {
       "id": 1,
-      "name": "Modelado 3D Personalizado",
+      "name": "Modelado 3D personalizado",
+      "nameEn": "Custom 3D modelling",
       "description": "Creación de modelos tridimensionales personalizados para prototipos y piezas específicas.",
+      "descriptionEn": "Three-dimensional models made to order, for prototypes and one-off parts.",
       "images": [
         "/images/servicios/3d.webp",
         "/images/servicios/3d2.webp"
@@ -117,13 +143,14 @@
     },
     {
       "id": 2,
-      "name": "Impresión 3D Profesional",
+      "name": "Impresión 3D profesional",
+      "nameEn": "Professional 3D printing",
       "description": "Servicio de impresión 3D de alta calidad con diferentes materiales y acabados.",
+      "descriptionEn": "High-quality 3D printing, in a range of materials and finishes.",
       "images": [
         "/images/servicios/dante1.webp",
         "/images/servicios/dante3.webp",
         "/images/servicios/diseno1.webp"
-
       ]
     }
   ]

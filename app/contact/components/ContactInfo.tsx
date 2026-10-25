@@ -1,39 +1,31 @@
-import { Mail, MapPin, Phone } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+"use client";
 
-const contactInfo = [
-  {
-    icon: Mail,
-    title: "Correo Electrónico",
-    details: ["informacion@rav.ar"],
-  },
-  {
-    icon: Phone,
-    title: "Llámanos",
-    details: ["+54 9 280 486-3492", "+54 9 11 3565-7649"],
-  },
+import { Mail, Phone } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { useIdioma } from "@/lib/idioma";
+
+/** Mail y un solo teléfono. El dato no se traduce; el rótulo sí. */
+const DATOS = [
+  { icon: Mail, clave: "mail", detalle: "informacion@rav.ar" },
+  { icon: Phone, clave: "telefono", detalle: "+54 9 280 486-3492" },
 ];
 
-
 export default function ContactInfo() {
+  const { t } = useIdioma();
+
   return (
     <div className="space-y-6">
-      {contactInfo.map((item, index) => (
-        <Card key={index} className="hover:shadow-md transition-shadow duration-300">
+      {DATOS.map(({ icon: Icono, clave, detalle }) => (
+        <Card key={clave} className="transition-shadow duration-300 hover:shadow-md">
           <CardContent className="flex items-start space-x-4 p-6">
-            <item.icon className="h-6 w-6 text-primary mt-1" />
+            <Icono className="mt-1 h-6 w-6 text-primary" />
             <div>
-              <h3 className="font-semibold mb-2">{item.title}</h3>
-              {item.details.map((detail, i) => (
-                <p key={i} className="text-muted-foreground">
-                  {detail}
-                </p>
-              ))}
+              <h3 className="mb-2 font-semibold">{t(clave)}</h3>
+              <p className="text-muted-foreground">{detalle}</p>
             </div>
           </CardContent>
         </Card>
       ))}
     </div>
-  )
+  );
 }
-

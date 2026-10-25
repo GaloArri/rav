@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Transferencia from "../../components/Transferencia";
+import { useIdioma } from "@/lib/idioma";
 
 /**
  * Compra directa de un producto, sin pasar por el carrito.
@@ -19,13 +20,14 @@ export default function BotonComprarYa({
   const [email, setEmail] = useState("");
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useIdioma();
 
   const emailValido = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
   const items = [{ slug, cantidad: 1 }];
 
   async function pagarConMercadoPago() {
     if (!emailValido) {
-      setError("Necesitamos un email válido para mandarte la descarga.");
+      setError(t("mailNecesario"));
       return;
     }
 
@@ -39,10 +41,10 @@ export default function BotonComprarYa({
         body: JSON.stringify({ items, email }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "No se pudo iniciar el pago");
+      if (!res.ok) throw new Error(data.error ?? t("errorPago"));
       window.location.href = data.url;
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Error inesperado");
+      setError(e instanceof Error ? e.message : t("errorInesperado"));
       setCargando(false);
     }
   }
@@ -51,11 +53,10 @@ export default function BotonComprarYa({
     <div className="space-y-3">
       <div>
         <label htmlFor="email-compra" className="block text-sm font-medium">
-          ¿A qué dirección te mandamos el device?
+          {t("aQueMailDevice")}
         </label>
         <p id="ayuda-email" className="mt-1 mb-2 text-xs text-muted-foreground">
-          Apenas se acredita el pago te llega el link de descarga, junto con el
-          comprobante y las instrucciones de instalación.
+          {t("aQueMailDeviceAyuda")}
         </p>
         <Input
           id="email-compra"
@@ -74,7 +75,7 @@ export default function BotonComprarYa({
         onClick={pagarConMercadoPago}
         disabled={cargando}
       >
-        {cargando ? "Redirigiendo…" : "Pagar con Mercado Pago"}
+        {cargando ? t("redirigiendo") : t("pagarMP")}
       </Button>
 
       {error && (
@@ -85,7 +86,7 @@ export default function BotonComprarYa({
 
       <div className="flex items-center gap-3 py-1">
         <span className="h-px flex-grow bg-border" />
-        <span className="text-xs text-muted-foreground">o</span>
+        <span className="text-xs text-muted-foreground">{t("o")}</span>
         <span className="h-px flex-grow bg-border" />
       </div>
 

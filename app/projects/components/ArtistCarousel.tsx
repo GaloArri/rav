@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { useIdioma } from "@/lib/idioma"
 
 interface ArtistCarouselProps {
   images: string[]
@@ -12,6 +13,7 @@ interface ArtistCarouselProps {
 
 export default function ArtistCarousel({ images, artistName, onImageClick }: ArtistCarouselProps) {
   const [currentImage, setCurrentImage] = useState(0)
+  const { t } = useIdioma()
 
   const normalizeImages = (imgs: string | string[]): string[] => {
     if (!imgs) return []
@@ -36,7 +38,7 @@ export default function ArtistCarousel({ images, artistName, onImageClick }: Art
   if (validImages.length === 0) {
     return (
       <div className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-xl bg-muted flex items-center justify-center">
-        <p className="text-muted-foreground">No hay imágenes disponibles</p>
+        <p className="text-muted-foreground">{t("sinImagenes")}</p>
       </div>
     )
   }
@@ -52,7 +54,7 @@ export default function ArtistCarousel({ images, artistName, onImageClick }: Art
         >
           <Image
             src={image || "/placeholder.svg"}
-            alt={`${artistName} - Imagen ${index + 1}`}
+            alt={`${artistName} — ${t("imagen")} ${index + 1}`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover rounded-2xl cursor-pointer hover:scale-105 transition-transform duration-300"

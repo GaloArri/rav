@@ -73,17 +73,33 @@ comportamiento que no esté ahí.
 
 ## Idioma y tema
 
-- **Castellano e inglés.** `lib/idioma.tsx` tiene el diccionario y el contexto;
-  el chip ES/EN está en el header, igual al de los devices. Se guarda en
-  localStorage y se puede forzar con `?idioma=en`, que sirve para compartir
-  el sitio en inglés con un link. Las páginas de servidor usan `<Texto
-  clave="..." />` o `<Bilingue es="..." en="..." />` de `app/components/Texto.tsx`.
-  Los productos tienen `resumenEn`; las descripciones largas todavía están
-  sólo en castellano.
+- **Castellano e inglés, el sitio entero.** `lib/idioma.tsx` tiene el
+  diccionario y el contexto; el chip ES/EN está en el header, igual al de los
+  devices. Se guarda en localStorage y se puede forzar con `?idioma=en`, que
+  sirve para compartir el sitio en inglés con un link. Las páginas de servidor
+  usan `<Texto clave="..." />` o `<Bilingue es="..." en="..." />` de
+  `app/components/Texto.tsx`.
+
+  Los textos que no son de interfaz viven con su dato, con el sufijo `En`:
+  `resumenEn` y `descripcionEn` en los productos, más `requisitosEn` y
+  `labelEn` / `valorEn` en cada spec; `tituloEn`, `textoEn`, `preguntaEn`,
+  `respuestaEn`, `paraEn` y `dondeVaEn` en `lib/docs.ts`; `nameEn` y
+  `descriptionEn` en `app/data/servicios.json` y `artists.json`; `title` y
+  `description` con `{ es, en }` en `carousel.json`.
+
+  **Al agregar un texto nuevo hay que agregar las dos versiones.** El barrido
+  que lo comprueba: abrir cada ruta con `?idioma=en` y buscar artículos y
+  preposiciones castellanas en el `innerText`.
 - **Claro y oscuro con clases, nunca con JavaScript.** Nada de
   `currentTheme === "dark" ? "A" : "B"`: va `"B dark:A"`. Si el tema se
   decide en JS, una copia estática del sitio queda con un solo tema y la
   página depende de que hidrate para verse bien.
+- **Un solo visor de imágenes.** `app/components/VisorImagenes.tsx` lo usan
+  Servicios y Proyectos. Antes había una copia en cada página y la de
+  Servicios se abría sin la lista de imágenes: no mostraba nada y dejaba el
+  `overflow: hidden` puesto, así que la página quedaba trabada. El candado al
+  scroll depende de que el visor tenga algo que mostrar, no de que alguien lo
+  haya abierto; si se toca, mantener esa condición.
 - **Nada arranca invisible.** No usar `opacity-0` esperando que un
   IntersectionObserver lo revele: si el JS no corre, la sección se ve
   vacía. Pasó en Servicios y se sacó.
@@ -139,6 +155,9 @@ Pendiente, por orden de urgencia:
 - [ ] Entrega real del hardware: hoy dice "se arma en el taller", sin plazo
 - [ ] El catálogo de equipamiento de la página Servicios
 - [ ] Fotos de la sección Nosotros
+- [ ] Descripciones de 13 artistas en `app/data/artists.json`: estaban con
+      una fila de guiones que se veía en la página y quedaron vacías
+- [ ] Bajada de "Laptops y computadoras" en `app/data/servicios.json`
 - [ ] Decidir si entran al store: AB Monitor, Connection Monitor, File Check,
       Ficha Técnica y KPA
 

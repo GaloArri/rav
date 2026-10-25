@@ -9,10 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCarrito } from "@/lib/carrito";
 import { precioPesos } from "@/lib/productos";
+import { useIdioma } from "@/lib/idioma";
 import Transferencia from "../components/Transferencia";
 
 export default function CarritoPage() {
   const { productos, total, cambiarCantidad, quitar, vaciar, listo } = useCarrito();
+  const { t } = useIdioma();
   const [email, setEmail] = useState("");
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,10 +36,10 @@ export default function CarritoPage() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Error al iniciar el pago");
+      if (!res.ok) throw new Error(data.error ?? t("errorPago"));
       window.location.href = data.url;
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Error inesperado");
+      setError(e instanceof Error ? e.message : t("errorInesperado"));
       setCargando(false);
     }
   }
@@ -47,15 +49,15 @@ export default function CarritoPage() {
       <Header />
       <main className="flex-grow">
         <div className="max-w-2xl mx-auto px-4 py-10 md:py-14">
-          <h1 className="text-3xl font-semibold tracking-tight">Carrito</h1>
+          <h1 className="text-3xl font-semibold tracking-tight">{t("carrito")}</h1>
 
           {!listo ? (
-            <p className="mt-8 text-muted-foreground">Cargando…</p>
+            <p className="mt-8 text-muted-foreground">{t("cargando")}</p>
           ) : productos.length === 0 ? (
             <div className="mt-8">
-              <p className="text-muted-foreground">Todavía no agregaste nada.</p>
+              <p className="text-muted-foreground">{t("carritoVacio")}</p>
               <Button asChild className="mt-4">
-                <Link href="/store">Ver el store</Link>
+                <Link href="/store">{t("verStore")}</Link>
               </Button>
             </div>
           ) : (
@@ -81,7 +83,7 @@ export default function CarritoPage() {
                         {producto.nombre}
                       </Link>
                       <p className="text-sm text-muted-foreground tabular-nums">
-                        $ {(precioPesos(producto) ?? 0).toLocaleString("es-AR")} c/u
+                        $ {(precioPesos(producto) ?? 0).toLocaleString("es-AR")} {t("cadaUno")}
                       </p>
 
                       <div className="mt-2 flex items-center gap-3">
@@ -91,7 +93,7 @@ export default function CarritoPage() {
                               cambiarCantidad(producto.slug, cantidad - 1)
                             }
                             className="px-3 py-1 hover:bg-muted"
-                            aria-label={`Quitar una unidad de ${producto.nombre}`}
+                            aria-label={`${t("quitarUnidad")} ${producto.nombre}`}
                           >
                             −
                           </button>
@@ -101,7 +103,7 @@ export default function CarritoPage() {
                               cambiarCantidad(producto.slug, cantidad + 1)
                             }
                             className="px-3 py-1 hover:bg-muted"
-                            aria-label={`Agregar una unidad de ${producto.nombre}`}
+                            aria-label={`${t("agregarUnidad")} ${producto.nombre}`}
                           >
                             +
                           </button>
@@ -111,7 +113,7 @@ export default function CarritoPage() {
                           onClick={() => quitar(producto.slug)}
                           className="text-sm text-muted-foreground hover:text-foreground"
                         >
-                          Quitar
+                          {t("quitar")}
                         </button>
                       </div>
                     </div>
@@ -124,23 +126,21 @@ export default function CarritoPage() {
               </ul>
 
               <div className="mt-6 flex justify-between text-lg">
-                <span>Total</span>
+                <span>{t("total")}</span>
                 <span className="tabular-nums font-medium">
                   $ {total.toLocaleString("es-AR")}
                 </span>
               </div>
               <p className="mt-1 text-sm text-muted-foreground">
-                El costo de envío se calcula en el paso siguiente. Retiro en el taller
-                sin cargo.
+                {t("envioPasoSiguiente")}
               </p>
 
               <div className="mt-8 space-y-3">
                 <label htmlFor="email" className="block text-sm font-medium">
-                  ¿A qué dirección te escribimos?
+                  {t("aQueMail")}
                 </label>
                 <p id="ayuda-email-carrito" className="text-xs text-muted-foreground">
-                  Ahí te llega el comprobante y, si comprás software, el link de
-                  descarga.
+                  {t("aQueMailAyuda")}
                 </p>
                 <Input
                   id="email"
@@ -154,7 +154,7 @@ export default function CarritoPage() {
                 />
 
                 <Button className="w-full" onClick={pagar} disabled={cargando}>
-                  {cargando ? "Redirigiendo a Mercado Pago…" : "Pagar con Mercado Pago"}
+                  {cargando ? t("redirigiendoMP") : t("pagarMP")}
                 </Button>
 
                 {error && (
@@ -164,12 +164,12 @@ export default function CarritoPage() {
                 )}
 
                 <p className="text-xs text-muted-foreground">
-                  Tarjeta de crédito, débito, dinero en cuenta o efectivo.
+                  {t("mediosMP")}
                 </p>
 
                 <div className="flex items-center gap-3 py-2">
                   <span className="h-px flex-grow bg-border" />
-                  <span className="text-xs text-muted-foreground">o</span>
+                  <span className="text-xs text-muted-foreground">{t("o")}</span>
                   <span className="h-px flex-grow bg-border" />
                 </div>
 

@@ -3,44 +3,37 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import VisorImagenes from "../components/VisorImagenes";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import serviciosData from "../data/servicios.json";
-import { useTheme } from "next-themes";
+import { useIdioma } from "@/lib/idioma";
 
-const services = [
-  {
-    id: "alquiler",
-    title: "Alquiler de Equipamientos",
-    sectionId: "alquiler-section",
-  },
-  {
-    id: "equipos",
-    title: "Nuestros Equipos",
-    sectionId: "equipos-section",
-  },
-  {
-    id: "reparacion",
-    title: "Reparación de Equipos",
-    sectionId: "reparacion-section",
-  },
-  {
-    id: "programacion",
-    title: "Programación de Sesiones",
-    sectionId: "programacion-section",
-  },
-  {
-    id: "montaje",
-    title: "Montaje de Equipamientos",
-    sectionId: "montaje-section",
-  },
-  {
-    id: "diseno",
-    title: "Diseño e Impresión 3D",
-    sectionId: "diseno-section",
-  },
-];
+type Item = {
+  id: number;
+  name: string;
+  nameEn?: string;
+  description: string;
+  descriptionEn?: string;
+  images: string[];
+};
+
+/** Las secciones, en el orden en que se muestran. */
+const SECCIONES = [
+  { id: "equipos-section", clave: "catalogoEquipamiento", bajada: null, datos: "equipos" },
+  { id: "alquiler-section", clave: "tituloAlquiler", bajada: "bajadaAlquiler", datos: "alquiler" },
+  { id: "reparacion-section", clave: "tituloReparacion", bajada: "bajadaReparacion", datos: "reparacion" },
+  { id: "programacion-section", clave: "tituloProgramacion", bajada: "bajadaProgramacion", datos: "programacion" },
+  { id: "montaje-section", clave: "tituloMontaje", bajada: "bajadaMontaje", datos: "montaje" },
+  { id: "diseno-section", clave: "tituloDiseno", bajada: "bajadaDiseno", datos: "diseno" },
+] as const;
+
+/** El carrusel de arriba, hoy sin usar. Los títulos salen del diccionario. */
+const SERVICIOS_CARRUSEL = SECCIONES.map(({ id, clave }) => ({
+  sectionId: id,
+  clave,
+}));
 
 function useScrollAnimation() {
   const elementsRef = useRef<(HTMLElement | null)[]>([]);
@@ -54,10 +47,7 @@ function useScrollAnimation() {
           }
         });
       },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
 
     elementsRef.current.forEach((el) => {
@@ -67,139 +57,11 @@ function useScrollAnimation() {
     return () => observer.disconnect();
   }, []);
 
-  const addToRefs = (el: HTMLElement | null) => {
+  return (el: HTMLElement | null) => {
     if (el && !elementsRef.current.includes(el)) {
       elementsRef.current.push(el);
     }
   };
-
-  return addToRefs;
-}
-
-// Nuevo componente Modal para las imágenes
-function ImageModal({
-  isOpen,
-  images,
-  currentIndex,
-  onClose,
-}: {
-  isOpen: boolean;
-  images: string[];
-  currentIndex: number;
-  onClose: () => void;
-}) {
-  const [modalIndex, setModalIndex] = useState(currentIndex);
-
-  // Actualizar el índice del modal cuando cambie currentIndex
-  useEffect(() => {
-    setModalIndex(currentIndex);
-  }, [currentIndex]);
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-      if (e.key === "ArrowLeft") {
-        goToPrevious();
-      }
-      if (e.key === "ArrowRight") {
-        goToNext();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen, onClose]);
-
-  const goToNext = () => {
-    setModalIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const goToPrevious = () => {
-    setModalIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  if (!isOpen || !images[modalIndex]) return null;
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      onClick={onClose}
-    >
-      {/* Fondo opaco - clickeable para cerrar */}
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
-
-      {/* Contenido del modal */}
-      <div
-        className="relative max-w-[90vw] max-h-[90vh] bg-transparent rounded-lg flex items-center justify-center"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Botón cerrar */}
-        <button
-          onClick={onClose}
-          className="absolute -top-12 -right-12 z-10 w-10 h-10 rounded-full bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 transition-all duration-300 flex items-center justify-center"
-        >
-          <X className="h-5 w-5" />
-        </button>
-
-        {/* Botones de navegación - Solo si hay más de una imagen */}
-        {images.length > 1 && (
-          <>
-            <button
-              onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 transition-all duration-300 flex items-center justify-center z-10"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-
-            <button
-              onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm text-white hover:bg-black/90 transition-all duration-300 flex items-center justify-center z-10"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
-          </>
-        )}
-
-        {/* Imagen */}
-        <div className="relative max-w-full max-h-full">
-          <Image
-            src={images[modalIndex]}
-            alt={` Imagen ${modalIndex + 1}`}
-            width={1200}
-            height={800}
-            className="object-contain max-w-full max-h-full rounded-lg"
-            quality={100}
-          />
-        </div>
-
-        {/* Indicadores de posición - Solo si hay más de una imagen */}
-        {images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setModalIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === modalIndex
-                    ? "bg-white w-6"
-                    : "bg-white/50 hover:bg-white/70"
-                }`}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
 }
 
 function ImageCarousel({
@@ -209,33 +71,30 @@ function ImageCarousel({
 }: {
   images: string[];
   itemName: string;
-  onImageClick: (imageUrl: string) => void;
+  onImageClick: (images: string[], indice: number) => void;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useIdioma();
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevSlide = () => {
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % images.length);
+  const prevSlide = () =>
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
 
   return (
-    <div className="relative h-64 rounded-2xl overflow-hidden">
+    <div className="relative h-64 overflow-hidden rounded-2xl">
       <div
-        className="flex transition-transform duration-500 ease-in-out h-full"
+        className="flex h-full transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
-          <div key={index} className="w-full flex-shrink-0 h-full relative">
+          <div key={index} className="relative h-full w-full flex-shrink-0">
             <Image
-              src={image || "/placeholder.svg?height=400&width=600"}
-              alt={`${itemName} - Imagen ${index + 1}`}
+              src={image || "/placeholder.svg"}
+              alt={`${itemName} — ${t("imagen")} ${index + 1}`}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
-              onClick={() => onImageClick(image)}
+              className="cursor-pointer object-cover transition-transform duration-300 hover:scale-105"
+              onClick={() => onImageClick(images, index)}
             />
           </div>
         ))}
@@ -244,25 +103,31 @@ function ImageCarousel({
       {images.length > 1 && (
         <>
           <button
+            type="button"
             onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-10"
+            aria-label={t("anterior")}
+            className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-black/70 group-hover:opacity-100"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
 
           <button
+            type="button"
             onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-black/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-10"
+            aria-label={t("siguiente")}
+            className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-black/70 group-hover:opacity-100"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
 
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+          <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 gap-1">
             {images.map((_, index) => (
               <button
                 key={index}
+                type="button"
                 onClick={() => setCurrentIndex(index)}
-                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                aria-label={`${t("imagen")} ${index + 1}`}
+                className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
                   index === currentIndex ? "bg-white" : "bg-white/50"
                 }`}
               />
@@ -279,53 +144,61 @@ function SectionGrid({
   addToRefs,
   onImageClick,
 }: {
-  data: any[];
+  data: Item[];
   addToRefs: (el: HTMLElement | null) => void;
-  onImageClick: (imageUrl: string) => void;
+  onImageClick: (images: string[], indice: number) => void;
 }) {
+  const { idioma } = useIdioma();
+
   return (
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        {data.map((item, index) => (
-          <div
-            key={item.id}
-            className="group relative overflow-hidden transition-all duration-700 ease-out"
-            style={{
-              animationDelay: `${index * 0.1}s`,
-              transitionDelay: `${index * 100}ms`,
-            }}
-            ref={addToRefs}
-          >
-            {/* Imagen con overlay */}
-            <div className="relative">
-              <ImageCarousel
-                images={item.images}
-                itemName={item.name}
-                onImageClick={onImageClick}
-              />
-              {/* Overlay con información - clickeable para abrir imagen */}
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 rounded-2xl cursor-pointer"
-                onClick={() => onImageClick(item.images[0])}
-              >
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500">
-                  <p className="text-sm text-white/90 leading-relaxed">
-                    {item.description}
-                  </p>
+    <div className="mx-auto max-w-7xl">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
+        {data.map((item, index) => {
+          const nombre = (idioma === "en" && item.nameEn) || item.name;
+          const bajada =
+            (idioma === "en" && item.descriptionEn) || item.description;
+
+          return (
+            <div
+              key={`${item.id}-${item.name}`}
+              className="group relative overflow-hidden transition-all duration-700 ease-out"
+              style={{ transitionDelay: `${index * 100}ms` }}
+              ref={addToRefs}
+            >
+              <div className="relative">
+                <ImageCarousel
+                  images={item.images}
+                  itemName={nombre}
+                  onImageClick={onImageClick}
+                />
+
+                {/* El degradado de abajo, con la bajada encima. Clickear abre
+                    la primera foto en el visor. */}
+                <div
+                  className="absolute inset-0 cursor-pointer rounded-2xl bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 transition-all duration-500 md:opacity-0 md:group-hover:opacity-100"
+                  onClick={() => onImageClick(item.images, 0)}
+                >
+                  {bajada && (
+                    <div className="absolute bottom-0 left-0 right-0 translate-y-0 p-6 text-white transition-transform duration-500 md:translate-y-4 md:group-hover:translate-y-0">
+                      <p className="text-sm leading-relaxed text-white/90">
+                        {bajada}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="px-2 pt-4">
+                <h3 className="text-xl font-semibold transition-colors duration-300 group-hover:text-primary md:text-2xl">
+                  {nombre}
+                </h3>
+                <div className="mt-1 flex items-center gap-2">
+                  <div className="h-px flex-1 bg-gradient-to-r from-primary to-transparent" />
                 </div>
               </div>
             </div>
-            {/* Información visible siempre */}
-            <div className="pt-4 px-2">
-              <h3 className="font-semibold text-xl md:text-2xl group-hover:text-primary transition-colors duration-300">
-                {item.name}
-              </h3>
-              <div className="flex items-center gap-2 mt-1">
-                <div className="h-px bg-gradient-to-r from-primary to-transparent flex-1"></div>
-              </div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -338,100 +211,49 @@ function ServicesCarousel({
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const { t } = useIdioma();
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % services.length);
+  const nextSlide = () =>
+    setCurrentIndex((prev) => (prev + 1) % SERVICIOS_CARRUSEL.length);
+  const prevSlide = () =>
+    setCurrentIndex(
+      (prev) => (prev - 1 + SERVICIOS_CARRUSEL.length) % SERVICIOS_CARRUSEL.length
+    );
+
+  const irASeccion = (sectionId: string) => {
+    document
+      .getElementById(sectionId)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + services.length) % services.length);
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
-    setIsAutoPlaying(false);
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(0); // Reset touchEnd
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) {
-      nextSlide();
-      setIsAutoPlaying(false);
-    }
-    if (isRightSwipe) {
-      prevSlide();
-      setIsAutoPlaying(false);
-    }
-  };
-
-  // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 4000);
-
+    const interval = setInterval(nextSlide, 4000);
     return () => clearInterval(interval);
-  }, [isAutoPlaying, currentIndex]);
+  }, [isAutoPlaying]);
 
   return (
-    <div
-      className="max-w-6xl mx-auto transition-all duration-700 ease-out"
-      ref={addToRefs}
-    >
+    <div className="mx-auto max-w-6xl transition-all duration-700 ease-out" ref={addToRefs}>
       <div className="relative">
-        {/* Carrusel principal */}
-        <div
-          className="overflow-hidden rounded-2xl select-none"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
+        <div className="select-none overflow-hidden rounded-2xl">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {services.map((service, index) => (
-              <div key={index} className="w-full flex-shrink-0">
-                <div className="bg-background border border-border/50 rounded-2xl p-12 mx-4 hover:border-primary/20 transition-all duration-300">
+            {SERVICIOS_CARRUSEL.map((servicio) => (
+              <div key={servicio.sectionId} className="w-full flex-shrink-0">
+                <div className="mx-4 rounded-2xl border border-border/50 bg-background p-12 transition-all duration-300 hover:border-primary/20">
                   <div className="text-center">
-                    <h3 className="text-xl md:text-2xl font-light mb-6 text-foreground">
-                      {service.title}
+                    <h3 className="mb-6 text-xl font-light text-foreground md:text-2xl">
+                      {t(servicio.clave)}
                     </h3>
                     <div className="mt-8">
                       <Button
                         size="lg"
                         className="rounded-full px-8"
-                        onClick={() => scrollToSection(service.sectionId)}
+                        onClick={() => irASeccion(servicio.sectionId)}
                       >
-                        Ver Más
+                        {t("verMas")}
                       </Button>
                     </div>
                   </div>
@@ -441,38 +263,45 @@ function ServicesCarousel({
           </div>
         </div>
 
-        {/* Botones de navegación - Solo visible en pantallas medianas y más grandes */}
         <button
+          type="button"
           onClick={() => {
             prevSlide();
             setIsAutoPlaying(false);
           }}
-          className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all duration-300 items-center justify-center group"
+          aria-label={t("anterior")}
+          className="absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-all duration-300 hover:bg-background md:flex"
         >
-          <ChevronLeft className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+          <ChevronLeft className="h-5 w-5 text-muted-foreground" />
         </button>
 
         <button
+          type="button"
           onClick={() => {
             nextSlide();
             setIsAutoPlaying(false);
           }}
-          className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-all duration-300 items-center justify-center group"
+          aria-label={t("siguiente")}
+          className="absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-all duration-300 hover:bg-background md:flex"
         >
-          <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+          <ChevronRight className="h-5 w-5 text-muted-foreground" />
         </button>
       </div>
 
-      {/* Indicadores */}
-      <div className="flex justify-center mt-8 gap-2">
-        {services.map((_, index) => (
+      <div className="mt-8 flex justify-center gap-2">
+        {SERVICIOS_CARRUSEL.map((s, index) => (
           <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            key={s.sectionId}
+            type="button"
+            onClick={() => {
+              setCurrentIndex(index);
+              setIsAutoPlaying(false);
+            }}
+            aria-label={t(s.clave)}
+            className={`h-2 rounded-full transition-all duration-300 ${
               index === currentIndex
-                ? "bg-primary w-8"
-                : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                ? "w-8 bg-primary"
+                : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
             }`}
           />
         ))}
@@ -481,243 +310,99 @@ function ServicesCarousel({
   );
 }
 
-export default function RentalsPage() {
+export default function ServiciosPage() {
   const addToRefs = useScrollAnimation();
-  const { theme, systemTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalImageUrl, setModalImageUrl] = useState("");
-  const [modalAltText, setModalAltText] = useState("");
+  const { t } = useIdioma();
 
-  const [modalImages, setModalImages] = useState<string[]>([]);
-  const [modalCurrentIndex, setModalCurrentIndex] = useState(0);
-  const currentTheme = mounted
-    ? theme === "system"
-      ? systemTheme
-      : theme
-    : "dark";
+  const [visorAbierto, setVisorAbierto] = useState(false);
+  const [imagenes, setImagenes] = useState<string[]>([]);
+  const [indice, setIndice] = useState(0);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const openImageModal = (imageUrl: string) => {
-    setModalImageUrl(imageUrl);
-    setModalAltText("Imagen ampliada");
-    setIsModalOpen(true);
+  /**
+   * Abre el visor con la lista completa, no con una sola URL. Antes esto
+   * mandaba la URL sola y la lista quedaba vacía: el visor no mostraba nada
+   * pero igual trababa el scroll de la página.
+   */
+  const abrirVisor = (lista: string[], desde: number) => {
+    if (!lista?.length) return;
+    setImagenes(lista);
+    setIndice(desde);
+    setVisorAbierto(true);
   };
 
-  const closeImageModal = () => {
-    setIsModalOpen(false);
-    setModalImageUrl("");
-    setModalAltText("");
+  const cerrarVisor = () => {
+    setVisorAbierto(false);
+    setImagenes([]);
+    setIndice(0);
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Header />
       <main
-        className="flex-grow relative bg-cover bg-center bg-no-repeat bg-fixed"
-        style={{
-          backgroundImage: "url('/images/project-artists/duko1.webp')",
-          backgroundAttachment: "fixed",
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
-        }}
+        className="relative flex-grow bg-cover bg-fixed bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/project-artists/duko1.webp')" }}
       >
-        {/* Overlay semitransparente para mejor legibilidad */}
-        <div
-          className={`absolute inset-0 bg-white/70 dark:bg-black/50`}
-        />
-        <section className="py-32 pb-16 relative">
-          {/* Content */}
+        <div className="absolute inset-0 bg-white/70 dark:bg-black/50" />
+
+        <section className="relative py-32 pb-16">
           <div className="relative z-10">
-            <div className="text-center mb-8">
-              <div className="inline-block">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-[-0.03em] mb-2">
-                  Nuestros Servicios
-                </h1>
+            <div className="mb-8 text-center">
+              <h1 className="mb-2 text-3xl font-black uppercase tracking-[-0.03em] md:text-4xl lg:text-5xl">
+                {t("nuestrosServicios")}
+              </h1>
+            </div>
+            <div className="mb-8 flex items-center justify-center">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+              <div className="mx-4 h-3 w-3 rounded-full bg-primary" />
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            </div>
+          </div>
+        </section>
+
+        {SECCIONES.map(({ id, clave, bajada, datos }, i) => (
+          <section
+            key={id}
+            id={id}
+            className={
+              i % 2 === 0
+                ? "scroll-mt-20 bg-white/50 py-24 dark:bg-black/20"
+                : "scroll-mt-20 py-24"
+            }
+          >
+            <div className="container mx-auto px-4">
+              <div
+                className="mb-16 text-center transition-all duration-700 ease-out"
+                ref={addToRefs}
+              >
+                <h2 className="mb-2 text-2xl font-black uppercase tracking-[-0.03em] md:text-3xl">
+                  {t(clave)}
+                </h2>
+                {bajada && (
+                  <>
+                    <div className="mx-auto mb-4 h-px w-24 bg-primary" />
+                    <p className="mx-auto max-w-md text-base leading-relaxed text-gray-700 dark:text-muted-foreground/80 md:text-lg">
+                      {t(bajada)}
+                    </p>
+                  </>
+                )}
               </div>
+              <SectionGrid
+                data={serviciosData[datos] as Item[]}
+                addToRefs={addToRefs}
+                onImageClick={abrirVisor}
+              />
             </div>
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-              <div className="mx-4 w-3 h-3 bg-primary rounded-full"></div>
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-            </div>
-          </div>
-        </section>
-
-        {/* Services Carousel */}
-        {/**
-        <section className="pt-4 pb-8">
-          <div className="container mx-auto px-4">
-            <ServicesCarousel addToRefs={addToRefs} />
-          </div>
-        </section>
-        */}
-
-        {/* Nuestros Equipos Section */}
-        <section
-          id="equipos-section"
-          className={`pt-8 pb-24 scroll-mt-20 bg-white/50 dark:bg-black/20`}
-        >
-          <div className="container mx-auto px-4">
-            <div
-              className="text-center mb-16 transition-all duration-700 ease-out"
-              ref={addToRefs}
-            >
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
-                Catálogo de equipamiento
-              </h2>
-            </div>
-            <SectionGrid
-              data={serviciosData.equipos}
-              addToRefs={addToRefs}
-              onImageClick={openImageModal}
-            />
-          </div>
-        </section>
-
-        {/* Alquiler de Equipamientos Section */}
-        <section id="alquiler-section" className="py-24 scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div
-              className="text-center mb-16 transition-all duration-700 ease-out"
-              ref={addToRefs}
-            >
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
-                Alquiler de Equipamientos
-              </h2>
-              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
-              >
-                Equipos profesionales para procesamiento vocal y de secuencia
-              </p>
-            </div>
-            <SectionGrid
-              data={serviciosData.alquiler}
-              addToRefs={addToRefs}
-              onImageClick={openImageModal}
-            />
-          </div>
-        </section>
-
-        {/* Reparación de Equipos Section */}
-        <section
-          id="reparacion-section"
-          className={`py-24 scroll-mt-20 bg-white/50 dark:bg-black/20`}
-        >
-          <div className="container mx-auto px-4">
-            <div
-              className="text-center mb-16 transition-all duration-700 ease-out"
-              ref={addToRefs}
-            >
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
-                Reparación de Equipos
-              </h2>
-              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
-              >
-                Servicio técnico especializado y garantizado
-              </p>
-            </div>
-            <SectionGrid
-              data={serviciosData.reparacion}
-              addToRefs={addToRefs}
-              onImageClick={openImageModal}
-            />
-          </div>
-        </section>
-
-        {/* Programación de Sesiones Section */}
-        <section id="programacion-section" className="py-24 scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div
-              className="text-center mb-16 transition-all duration-700 ease-out"
-              ref={addToRefs}
-            >
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
-                Programación de Sesiones
-              </h2>
-              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
-              >
-                Configuración y programación personalizada
-              </p>
-            </div>
-            <SectionGrid
-              data={serviciosData.programacion}
-              addToRefs={addToRefs}
-              onImageClick={openImageModal}
-            />
-          </div>
-        </section>
-
-        {/* Montaje de Equipamientos Section */}
-        <section
-          id="montaje-section"
-          className={`py-24 scroll-mt-20 bg-white/50 dark:bg-black/20`}
-        >
-          <div className="container mx-auto px-4">
-            <div
-              className="text-center mb-16 transition-all duration-700 ease-out"
-              ref={addToRefs}
-            >
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
-                Montaje de Equipamientos
-              </h2>
-              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
-              >
-                Instalación y configuración profesional
-              </p>
-            </div>
-            <SectionGrid
-              data={serviciosData.montaje}
-              addToRefs={addToRefs}
-              onImageClick={openImageModal}
-            />
-          </div>
-        </section>
-
-        {/* Diseño e Impresión 3D Section */}
-        <section id="diseno-section" className="py-24 scroll-mt-20">
-          <div className="container mx-auto px-4">
-            <div
-              className="text-center mb-16 transition-all duration-700 ease-out"
-              ref={addToRefs}
-            >
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[-0.03em] mb-2">
-                Diseño e Impresión 3D
-              </h2>
-              <div className="w-24 h-px bg-primary mx-auto mb-4"></div>
-              <p
-                className={`text-base md:text-lg leading-relaxed max-w-md mx-auto text-gray-700 dark:text-muted-foreground/80`}
-              >
-                Soluciones de diseño y fabricación tridimensional
-              </p>
-            </div>
-            <SectionGrid
-              data={serviciosData.diseno}
-              addToRefs={addToRefs}
-              onImageClick={openImageModal}
-            />
-          </div>
-        </section>
+          </section>
+        ))}
       </main>
       <Footer />
 
-      {/* Modal de imagen - Renderizado a nivel de página */}
-      <ImageModal
-        isOpen={isModalOpen}
-        images={modalImages}
-        currentIndex={modalCurrentIndex}
-        onClose={closeImageModal}
+      <VisorImagenes
+        abierto={visorAbierto}
+        imagenes={imagenes}
+        indice={indice}
+        onCerrar={cerrarVisor}
       />
 
       <style jsx global>{`

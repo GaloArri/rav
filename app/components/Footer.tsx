@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { SOPORTE_MAIL, VENTAS_MAIL } from "@/lib/tienda";
+import { VENTAS_MAIL } from "@/lib/tienda";
 import Texto from "./Texto";
 
 const LINKS = [
@@ -31,12 +31,6 @@ export default function Footer() {
             className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
           >
             {VENTAS_MAIL}
-          </a>
-          <a
-            href={`mailto:${SOPORTE_MAIL}`}
-            className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <Texto clave="soporte" />
           </a>
           {LINKS.map(({ href, clave }) => (
             <Link

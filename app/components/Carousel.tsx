@@ -14,7 +14,7 @@ import { useIdioma } from "@/lib/idioma";
 export default function Carousel() {
   const [actual, setActual] = useState(0);
   const { items } = carouselData;
-  const { idioma } = useIdioma();
+  const { idioma, t } = useIdioma();
 
   const siguiente = useCallback(() => {
     setActual((i) => (i + 1) % items.length);
@@ -26,7 +26,7 @@ export default function Carousel() {
   }, [siguiente]);
 
   return (
-    <section className="relative border-b bg-placa" aria-label="Qué hacemos">
+    <section className="relative border-b bg-placa" aria-label={t("queHacemos")}>
       <div className="relative h-[420px] md:h-[520px]">
         {items.map((item, i) => (
           <div

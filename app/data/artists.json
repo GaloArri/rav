@@ -9,7 +9,8 @@
         "/images/dukp2.webp",
         "/images/dukicables.webp"
       ],
-      "description": "Montaje de sistema de secuencias analogico. Montaje de sistema digital via Dante para el desarrollo de sus shows. Asistencia y soporte tecnico en cada una de sus presentaciones."
+      "description": "Montaje de sistema de secuencias analogico. Montaje de sistema digital via Dante para el desarrollo de sus shows. Asistencia y soporte tecnico en cada una de sus presentaciones.",
+      "descriptionEn": "Analogue playback rig build. Digital system over Dante for his live shows. On-site technical support at every date."
     },
     {
       "id": 8,
@@ -18,7 +19,8 @@
         "/images/about/rav.webp",
         "/images/londra2.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 4,
@@ -27,7 +29,8 @@
         "/images/maria1.webp",
         "/images/maria2.webp"
       ],
-      "description": "Proveeduria de sistemas de secuencias y procesamiento vocal, asesoramiento y soporte tecnico para cada uno de sus shows."
+      "description": "Proveeduria de sistemas de secuencias y procesamiento vocal, asesoramiento y soporte tecnico para cada uno de sus shows.",
+      "descriptionEn": "Supply of playback and vocal processing systems, consulting and technical support for each of her shows."
     },
     {
       "id": 17,
@@ -36,7 +39,8 @@
         "/images/trueno1.webp",
         "/images/trueno2.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 19,
@@ -45,7 +49,8 @@
         "/images/dillom1.webp",
         "/images/dillom2.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 15,
@@ -54,15 +59,18 @@
         "/images/project-artists/tiago1.webp",
         "/images/project-artists/tiago2.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 5,
       "name": "Emilia",
       "images": [
         "/images/emilia1.webp",
-        "/images/emilia2.webp"      ],
-      "description": "Montaje de sistema de secuencias, programacion de sesion Ableton Live con automatizaciones para control de proceso vocal. Soporte tecnico y operacion."
+        "/images/emilia2.webp"
+      ],
+      "description": "Montaje de sistema de secuencias, programacion de sesion Ableton Live con automatizaciones para control de proceso vocal. Soporte tecnico y operacion.",
+      "descriptionEn": "Playback rig build, Ableton Live session programming with automation driving the vocal chain. Technical support and operation."
     },
     {
       "id": 1,
@@ -72,7 +80,8 @@
         "/images/miloj2.webp",
         "/images/miloj3.webp"
       ],
-      "description": "Proveeduria de sistemas de secuencias y procesamiento vocal, asesoramiento y soporte tecnico para cada uno de sus shows."
+      "description": "Proveeduria de sistemas de secuencias y procesamiento vocal, asesoramiento y soporte tecnico para cada uno de sus shows.",
+      "descriptionEn": "Supply of playback and vocal processing systems, consulting and technical support for each of his shows."
     },
     {
       "id": 9,
@@ -82,7 +91,8 @@
         "/images/lali2.webp",
         "/images/lali3.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 16,
@@ -94,7 +104,8 @@
         "/images/margarita4.webp",
         "/images/margarita5.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 3,
@@ -104,7 +115,8 @@
         "/images/bsas2.webp",
         "/images/bsas3.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 6,
@@ -113,7 +125,8 @@
         "/images/zoe2.webp",
         "/images/zoe3.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 7,
@@ -121,7 +134,8 @@
       "images": [
         "/placeholder.jpg"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 10,
@@ -129,7 +143,8 @@
       "images": [
         "/placeholder.jpg"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 11,
@@ -137,7 +152,8 @@
       "images": [
         "/placeholder.jpg"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 12,
@@ -145,7 +161,8 @@
       "images": [
         "/images/ronpe1.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     },
     {
       "id": 13,
@@ -155,7 +172,8 @@
         "/images/servicios/img-7971.webp",
         "/images/unverano2.webp"
       ],
-      "description": "--------------------------------"
+      "description": "",
+      "descriptionEn": ""
     }
   ]
 }

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { PRODUCTOS, porSlug } from "@/lib/productos";
 import { INSTALACION, DUDAS_COMUNES, porDoc } from "@/lib/docs";
 import { SOPORTE_MAIL } from "@/lib/tienda";
+import Texto, { Bilingue } from "../../components/Texto";
 
 type Props = { params: { producto: string } };
 
@@ -47,17 +48,21 @@ export default function DocPage({ params }: Props) {
               {p.nombre}
             </Link>
             <span className="text-muted-foreground/40">/</span>
-            <span className="text-foreground">Documentación</span>
+            <span className="text-foreground">
+              <Texto clave="documentacion" />
+            </span>
           </p>
 
           {/* Encabezado */}
           <div className="flex flex-wrap items-end gap-8 border-b pb-10">
             <div className="min-w-0 flex-[1_1_380px]">
-              <p className="etiqueta mb-3">Documentación</p>
+              <p className="etiqueta mb-3">
+                <Texto clave="documentacion" />
+              </p>
               <h1 className="titulo-grande text-[36px] md:text-[48px]">{p.nombre}</h1>
               {doc && (
                 <p className="mt-4 max-w-[52ch] text-base leading-relaxed text-muted-foreground">
-                  {doc.para}
+                  <Bilingue es={doc.para} en={doc.paraEn} />
                 </p>
               )}
             </div>
@@ -76,8 +81,8 @@ export default function DocPage({ params }: Props) {
 
           {!doc ? (
             <p className="py-16 text-muted-foreground">
-              La documentación de este device todavía no está escrita. Escribinos a{" "}
-              {SOPORTE_MAIL} y te ayudamos.
+              <Texto clave="sinDocumentacion" /> {SOPORTE_MAIL}{" "}
+              <Texto clave="yTeAyudamos" />
             </p>
           ) : (
             <div className="flex flex-wrap gap-12 py-12 lg:gap-16">
@@ -85,7 +90,7 @@ export default function DocPage({ params }: Props) {
               {/* Columna principal */}
               <div className="min-w-0 flex-[999_1_480px]">
 
-                <Bloque titulo="Instalación">
+                <Bloque clave="instalacion">
                   <ol className="space-y-6">
                     {INSTALACION.map((paso, i) => (
                       <li key={paso.titulo} className="flex gap-5">
@@ -93,9 +98,11 @@ export default function DocPage({ params }: Props) {
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <div className="min-w-0">
-                          <h3 className="text-[15px] font-bold">{paso.titulo}</h3>
+                          <h3 className="text-[15px] font-bold">
+                            <Bilingue es={paso.titulo} en={paso.tituloEn} />
+                          </h3>
                           <p className="mt-1 max-w-[62ch] text-[15px] leading-relaxed text-muted-foreground">
-                            {paso.texto}
+                            <Bilingue es={paso.texto} en={paso.textoEn} />
                           </p>
                         </div>
                       </li>
@@ -103,7 +110,7 @@ export default function DocPage({ params }: Props) {
                   </ol>
                 </Bloque>
 
-                <Bloque titulo="Cómo se usa">
+                <Bloque clave="comoSeUsa">
                   <ol className="space-y-6">
                     {doc.uso.map((paso, i) => (
                       <li key={paso.titulo} className="flex gap-5">
@@ -111,9 +118,11 @@ export default function DocPage({ params }: Props) {
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <div className="min-w-0">
-                          <h3 className="text-[15px] font-bold">{paso.titulo}</h3>
+                          <h3 className="text-[15px] font-bold">
+                            <Bilingue es={paso.titulo} en={paso.tituloEn} />
+                          </h3>
                           <p className="mt-1 max-w-[62ch] text-[15px] leading-relaxed text-muted-foreground">
-                            {paso.texto}
+                            <Bilingue es={paso.texto} en={paso.textoEn} />
                           </p>
                         </div>
                       </li>
@@ -121,13 +130,15 @@ export default function DocPage({ params }: Props) {
                   </ol>
                 </Bloque>
 
-                <Bloque titulo="Cuando algo no anda">
+                <Bloque clave="cuandoAlgoNoAnda">
                   <dl className="border-t">
                     {[...doc.dudas, ...DUDAS_COMUNES].map((d) => (
                       <div key={d.pregunta} className="border-b py-5">
-                        <dt className="text-[15px] font-bold">{d.pregunta}</dt>
+                        <dt className="text-[15px] font-bold">
+                          <Bilingue es={d.pregunta} en={d.preguntaEn} />
+                        </dt>
                         <dd className="mt-1.5 max-w-[62ch] text-[15px] leading-relaxed text-muted-foreground">
-                          {d.respuesta}
+                          <Bilingue es={d.respuesta} en={d.respuestaEn} />
                         </dd>
                       </div>
                     ))}
@@ -138,27 +149,34 @@ export default function DocPage({ params }: Props) {
               {/* Costado */}
               <aside className="min-w-0 flex-[1_1_280px]">
                 <div className="rounded-lg border bg-card p-6">
-                  <p className="etiqueta mb-4">Dónde va</p>
-                  <p className="text-sm leading-relaxed">{doc.dondeVa}</p>
+                  <p className="etiqueta mb-4">
+                    <Texto clave="dondeVa" />
+                  </p>
+                  <p className="text-sm leading-relaxed">
+                    <Bilingue es={doc.dondeVa} en={doc.dondeVaEn} />
+                  </p>
 
                   {doc.enCarpeta && (
                     <p className="mt-4 flex gap-2.5 text-sm leading-relaxed text-muted-foreground">
                       <span className="led-alerta mt-[7px]" aria-hidden="true" />
                       <span>
-                        Viene en carpeta. Los archivos que están al lado del .amxd
-                        tienen que quedar siempre con él.
+                        <Texto clave="vieneEnCarpeta" />
                       </span>
                     </p>
                   )}
 
                   {p.requisitos && (
                     <>
-                      <p className="etiqueta mb-3 mt-7">Requisitos</p>
+                      <p className="etiqueta mb-3 mt-7">
+                        <Texto clave="requisitos" />
+                      </p>
                       <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
-                        {p.requisitos.map((r) => (
+                        {p.requisitos.map((r, i) => (
                           <li key={r} className="flex gap-2.5">
                             <span className="led-apagado mt-[7px]" aria-hidden="true" />
-                            <span>{r}</span>
+                            <span>
+                              <Bilingue es={r} en={p.requisitosEn?.[i]} />
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -167,7 +185,7 @@ export default function DocPage({ params }: Props) {
 
                   <div className="mt-7 border-t pt-6">
                     <p className="text-sm leading-relaxed text-muted-foreground">
-                      ¿No lo resolvés? Escribinos y lo vemos.
+                      <Texto clave="noLoResolves" />
                     </p>
                     <Button
                       asChild
@@ -186,7 +204,9 @@ export default function DocPage({ params }: Props) {
                   variant="ghost"
                   className="mt-3 w-full font-mono text-[12px] uppercase tracking-[0.14em]"
                 >
-                  <Link href={`/store/${p.slug}`}>Volver al producto</Link>
+                  <Link href={`/store/${p.slug}`}>
+                    <Texto clave="volverAlProducto" />
+                  </Link>
                 </Button>
               </aside>
             </div>
@@ -198,11 +218,13 @@ export default function DocPage({ params }: Props) {
   );
 }
 
-function Bloque({ titulo, children }: { titulo: string; children: React.ReactNode }) {
+function Bloque({ clave, children }: { clave: string; children: React.ReactNode }) {
   return (
     <section className="mb-14 last:mb-0">
       <div className="regla-rack mb-7">
-        <span className="etiqueta">{titulo}</span>
+        <span className="etiqueta">
+          <Texto clave={clave} />
+        </span>
       </div>
       {children}
     </section>

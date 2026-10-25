@@ -24,7 +24,6 @@ const LINKS = [
   { href: "/servicios", clave: "servicios" },
   { href: "/store", clave: "store" },
   { href: "/projects", clave: "proyectos" },
-  { href: "/about", clave: "nosotros" },
 ];
 
 /**

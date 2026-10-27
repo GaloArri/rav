@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -8,7 +8,7 @@ const DURACION = 700; // ms visible
 const FADE = 300; // ms de salida
 
 export default function SplashScreen() {
-  // Se decide antes del primer paint del cliente: si ya visitó, nunca se monta.
+  // Se decide antes del primer paint del cliente: si ya visitÃ³, nunca se monta.
   const [activo, setActivo] = useState(false);
   const [saliendo, setSaliendo] = useState(false);
 
@@ -50,12 +50,12 @@ export default function SplashScreen() {
       )}
     >
       <Image
-        src="/assets/logorav1.png"
+        src="/assets/rav-3d.webp"
         alt=""
-        width={480}
-        height={192}
-        sizes="(max-width: 768px) 70vw, 480px"
-        className="object-contain w-2/3 max-w-sm dark:invert-0 invert"
+        width={900}
+        height={475}
+        sizes="(max-width: 768px) 70vw, 420px"
+        className="objeto-3d w-2/3 max-w-sm object-contain brightness-0 dark:brightness-100"
         priority
       />
     </div>

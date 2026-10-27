@@ -36,7 +36,7 @@ export default function DocPage({ params }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-grow">
+      <main id="contenido" className="flex-grow">
         <div className="mx-auto max-w-screen-xl px-4 pb-20 md:px-8">
 
           <p className="flex flex-wrap items-center gap-2 py-5 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">

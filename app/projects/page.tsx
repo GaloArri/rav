@@ -34,7 +34,7 @@ export default function ArtistsPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main
+      <main id="contenido"
         className="relative flex-grow bg-cover bg-fixed bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/images/marg6.webp')" }}
       >
@@ -81,7 +81,7 @@ export default function ArtistsPage() {
                           />
 
                           <div
-                            className="absolute inset-0 cursor-pointer rounded-2xl bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 transition-all duration-500 md:opacity-0 md:group-hover:opacity-100"
+                            className="absolute inset-0 cursor-pointer rounded-2xl bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100"
                             onClick={() => abrirVisor(artist.images, 0, artist.name)}
                           >
                             {bajada && (

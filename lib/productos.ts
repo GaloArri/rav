@@ -3,6 +3,8 @@ import { DOLAR } from "./tienda";
 // Catálogo del store. Fuente única de verdad: editar acá y deployar.
 // Cuando pase de ~50 productos conviene mover esto a Supabase.
 
+import { numero, type Idioma } from "./formato";
+
 export type Linea = "software" | "stock" | "pedido";
 
 export type Producto = {
@@ -24,6 +26,9 @@ export type Producto = {
   descarga?: string; // link de compra externo (Paddle / Gumroad)
   docs?: string; // link a la doc del device
   incluye?: string[]; // sólo packs: slugs de los devices que trae adentro
+  // La imagen todavía es un cuadro vacío: el listado y la ficha no la muestran.
+  // Sacalo cuando llegue la foto real del equipo.
+  fotoPendiente?: boolean;
 };
 
 export const LINEAS: Record<Linea, { titulo: string; bajada: string; entrega: string }> = {
@@ -509,6 +514,7 @@ export const PRODUCTOS: Producto[] = [
       "It takes LTC on a balanced female XLR, decodes it and shows it on an eight-digit display: hours, minutes, seconds and frames.\n\nIt locks on to the standard framerates — 24, 25, 29.97 drop frame and 30 — with nothing to select. Since it needs no computer, it works just as well on stage, in the monitor rack or at the lighting desk.\n\nBuilt in the workshop.",
     precioARS: 200000,
     imagenes: ["/images/products/ltc-reader.webp"],
+    fotoPendiente: true,
     specs: [
       { label: "Entrada", labelEn: "Input", valor: "XLR hembra balanceada", valorEn: "Balanced female XLR" },
       { label: "Lee", labelEn: "Reads", valor: "LTC / SMPTE", valorEn: "LTC / SMPTE" },
@@ -530,6 +536,7 @@ export const PRODUCTOS: Producto[] = [
       "A floor switch to open and close talkback without using your hands. The microphone comes in over XLR and goes out over XLR to its destination; the switch passes or cuts the signal.\n\nMetal chassis and a stomp switch. Built in the workshop.",
     precioARS: 80000,
     imagenes: ["/images/products/foot-talkback-1ch.webp"],
+    fotoPendiente: true,
     specs: [
       { label: "Canales", labelEn: "Channels", valor: "1", valorEn: "1" },
       { label: "Operación", labelEn: "Operation", valor: "De pie", valorEn: "Floor-standing" },
@@ -549,6 +556,7 @@ export const PRODUCTOS: Producto[] = [
       "The two-channel version of the pedal. One microphone comes in over XLR and goes out over two separate XLRs, each with its own switch: one pedal opens the path to monitors and the other to FOH, or wherever you need.\n\nMetal chassis and stomp switches. Built in the workshop.",
     precioARS: 100000,
     imagenes: ["/images/products/foot-talkback-2ch.webp"],
+    fotoPendiente: true,
     specs: [
       { label: "Canales", labelEn: "Channels", valor: "2, independientes", valorEn: "2, independent" },
       { label: "Operación", labelEn: "Operation", valor: "De pie", valorEn: "Floor-standing" },
@@ -568,6 +576,7 @@ export const PRODUCTOS: Producto[] = [
       "The same job as the pedal, in a handheld format, for positions where it is better to keep it on the desk or in the rack. One channel: the microphone comes in over XLR, goes out over XLR, and the switch passes or cuts.\n\nBuilt in the workshop.",
     precioARS: 100000,
     imagenes: ["/images/products/finger-talkback-1ch.webp"],
+    fotoPendiente: true,
     specs: [
       { label: "Canales", labelEn: "Channels", valor: "1", valorEn: "1" },
       { label: "Operación", labelEn: "Operation", valor: "De mano", valorEn: "Handheld" },
@@ -587,6 +596,7 @@ export const PRODUCTOS: Producto[] = [
       "The handheld two-channel version. One microphone comes in over XLR and goes out over two separate XLRs, each with its own switch, to split talkback between two destinations.\n\nBuilt in the workshop.",
     precioARS: 150000,
     imagenes: ["/images/products/finger-talkback-2ch.webp"],
+    fotoPendiente: true,
     specs: [
       { label: "Canales", labelEn: "Channels", valor: "2, independientes", valorEn: "2, independent" },
       { label: "Operación", labelEn: "Operation", valor: "De mano", valorEn: "Handheld" },
@@ -608,6 +618,7 @@ export const PRODUCTOS: Producto[] = [
       "A MIDI controller built in the workshop for live work with Ableton.\n\nMade to order: the number of controls and what each one sends are agreed before we start.",
     precioARS: 350000,
     imagenes: ["/images/products/midi-controller-shuly-01.webp"],
+    fotoPendiente: true,
     specs: [
       { label: "Controles", labelEn: "Controls", valor: "Se definen antes de armarlo", valorEn: "Agreed before we build it" },
       { label: "Armado", labelEn: "Build", valor: "En el taller de RAV", valorEn: "In the RAV workshop" },
@@ -627,6 +638,7 @@ export const PRODUCTOS: Producto[] = [
       "A guitar holder made for the case, not the floor: the guitar stays firm and within reach during the show, and travels in the same place it is stored.\n\nBuilt in the workshop, to the measurements of the case and the instrument.",
     precioARS: 80000,
     imagenes: ["/images/products/guitar-support-case.webp"],
+    fotoPendiente: true,
     specs: [
       { label: "Montaje", labelEn: "Mounting", valor: "Sobre el case", valorEn: "On the case" },
       { label: "A medida", labelEn: "Made to order", valor: "Del case y del instrumento", valorEn: "Of the case and of the instrument" },
@@ -720,14 +732,14 @@ export function precioPesos(p: Producto): number | undefined {
 }
 
 /** El precio de lista: dólares para el software, pesos para el hardware. */
-export function precioTexto(p: Producto) {
+export function precioTexto(p: Producto, idioma: Idioma = "es") {
   if (p.precioUSD) return `US$ ${p.precioUSD}`;
-  if (p.precioARS) return `$ ${p.precioARS.toLocaleString("es-AR")}`;
+  if (p.precioARS) return `$ ${numero(p.precioARS, idioma)}`;
   return "Consultar";
 }
 
 /** El equivalente en pesos, para mostrar debajo del precio en dólares. */
-export function precioEquivalente(p: Producto) {
+export function precioEquivalente(p: Producto, idioma: Idioma = "es") {
   if (!p.precioUSD) return null;
-  return `≈ $ ${precioPesos(p)!.toLocaleString("es-AR")}`;
+  return `≈ $ ${numero(precioPesos(p)!, idioma)}`;
 }

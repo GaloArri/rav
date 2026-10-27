@@ -8,7 +8,7 @@ import {
   envioComprobante,
   ETIQUETA_CONTACTO,
 } from "@/lib/tienda";
-import { useIdioma } from "@/lib/idioma";
+import { useIdioma, numero } from "@/lib/idioma";
 
 type Item = { slug: string; cantidad: number };
 type Datos = { referencia: string; total: number };
@@ -56,7 +56,7 @@ export default function Transferencia({
   const [datos, setDatos] = useState<Datos | null>(null);
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { t } = useIdioma();
+  const { t, idioma } = useIdioma();
 
   const conDescuento = totalConDescuento(total);
 
@@ -95,7 +95,7 @@ export default function Transferencia({
           <Copiable label="CVU" valor={TRANSFERENCIA.cvu} />
           <Copiable
             label={t("total")}
-            valor={`$ ${datos.total.toLocaleString("es-AR")}`}
+            valor={`$ ${numero(datos.total, idioma)}`}
           />
         </div>
 
@@ -118,8 +118,8 @@ export default function Transferencia({
       </div>
 
       <p className="mt-1 text-sm text-muted-foreground">
-        {t("pagas")} $ {conDescuento.toLocaleString("es-AR")} {t("enVezDe")} ${" "}
-        {total.toLocaleString("es-AR")}. {t("coordinamosEnvio")}
+        {t("pagas")} $ {numero(conDescuento, idioma)} {t("enVezDe")} ${" "}
+        {numero(total, idioma)}. {t("coordinamosEnvio")}
       </p>
 
       <Button

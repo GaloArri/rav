@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import carouselData from "../data/carousel.json";
 import { useIdioma } from "@/lib/idioma";
+import { useCarruselAutomatico } from "@/lib/movimiento";
 
 /**
  * Banda de apertura: la foto al fondo, el título apretado adelante y el
@@ -20,13 +21,17 @@ export default function Carousel() {
     setActual((i) => (i + 1) % items.length);
   }, [items.length]);
 
-  useEffect(() => {
-    const t = setInterval(siguiente, 6000);
-    return () => clearInterval(t);
-  }, [siguiente]);
+  // Se frena con el puntero encima, con el foco adentro, con la pestaña
+  // en segundo plano, y no arranca si el sistema pidió menos movimiento.
+  const pausa = useCarruselAutomatico(siguiente, 6000);
 
   return (
-    <section className="relative border-b bg-placa" aria-label={t("queHacemos")}>
+    <section
+      className="relative border-b bg-placa"
+      aria-label={t("queHacemos")}
+      aria-roledescription="carousel"
+      {...pausa}
+    >
       <div className="relative h-[420px] md:h-[520px]">
         {items.map((item, i) => (
           <div
@@ -86,7 +91,7 @@ export default function Carousel() {
             onClick={() => setActual(i)}
             aria-label={item.title[idioma]}
             aria-current={actual === i ? "true" : undefined}
-            className="flex h-11 w-5 items-center justify-center"
+            className="toque-44 flex h-11 w-5 items-center justify-center"
           >
             <span
               className={cn(

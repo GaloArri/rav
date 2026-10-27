@@ -73,8 +73,12 @@ export default function ContactForm() {
   return (
     <div className="relative">
       {exito && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 dark:bg-black/70">
-          <div className="mx-4 max-w-md rounded-lg border bg-card p-8 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center overscroll-contain bg-black/50 dark:bg-black/70">
+          <div
+            role="status"
+            aria-live="polite"
+            className="mx-4 max-w-md rounded-lg border bg-card p-8 shadow-2xl"
+          >
             <div className="mb-4 flex items-center justify-center">
               <CheckCircle className="h-16 w-16" />
             </div>
@@ -100,7 +104,11 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>{t("campoNombre")}</FormLabel>
                 <FormControl>
-                  <Input placeholder={t("phNombre")} {...field} />
+                  <Input
+                    autoComplete="name"
+                    placeholder={t("phNombre")}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -114,7 +122,14 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>{t("mail")}</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="nombre@mail.com" {...field} />
+                  <Input
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    spellCheck={false}
+                    placeholder="nombre@mail.com"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -128,7 +143,11 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>{t("campoAsunto")}</FormLabel>
                 <FormControl>
-                  <Input placeholder={t("phAsunto")} {...field} />
+                  <Input
+                    autoComplete="off"
+                    placeholder={t("phAsunto")}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

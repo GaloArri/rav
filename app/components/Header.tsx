@@ -46,6 +46,13 @@ export default function Header() {
 
   return (
     <>
+      {/* Primero en el orden de tabulación: con teclado no hay que pasar
+          por toda la navegación en cada página. Invisible hasta que recibe
+          el foco. */}
+      <a href="#contenido" className="saltar-al-contenido">
+        {t("saltarAlContenido")}
+      </a>
+
       {/* Reserva la altura de la barra fija */}
       <div className="h-[68px]" aria-hidden="true" />
 

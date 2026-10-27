@@ -9,12 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCarrito } from "@/lib/carrito";
 import { precioPesos } from "@/lib/productos";
-import { useIdioma } from "@/lib/idioma";
+import { useIdioma, numero } from "@/lib/idioma";
 import Transferencia from "../components/Transferencia";
 
 export default function CarritoPage() {
   const { productos, total, cambiarCantidad, quitar, vaciar, listo } = useCarrito();
-  const { t } = useIdioma();
+  const { t, idioma } = useIdioma();
   const [email, setEmail] = useState("");
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -47,7 +47,7 @@ export default function CarritoPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow">
+      <main id="contenido" className="flex-grow">
         <div className="max-w-2xl mx-auto px-4 py-10 md:py-14">
           <h1 className="text-3xl font-semibold tracking-tight">{t("carrito")}</h1>
 
@@ -83,7 +83,7 @@ export default function CarritoPage() {
                         {producto.nombre}
                       </Link>
                       <p className="text-sm text-muted-foreground tabular-nums">
-                        $ {(precioPesos(producto) ?? 0).toLocaleString("es-AR")} {t("cadaUno")}
+                        $ {numero(precioPesos(producto) ?? 0, idioma)} {t("cadaUno")}
                       </p>
 
                       <div className="mt-2 flex items-center gap-3">
@@ -119,7 +119,7 @@ export default function CarritoPage() {
                     </div>
 
                     <p className="shrink-0 tabular-nums">
-                      $ {((precioPesos(producto) ?? 0) * cantidad).toLocaleString("es-AR")}
+                      $ {numero((precioPesos(producto) ?? 0) * cantidad, idioma)}
                     </p>
                   </li>
                 ))}
@@ -128,7 +128,7 @@ export default function CarritoPage() {
               <div className="mt-6 flex justify-between text-lg">
                 <span>{t("total")}</span>
                 <span className="tabular-nums font-medium">
-                  $ {total.toLocaleString("es-AR")}
+                  $ {numero(total, idioma)}
                 </span>
               </div>
               <p className="mt-1 text-sm text-muted-foreground">
@@ -147,6 +147,7 @@ export default function CarritoPage() {
                   type="email"
                   inputMode="email"
                   autoComplete="email"
+                  spellCheck={false}
                   aria-describedby="ayuda-email-carrito"
                   placeholder="nombre@mail.com"
                   value={email}

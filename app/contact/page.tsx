@@ -8,7 +8,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow bg-muted/30 ">
+      <main id="contenido" className="flex-grow bg-muted/30 ">
               <div className="container mx-auto px-4 py-16">
           <div className="max-w-2xl mx-auto text-center mb-12">
             <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">

@@ -9,6 +9,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import serviciosData from "../data/servicios.json";
 import { useIdioma } from "@/lib/idioma";
+import { useCarruselAutomatico } from "@/lib/movimiento";
 
 type Item = {
   id: number;
@@ -106,7 +107,7 @@ function ImageCarousel({
             type="button"
             onClick={prevSlide}
             aria-label={t("anterior")}
-            className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-black/70 group-hover:opacity-100"
+            className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 backdrop-blur-sm transition-[opacity,background-color] duration-300 hover:bg-black/70 group-hover:opacity-100"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -115,7 +116,7 @@ function ImageCarousel({
             type="button"
             onClick={nextSlide}
             aria-label={t("siguiente")}
-            className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-black/70 group-hover:opacity-100"
+            className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white opacity-0 backdrop-blur-sm transition-[opacity,background-color] duration-300 hover:bg-black/70 group-hover:opacity-100"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
@@ -127,7 +128,7 @@ function ImageCarousel({
                 type="button"
                 onClick={() => setCurrentIndex(index)}
                 aria-label={`${t("imagen")} ${index + 1}`}
-                className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
+                className={`toque-24 h-1.5 w-1.5 rounded-full transition-colors duration-300 ${
                   index === currentIndex ? "bg-white" : "bg-white/50"
                 }`}
               />
@@ -161,7 +162,7 @@ function SectionGrid({
           return (
             <div
               key={`${item.id}-${item.name}`}
-              className="group relative overflow-hidden transition-all duration-700 ease-out"
+              className="group relative overflow-hidden transition-[opacity,transform] duration-700 ease-out"
               style={{ transitionDelay: `${index * 100}ms` }}
               ref={addToRefs}
             >
@@ -175,7 +176,7 @@ function SectionGrid({
                 {/* El degradado de abajo, con la bajada encima. Clickear abre
                     la primera foto en el visor. */}
                 <div
-                  className="absolute inset-0 cursor-pointer rounded-2xl bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 transition-all duration-500 md:opacity-0 md:group-hover:opacity-100"
+                  className="absolute inset-0 cursor-pointer rounded-2xl bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100"
                   onClick={() => onImageClick(item.images, 0)}
                 >
                   {bajada && (
@@ -226,14 +227,14 @@ function ServicesCarousel({
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    const interval = setInterval(nextSlide, 4000);
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  const pausa = useCarruselAutomatico(nextSlide, 4000, isAutoPlaying);
 
   return (
-    <div className="mx-auto max-w-6xl transition-all duration-700 ease-out" ref={addToRefs}>
+    <div
+      className="mx-auto max-w-6xl transition-[opacity,transform] duration-700 ease-out"
+      ref={addToRefs}
+      {...pausa}
+    >
       <div className="relative">
         <div className="select-none overflow-hidden rounded-2xl">
           <div
@@ -242,7 +243,7 @@ function ServicesCarousel({
           >
             {SERVICIOS_CARRUSEL.map((servicio) => (
               <div key={servicio.sectionId} className="w-full flex-shrink-0">
-                <div className="mx-4 rounded-2xl border border-border/50 bg-background p-12 transition-all duration-300 hover:border-primary/20">
+                <div className="mx-4 rounded-2xl border border-border/50 bg-background p-12 transition-colors duration-300 hover:border-primary/20">
                   <div className="text-center">
                     <h3 className="mb-6 text-xl font-light text-foreground md:text-2xl">
                       {t(servicio.clave)}
@@ -270,7 +271,7 @@ function ServicesCarousel({
             setIsAutoPlaying(false);
           }}
           aria-label={t("anterior")}
-          className="absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-all duration-300 hover:bg-background md:flex"
+          className="absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-colors duration-300 hover:bg-background md:flex"
         >
           <ChevronLeft className="h-5 w-5 text-muted-foreground" />
         </button>
@@ -282,7 +283,7 @@ function ServicesCarousel({
             setIsAutoPlaying(false);
           }}
           aria-label={t("siguiente")}
-          className="absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-all duration-300 hover:bg-background md:flex"
+          className="absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-sm transition-colors duration-300 hover:bg-background md:flex"
         >
           <ChevronRight className="h-5 w-5 text-muted-foreground" />
         </button>
@@ -298,7 +299,7 @@ function ServicesCarousel({
               setIsAutoPlaying(false);
             }}
             aria-label={t(s.clave)}
-            className={`h-2 rounded-full transition-all duration-300 ${
+            className={`toque-24 h-2 rounded-full transition-[width,background-color] duration-300 ${
               index === currentIndex
                 ? "w-8 bg-primary"
                 : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
@@ -339,7 +340,7 @@ export default function ServiciosPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main
+      <main id="contenido"
         className="relative flex-grow bg-cover bg-fixed bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/images/project-artists/duko1.webp')" }}
       >
@@ -372,7 +373,7 @@ export default function ServiciosPage() {
           >
             <div className="container mx-auto px-4">
               <div
-                className="mb-16 text-center transition-all duration-700 ease-out"
+                className="mb-16 text-center transition-[opacity,transform] duration-700 ease-out"
                 ref={addToRefs}
               >
                 <h2 className="mb-2 text-2xl font-black uppercase tracking-[-0.03em] md:text-3xl">

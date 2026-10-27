@@ -52,7 +52,7 @@ export default function GraciasPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow">
+      <main id="contenido" className="flex-grow">
         <Suspense fallback={<div className="py-24 text-center"><Texto clave="cargando" /></div>}>
           <Contenido />
         </Suspense>

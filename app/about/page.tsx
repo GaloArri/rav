@@ -6,7 +6,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow">
+      <main id="contenido" className="flex-grow">
         <AboutUs />
       </main>
       <Footer />

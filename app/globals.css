@@ -10,6 +10,11 @@
 
 @layer base {
   :root {
+    /* Le avisa al navegador de qué color es la página, así los scrollbars,
+       los campos nativos y los menús desplegables salen del color correcto
+       en vez de blancos sobre negro. */
+    color-scheme: light;
+
     /* Claro: papel. El oscuro es el modo principal. */
     --background: 40 9% 97%;
     --foreground: 0 0% 7%;
@@ -47,6 +52,8 @@
   }
 
   .dark {
+    color-scheme: dark;
+
     /* Negro real, no gris: el gris es lo que hacía ver viejo al sitio. */
     --background: 0 0% 2%;
     --foreground: 42 14% 93%;
@@ -85,11 +92,32 @@
   body {
     @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
+    /* Saca el retardo de 300 ms del doble-tap en celular y define el
+       destello del tap en vez de dejar el azul del sistema. */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: hsl(var(--foreground) / 0.08);
   }
 
   html {
     scroll-behavior: smooth;
     height: 100%;
+  }
+
+  /* Un ancla no tiene que dejar el título pegado abajo de la barra fija. */
+  :target,
+  h1,
+  h2,
+  h3,
+  h4 {
+    scroll-margin-top: 5.5rem;
+  }
+
+  /* Evita la línea huérfana en los títulos. No cambia el tamaño ni la
+     fuente: sólo reparte mejor el corte de línea. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
 
   body {
@@ -117,6 +145,44 @@
 
   .smooth-scroll {
     scroll-behavior: smooth;
+  }
+
+  /* ── Menos movimiento ───────────────────────────────────────────
+     Antes sólo el loop de portada respetaba esta preferencia; los
+     carruseles, las transiciones y el scroll suave seguían igual.
+     Esto no cambia cómo se ve nada: apaga el movimiento para quien
+     pidió que no haya. Los carruseles además dejan de pasar solos,
+     eso se resuelve en JavaScript. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ── Saltar al contenido ────────────────────────────────────────
+     Invisible hasta que alguien llega con el teclado; ahí aparece
+     arriba a la izquierda y evita tabular toda la navegación en
+     cada página. */
+  .saltar-al-contenido {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.75rem;
+    z-index: 100;
+    transform: translateY(-200%);
+    @apply rounded-sm border bg-background px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground;
+  }
+
+  .saltar-al-contenido:focus-visible {
+    transform: translateY(0);
   }
 }
 
@@ -163,6 +229,34 @@
   /* ── El objeto flotando sobre negro ────────────────────────────── */
   .objeto-3d {
     filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.85));
+  }
+
+  /* ── Blanco de toque ────────────────────────────────────────────
+     Los puntitos de los carruseles miden 6 u 8 px dibujados, que es
+     lo que se quiere ver, pero el área que recibe el dedo tiene que
+     llegar a 24 px. Esta clase agranda el área sin tocar el punto. */
+  .toque-24,
+  .toque-44 {
+    position: relative;
+  }
+
+  .toque-24::after,
+  .toque-44::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .toque-24::after {
+    width: max(100%, 24px);
+    height: max(100%, 24px);
+  }
+
+  .toque-44::after {
+    width: max(100%, 44px);
+    height: max(100%, 44px);
   }
 
   /* ── El loop de portada ─────────────────────────────────────────
@@ -230,6 +324,189 @@
       filter: blur(9px) saturate(0.35);
       opacity: 0.32;
     }
+  }
+
+  /* ── Store ──────────────────────────────────────────────────────
+     Un solo botón para todo el store: lleno, recto, en la tinta. */
+  .boton-rav {
+    @apply inline-flex min-h-[48px] items-center justify-center rounded-lg bg-foreground px-6 text-[17px] font-bold text-background;
+    transition: transform 160ms ease, opacity 160ms ease;
+  }
+  .boton-rav:hover {
+    opacity: 0.88;
+  }
+  .boton-rav:active {
+    transform: scale(0.97);
+  }
+  /* Sobre el campo hueso de "A pedido" la tinta es la del fondo */
+  .boton-rav-invertido {
+    @apply bg-background text-foreground;
+  }
+
+  /* La placa del store: en oscuro va un escalón arriba del fondo; si fuera
+     el mismo negro desaparecería y la captura quedaría flotando. */
+  .placa-store {
+    background: hsl(var(--placa));
+  }
+  .dark .placa-store {
+    background: hsl(36 6% 7%);
+  }
+
+  /* El fondo de los bloques alternos del store: un escalón visible
+     respecto del fondo de la página, para que se lea dónde empieza y
+     dónde termina cada segmento. */
+  .banda-alterna {
+    background-color: hsl(40 8% 92%);
+  }
+  .dark .banda-alterna {
+    background-color: hsl(36 6% 8.5%);
+  }
+
+  /* Un grano muy fino sobre los bloques alternos, para que el gris no se
+     vea plano. Es ruido en SVG, sin imagen aparte. */
+  .banda-alterna {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  }
+
+  /* ── Inclinación 3D con brillo (Efectos.tsx) ─────────────────── */
+  .inclinable {
+    position: relative;
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: transform;
+  }
+  .inclinable.siguiendo {
+    transition: transform 90ms linear;
+  }
+  .inclinable-brillo {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      circle at var(--gx, 50%) var(--gy, 50%),
+      hsl(42 30% 96% / 0.16),
+      transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  .inclinable.siguiendo .inclinable-brillo {
+    opacity: 1;
+  }
+
+  /* ── Tornillos de rack en las esquinas de una placa ──────────── */
+  .tornillo {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 9999px;
+    background: hsl(36 5% 20%);
+    box-shadow:
+      inset 0 1px 0 hsl(40 6% 34%),
+      inset 0 -1px 0 hsl(0 0% 0% / 0.6);
+  }
+  .tornillo::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    top: 4px;
+    height: 1px;
+    background: hsl(0 0% 0% / 0.7);
+    transform: rotate(-35deg);
+  }
+
+  /* ── LED que late, para lo que está disponible ya ────────────── */
+  .led-late {
+    animation: led-late 2.4s ease-in-out infinite;
+  }
+  @keyframes led-late {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  /* ── La pantalla del device se "enciende" al cambiar ─────────── */
+  .enciende {
+    animation: enciende 520ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  @keyframes enciende {
+    0% {
+      opacity: 0;
+      transform: scale(0.985);
+      filter: brightness(2.2) contrast(0.6);
+    }
+    35% {
+      opacity: 1;
+      filter: brightness(1.4) contrast(0.9);
+    }
+    100% {
+      transform: scale(1);
+      filter: none;
+    }
+  }
+
+  /* ── La portada del store lleva el loop del logo, como el inicio ── */
+  .portada-store .loop-portada video {
+    opacity: 0.22;
+  }
+
+  /* Filas que reaccionan al puntero: un corrimiento chico, sólo transform */
+  .fila-viva {
+    transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 220ms ease, color 220ms ease;
+  }
+  .fila-viva:hover {
+    transform: translateX(4px);
+  }
+  .fila-viva:active {
+    transform: translateX(4px) scale(0.99);
+  }
+
+  /* Fotos que se acercan apenas con el puntero */
+  .foto-viva {
+    transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  *:hover > .foto-viva {
+    transform: scale(1.04);
+  }
+
+  /* La imagen de la placa respira: un acercamiento lento y continuo */
+  .placa-respira {
+    animation: placa-respira 18s ease-in-out infinite alternate;
+  }
+  @keyframes placa-respira {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.045);
+    }
+  }
+
+  /* La fila de fotos del taller: se arrastra, sin barra visible */
+  .fila-galeria {
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .fila-galeria::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Entradas: sólo existen si Movimiento.tsx marcó <html class="mov">.
+     Sin JS o con menos movimiento, todo está visible desde el principio. */
+  .mov [data-entra] {
+    transition:
+      opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 80ms),
+      transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 80ms);
+  }
+  .mov [data-entra]:not(.visto) {
+    opacity: 0;
+    transform: translateY(24px);
   }
 
   /* ── Tipografía heredada, para no romper lo que ya la usaba ────── */

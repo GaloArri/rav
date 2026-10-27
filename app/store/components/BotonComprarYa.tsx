@@ -63,6 +63,7 @@ export default function BotonComprarYa({
           type="email"
           inputMode="email"
           autoComplete="email"
+          spellCheck={false}
           aria-describedby="ayuda-email"
           placeholder="nombre@mail.com"
           value={email}

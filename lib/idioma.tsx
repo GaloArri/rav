@@ -3,7 +3,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 // Castellano e inglés, como el chip EN/ES que tienen los devices.
-export type Idioma = "es" | "en";
+// El tipo y el formateador viven en lib/formato.ts, que no es "use client".
+export type { Idioma } from "./formato";
+export { numero } from "./formato";
+
+import type { Idioma } from "./formato";
 
 const CLAVE = "rav-idioma";
 
@@ -18,6 +22,7 @@ export const T: Textos = {
   nosotros: { es: "Nosotros", en: "About" },
   contacto: { es: "Contacto", en: "Contact" },
   menu: { es: "Menú", en: "Menu" },
+  saltarAlContenido: { es: "Saltar al contenido", en: "Skip to content" },
   abrirMenu: { es: "Abrir el menú", en: "Open the menu" },
   enLinea: { es: "En línea", en: "Online" },
   carrito: { es: "Carrito", en: "Cart" },

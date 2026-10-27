@@ -33,6 +33,7 @@ Tres líneas de producto, divididas por cómo se entrega cada cosa:
 ### Archivos clave
 
     lib/productos.ts      catálogo de productos (fuente de verdad)
+    lib/segmentos.ts      cómo se ordena el store: segmentos y familias de slugs
     lib/carrito.tsx       contexto del carrito, persiste en localStorage
     lib/mercadopago.ts    cliente REST de MP (sin SDK, a propósito)
     lib/pedidos.ts        persistencia en Supabase vía REST
@@ -47,6 +48,28 @@ Tres líneas de producto, divididas por cómo se entrega cada cosa:
     app/api/checkout/     crea la preferencia de pago
     app/api/webhooks/     confirma pagos (única fuente de verdad del estado)
     app/api/descarga/     valida el link firmado y redirige al archivo
+
+### Cómo se ve el listado (octubre 2026)
+
+`/store` es una sola página partida en bloques con fondos alternados, con
+una barra pegada abajo del header (Software, Hardware, A pedido, Armá tu
+sistema). Cada bloque abre con el mismo encabezado (`Seccion.tsx`). En
+Software, a la derecha queda la **placa** con la captura del device elegido.
+El hardware va en tarjetas con la foto de cada equipo. A pedido va sobre
+fondo hueso, y al final "Armá tu sistema" calcula si conviene suelto o en
+bundle y lo suma al carrito (el precio lo sigue calculando el servidor).
+
+- Un producto nuevo hay que sumarlo también a su familia en `lib/segmentos.ts`;
+  si no, tiene ficha pero no aparece en el listado.
+- `fotoPendiente: true` en un producto esconde su imagen (hoy son cuadros
+  vacíos): la tarjeta y la ficha muestran el nombre y sus datos sobre la placa.
+  Sacarlo cuando llegue la foto real.
+- El store no usa mono ni etiquetas chicas en mayúsculas: los precios van en
+  Chivo con cifras tabulares. El header y el footer, que son de todo el
+  sitio, siguen como están.
+- Los `?ver=software|stock|pedido` viejos siguen andando: llevan a su sección.
+- Las entradas al scrollear (`app/store/components/Movimiento.tsx`) respetan
+  "Nada arranca invisible": sin JS o con menos movimiento no se esconde nada.
 
 ### Reglas que no se rompen
 

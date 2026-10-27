@@ -1,6 +1,11 @@
 "use client";
 
 import { useIdioma } from "@/lib/idioma";
+import {
+  precioTexto,
+  precioEquivalente,
+  type Producto,
+} from "@/lib/productos";
 
 /** Un texto del diccionario, para usar adentro de páginas de servidor. */
 export default function Texto({ clave }: { clave: string }) {
@@ -31,4 +36,16 @@ export function Descripcion({ es, en }: { es: string; en?: string }) {
         ))}
     </>
   );
+}
+
+/** El precio, con los separadores de miles del idioma activo. */
+export function Precio({ p }: { p: Producto }) {
+  const { idioma } = useIdioma();
+  return <>{precioTexto(p, idioma)}</>;
+}
+
+/** El equivalente en pesos de un precio en dólares. Null si no aplica. */
+export function PrecioEquivalente({ p }: { p: Producto }) {
+  const { idioma } = useIdioma();
+  return <>{precioEquivalente(p, idioma)}</>;
 }

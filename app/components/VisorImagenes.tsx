@@ -70,7 +70,7 @@ export default function VisorImagenes({
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[60] flex items-center justify-center overscroll-contain p-4"
       role="dialog"
       aria-modal="true"
       aria-label={titulo ?? t("imagenAmpliada")}
@@ -135,7 +135,7 @@ export default function VisorImagenes({
                 onClick={() => setActual(i)}
                 aria-label={`${t("imagen")} ${i + 1}`}
                 aria-current={i === actual ? "true" : undefined}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`toque-24 h-2 rounded-full transition-[width,background-color] duration-300 ${
                   i === actual ? "w-6 bg-white" : "w-2 bg-white/50 hover:bg-white/80"
                 }`}
               />

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-grow">
+      <main id="contenido" className="flex-grow">
         <LandingPage />
         <Carousel />
       </main>

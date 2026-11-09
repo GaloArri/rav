@@ -95,6 +95,10 @@ export const T: Textos = {
 
   // servicios
   nuestrosServicios: { es: "Nuestros servicios", en: "What we do" },
+  bajadaServicios: {
+    es: "Alquiler, reparación, programación, montaje y diseño 3D.",
+    en: "Rental, repair, programming, rack assembly and 3D design.",
+  },
   catalogoEquipamiento: { es: "Catálogo de equipamiento", en: "Equipment catalogue" },
   verMas: { es: "Ver más", en: "See more" },
   tituloAlquiler: { es: "Alquiler de equipamiento", en: "Equipment rental" },
@@ -125,6 +129,14 @@ export const T: Textos = {
 
   // proyectos
   colaboradores: { es: "Todos nuestros colaboradores", en: "Everyone we work with" },
+  bajadaProyectos: {
+    es: "Sistemas de playback y proceso vocal para shows en vivo.",
+    en: "Playback and vocal processing systems for live shows.",
+  },
+  artistas: { es: "artistas", en: "artists" },
+  fotos: { es: "fotos", en: "photos" },
+  fotosProximamente: { es: "Fotos próximamente", en: "Photos coming soon" },
+  ampliar: { es: "Ampliar", en: "Enlarge" },
 
   // nosotros
   sobreNosotros: { es: "Sobre nosotros", en: "About us" },

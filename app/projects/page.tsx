@@ -4,9 +4,21 @@ import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import VisorImagenes from "../components/VisorImagenes";
+import Movimiento from "../store/components/Movimiento";
 import artistsData from "../data/artists.json";
-import ArtistCarousel from "./components/ArtistCarousel";
+import CarruselFotos from "../components/CarruselFotos";
 import { useIdioma } from "@/lib/idioma";
+import { cn } from "@/lib/utils";
+
+/** Dos cifras, como un contador de rack: 01, 02… */
+const dos = (n: number) => String(n).padStart(2, "0");
+
+/** Hasta qué lugar de la lista llegan los del escalón del medio: 2º al 5º. */
+const ESCALON_MEDIO = 4;
+
+/** Las fotos reales de un artista; los placeholders no cuentan. */
+const fotosDe = (imagenes: string[]) =>
+  imagenes.filter((src) => !src.includes("placeholder"));
 
 export default function ArtistsPage() {
   const { t, idioma } = useIdioma();
@@ -31,85 +43,156 @@ export default function ArtistsPage() {
     setNombre("");
   };
 
+  const artistas = artistsData.artists;
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main id="contenido"
-        className="relative flex-grow bg-cover bg-fixed bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/marg6.webp')" }}
-      >
-        <div className="absolute inset-0 bg-white/70 dark:bg-black/50" />
+      <main id="contenido" className="flex-grow">
+        {/* Cabecera: la regla del rack con su etiqueta, el título apretado
+            y la bajada. Sin foto de fondo: la superficie es el negro. */}
+        <section className="border-b">
+          <div className="mx-auto max-w-screen-xl px-4 pb-12 pt-16 md:px-8 md:pb-16 md:pt-24">
+            <p
+              data-entra
+              className="etiqueta flex items-center gap-2.5"
+            >
+              <span className="led" aria-hidden="true" />
+              {t("proyectos")}
+              <span className="dato text-foreground">
+                {dos(artistas.length)}
+              </span>
+              {t("artistas")}
+            </p>
 
-        <div className="relative z-10">
-          <section className="pb-8 pt-32">
-            <div className="container mx-auto px-4">
-              <div className="mb-8 text-center">
-                <h1 className="mb-2 text-3xl font-black uppercase tracking-[-0.03em] md:text-4xl lg:text-5xl">
-                  {t("colaboradores")}
-                </h1>
-              </div>
+            <h1
+              data-entra
+              style={{ ["--i" as string]: 1 }}
+              className="titulo-grande mt-6 max-w-[16ch] text-4xl md:text-6xl lg:text-7xl"
+            >
+              {t("colaboradores")}
+            </h1>
 
-              <div className="mb-8 flex items-center justify-center">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                <div className="mx-4 h-3 w-3 rounded-full bg-primary" />
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-              </div>
-            </div>
-          </section>
+            <p
+              data-entra
+              style={{ ["--i" as string]: 2 }}
+              className="mt-6 max-w-[60ch] text-[17px] leading-relaxed text-muted-foreground"
+            >
+              {t("bajadaProyectos")}
+            </p>
+          </div>
+        </section>
 
-          <section className="py-8">
-            <div className="container mx-auto px-4">
-              <div className="mx-auto max-w-7xl">
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
-                  {artistsData.artists.map((artist) => {
-                    const bajada =
-                      (idioma === "en" && artist.descriptionEn) ||
-                      artist.description;
+        {/* Tres escalones por orden en artists.json: el primero ocupa todo el
+            ancho, los cuatro siguientes van de a dos y el resto de a tres. El
+            orden del archivo es el orden de importancia. */}
+        <section aria-label={t("colaboradores")}>
+          <div className="mx-auto max-w-screen-xl px-4 py-12 md:px-8 md:py-16">
+            <ul className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-6 lg:gap-x-12 lg:gap-y-20">
+              {artistas.map((artist, i) => {
+                const nivel = i === 0 ? "grande" : i <= ESCALON_MEDIO ? "medio" : "chico";
+                const bajada =
+                  (idioma === "en" && artist.descriptionEn) ||
+                  artist.description;
+                const fotos = fotosDe(artist.images);
+                const cuenta = (
+                  <span className="etiqueta shrink-0">
+                    {fotos.length > 0 ? (
+                      <>
+                        <span className="dato text-foreground">{dos(fotos.length)}</span>{" "}
+                        {t("fotos")}
+                      </>
+                    ) : (
+                      "—"
+                    )}
+                  </span>
+                );
 
-                    return (
-                      <div
-                        key={artist.id}
-                        className="group relative overflow-hidden"
-                      >
-                        <div className="relative">
-                          <ArtistCarousel
-                            images={artist.images}
-                            artistName={artist.name}
-                            onImageClick={(desde: number) =>
-                              abrirVisor(artist.images, desde, artist.name)
-                            }
-                          />
+                return (
+                  <li
+                    key={artist.id}
+                    data-entra
+                    style={{ ["--i" as string]: i % 3 }}
+                    className={cn(
+                      nivel === "grande" && "md:col-span-6",
+                      nivel === "medio" && "md:col-span-3",
+                      nivel === "chico" && "md:col-span-3 lg:col-span-2"
+                    )}
+                  >
+                    <article
+                      className={cn(
+                        nivel === "grande" &&
+                          "lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:items-end lg:gap-12"
+                      )}
+                    >
+                      <CarruselFotos
+                        imagenes={artist.images}
+                        nombre={artist.name}
+                        sizes={
+                          nivel === "grande"
+                            ? "(max-width: 1024px) 100vw, 66vw"
+                            : nivel === "medio"
+                              ? "(max-width: 768px) 100vw, 50vw"
+                              : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        }
+                        alAbrir={(desde) => abrirVisor(fotos, desde, artist.name)}
+                      />
 
-                          <div
-                            className="absolute inset-0 cursor-pointer rounded-2xl bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100"
-                            onClick={() => abrirVisor(artist.images, 0, artist.name)}
-                          >
-                            {bajada && (
-                              <div className="absolute bottom-0 left-0 right-0 translate-y-0 p-6 transition-transform duration-500 md:translate-y-4 md:group-hover:translate-y-0">
-                                <p className="text-sm leading-relaxed text-white/90 md:text-base">
-                                  {bajada}
-                                </p>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="px-2 pt-4">
-                          <h3 className="text-xl font-semibold text-gray-900 transition-colors duration-300 group-hover:text-primary dark:text-white md:text-2xl">
+                      {nivel === "grande" ? (
+                        <div className="pt-6 lg:pb-1 lg:pt-0">
+                          <p className="etiqueta flex items-center justify-between gap-4">
+                            <span className="dato">{dos(i + 1)}</span>
+                            {cuenta}
+                          </p>
+                          <h2 className="titulo-grande mt-5 text-4xl md:text-5xl">
                             {artist.name}
-                          </h3>
-                          <div className="mt-1 flex items-center gap-2">
-                            <div className="h-px flex-1 bg-gradient-to-r from-primary to-transparent" />
-                          </div>
+                          </h2>
+                          {bajada && (
+                            <p className="mt-5 max-w-[60ch] text-[17px] leading-relaxed text-muted-foreground">
+                              {bajada}
+                            </p>
+                          )}
                         </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
+                      ) : (
+                        <>
+                          {/* La regla de la tarjeta: número a la izquierda,
+                              cantidad de fotos a la derecha, como un panel de 1U. */}
+                          <div className="regla-rack gap-4">
+                            <div className="flex min-w-0 items-baseline gap-4">
+                              <span className="dato text-[11px] tracking-[0.14em] text-muted-foreground">
+                                {dos(i + 1)}
+                              </span>
+                              <h2
+                                className={cn(
+                                  "truncate font-black uppercase leading-none tracking-[-0.025em]",
+                                  nivel === "medio" ? "text-2xl md:text-3xl" : "text-lg md:text-xl"
+                                )}
+                              >
+                                {artist.name}
+                              </h2>
+                            </div>
+                            {cuenta}
+                          </div>
+
+                          {bajada && (
+                            <p
+                              className={cn(
+                                "max-w-[60ch] pt-4 leading-relaxed text-muted-foreground",
+                                nivel === "medio" ? "text-[15px]" : "line-clamp-3 text-[14px]"
+                              )}
+                            >
+                              {bajada}
+                            </p>
+                          )}
+                        </>
+                      )}
+                    </article>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
       </main>
       <Footer />
 
@@ -120,6 +203,7 @@ export default function ArtistsPage() {
         titulo={nombre}
         onCerrar={cerrarVisor}
       />
+      <Movimiento />
     </div>
   );
 }

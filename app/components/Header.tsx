@@ -58,7 +58,7 @@ export default function Header() {
 
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b bg-background/92 backdrop-blur-md transition-shadow",
+          "fixed inset-x-0 top-0 z-50 border-b bg-background transition-shadow",
           compacto && "shadow-[0_1px_0_0_hsl(var(--border))]"
         )}
       >

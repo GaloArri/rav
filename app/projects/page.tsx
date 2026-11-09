@@ -58,7 +58,6 @@ export default function ArtistsPage() {
               className="etiqueta flex items-center gap-2.5"
             >
               <span className="led" aria-hidden="true" />
-              {t("proyectos")}
               <span className="dato text-foreground">
                 {dos(artistas.length)}
               </span>
@@ -70,7 +69,7 @@ export default function ArtistsPage() {
               style={{ ["--i" as string]: 1 }}
               className="titulo-grande mt-6 max-w-[16ch] text-4xl md:text-6xl lg:text-7xl"
             >
-              {t("colaboradores")}
+              {t("proyectos")}
             </h1>
 
             <p
@@ -86,7 +85,7 @@ export default function ArtistsPage() {
         {/* Tres escalones por orden en artists.json: el primero ocupa todo el
             ancho, los cuatro siguientes van de a dos y el resto de a tres. El
             orden del archivo es el orden de importancia. */}
-        <section aria-label={t("colaboradores")}>
+        <section aria-label={t("proyectos")}>
           <div className="mx-auto max-w-screen-xl px-4 py-12 md:px-8 md:py-16">
             <ul className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-6 lg:gap-x-12 lg:gap-y-20">
               {artistas.map((artist, i) => {

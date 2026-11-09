@@ -128,7 +128,6 @@ export const T: Textos = {
   },
 
   // proyectos
-  colaboradores: { es: "Todos nuestros colaboradores", en: "Everyone we work with" },
   bajadaProyectos: {
     es: "Sistemas de playback y proceso vocal para shows en vivo.",
     en: "Playback and vocal processing systems for live shows.",
